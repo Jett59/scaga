@@ -11,6 +11,7 @@ private AnimationBuilder animationBuilder;
 
 public PlayerObject() {
 	animationBuilder = new AnimationBuilder ();
+	mass = Math.E;
 }
 
 @Override

@@ -12,6 +12,7 @@ public GameLoop(Runnable tick) {
 public void handle(long now) {
 	if(lastFrame+30000000 <= System.nanoTime()) {
 		lastFrame = System.nanoTime();
+		System.out.println("running tick");
 	tick.run();
 	}
 }
