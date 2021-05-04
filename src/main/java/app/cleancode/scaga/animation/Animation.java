@@ -34,11 +34,9 @@ public Animation(int cellCount, int totalWidth, int cellHeight, ImageView imageV
 		updateViewPort(frac);
 	}
 private void updateViewPort(double frac) {
-	double frameLength = 1d/cellCount;
-	System.out.println(frameLength);
+	double frameLength = 1d/ (cellCount - 1);
 	currentFramePosition = (int) (Math.floor(frac/frameLength));
 	filmStrip.setViewport(new Rectangle2D(currentFramePosition*cellWidth, 0, cellWidth, cellHeight));
-	
 }
 /*
  * gets the bounds of this animation.

@@ -28,4 +28,6 @@ public double getX () {
 public double getY () {
 	return node.getTranslateY();
 }
+
+public abstract void init ();
 }

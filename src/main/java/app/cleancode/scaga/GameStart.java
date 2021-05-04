@@ -6,6 +6,7 @@ import app.cleancode.scaga.engine.GameObject;
 import app.cleancode.scaga.engine.PhysicalLaw;
 import app.cleancode.scaga.engine.physics.Gravity;
 import app.cleancode.scaga.engine.physics.Movement;
+import app.cleancode.scaga.objects.player.PlayerObject;
 import javafx.application.Application;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -21,7 +22,7 @@ public class GameStart extends Application {
 	};
 	@SuppressWarnings("unchecked")
 	private static GameObject<Node> [] gameObjects = new GameObject[] {
-			
+			new PlayerObject ()
 	};
 	private static PhysicalLaw[] laws = new PhysicalLaw[] {
 			new Movement(),
@@ -45,6 +46,7 @@ public void start(Stage primaryStage) throws Exception {
 	primaryStage.show();
 	for(GameObject<Node> gameObject : gameObjects) {
 		gameObject.addNode = this::addNode;
+		gameObject.init ();
 		addNode(gameObject.node);
 	}
 	for(GameListener listener : gameListeners) {

@@ -20,7 +20,7 @@ import javafx.util.Duration;
 
 public class AnimationBuilder {
 public Animation buildAnimation(String character, String animation, int cellCount, Duration duration, double height, boolean reversed) {
-	String templatePath = String.format("/characters/%s/animations/%s/[index].png", character, animation);
+	String templatePath = String.format("/characters/%s/%s/[index].png", character, animation);
 	Image testImage = new Image(getClass().getResourceAsStream(templatePath.replace("[index]", "1")));
 	int imageHeight = (int) Math.ceil(testImage.getHeight());
 	double scale = height/imageHeight;
@@ -28,8 +28,9 @@ public Animation buildAnimation(String character, String animation, int cellCoun
 	List<BoundingBox> boundingBoxes = new ArrayList<>();
 	BufferedImage swingFilmStrip = new BufferedImage(cellWidth*cellCount, (int) height, BufferedImage.TYPE_4BYTE_ABGR);
 	Graphics graphics = swingFilmStrip.getGraphics();
-	for(int i = 1; i <= cellCount; i++) {
-		String path = String.format("/characters/%s/animations/%s/%s (%d).png", character, animation.toLowerCase(), animation, i);
+	for(int i = 0; i < cellCount; i++) {
+		String path = templatePath.replace("[index]", Integer.toString(i));
+		System.out.println(path);
 		BufferedImage bufferedCell = new BufferedImage(cellWidth, (int) height, BufferedImage.TYPE_4BYTE_ABGR);
 		try {
 			BufferedImage readCell = ImageIO.read(getClass().getResourceAsStream(path));

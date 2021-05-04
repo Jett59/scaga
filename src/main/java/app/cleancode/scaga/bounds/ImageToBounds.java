@@ -1,4 +1,4 @@
-package app.cleancode.bounds;
+package app.cleancode.scaga.bounds;
 
 import javafx.geometry.BoundingBox;
 import javafx.scene.image.Image;
