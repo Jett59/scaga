@@ -63,7 +63,7 @@ public void start(Stage primaryStage) throws Exception {
 		}
 		listener.startup();
 	}
-	scene.setFill(Color.BLACK);
+	scene.setFill(Color.BLUE);
 	primaryStage.setScene(scene);
 	primaryStage.setFullScreen(true);
 	GameLoop loop = new GameLoop(this::tick);
