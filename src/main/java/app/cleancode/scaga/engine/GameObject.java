@@ -17,7 +17,10 @@ public double xVelocity = 0;
 public double yVelocity = 0;
 public double zVelocity = 0;
 
-public abstract void move(double newX, double newY);
+public void move(double newX, double newY) {
+	node.setTranslateX(newX);
+	node.setTranslateY(newY);
+}
 
 public double getX () {
 	return node.getTranslateX();
