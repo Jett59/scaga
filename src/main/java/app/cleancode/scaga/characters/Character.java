@@ -1,5 +1,6 @@
 package app.cleancode.scaga.characters;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import app.cleancode.scaga.animation.Animation;
@@ -8,8 +9,8 @@ public class Character {
 private final Map<String, Animation> animations;
 private final State [] possibleStates;
 
-public Character(String characterName, int defaultCellCount, State ... possibleStates) {
-	this.animations = animations;
+public Character(String characterName) {
+	animations = new HashMap<>();
 	this.possibleStates = possibleStates;
 }
 
