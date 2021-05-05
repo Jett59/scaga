@@ -10,8 +10,9 @@ import app.cleancode.scaga.animation.Animation;
 import app.cleancode.scaga.animation.AnimationBuilder;
 import app.cleancode.scaga.animation.AnimationConfig;
 import app.cleancode.scaga.resources.ResourceReader;
+import javafx.scene.Group;
 
-public class Character {
+public class Character extends Group {
 private final Map<String, Animation> animations;
 private final ResourceReader resourceReader;
 private final ObjectMapper objectMapper;
@@ -32,9 +33,13 @@ public Character(String characterName) {
 		animation.setReversed(false);
 		Animation builtAnimation = animationBuilder.buildAnimation(animation);
 		animations.put(animation.getAnimation() + ".right", builtAnimation);
+		builtAnimation.getView ().setVisible(false);
+		getChildren ().add(builtAnimation.getView());
 		animation.setReversed(true);
 		builtAnimation = animationBuilder.buildAnimation(animation);
 		animations.put(animation.getAnimation() + ".left", builtAnimation);
+		builtAnimation.getView ().setVisible(false);
+		getChildren ().add(builtAnimation.getView());
 	}
 }
 
