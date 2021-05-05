@@ -7,6 +7,8 @@ import java.util.Map;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import app.cleancode.scaga.animation.Animation;
+import app.cleancode.scaga.animation.AnimationBuilder;
+import app.cleancode.scaga.animation.AnimationConfig;
 import app.cleancode.scaga.resources.ResourceReader;
 
 public class Character {
@@ -25,7 +27,15 @@ public Character(String characterName) {
 		e.printStackTrace();
 		throw new RuntimeException ("Error creating config for character "+characterName, e);
 	}
-	
+	AnimationBuilder animationBuilder = new AnimationBuilder();
+	for (AnimationConfig animation : config.getAnimations()) {
+		animation.setReversed(false);
+		Animation builtAnimation = animationBuilder.buildAnimation(animation);
+		animations.put(animation.getAnimation() + ".right", builtAnimation);
+		animation.setReversed(true);
+		builtAnimation = animationBuilder.buildAnimation(animation);
+		animations.put(animation.getAnimation() + ".left", builtAnimation);
+	}
 }
 
 public static enum State {

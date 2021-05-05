@@ -4,7 +4,8 @@
  "character": "Samurai",
  "animation": "Idle",
  "frames": 8,
- "duration": "1s"
+ "duration": "1s",
+ "height": 250
  }
 ]
 }
