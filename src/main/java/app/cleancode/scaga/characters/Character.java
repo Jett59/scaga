@@ -32,15 +32,19 @@ public Character(String characterName) {
 	for (AnimationConfig animation : config.getAnimations()) {
 		animation.setReversed(false);
 		Animation builtAnimation = animationBuilder.buildAnimation(animation);
-		animations.put(animation.getAnimation() + ".right", builtAnimation);
+		animations.put(animation.getAnimation() + ".Right", builtAnimation);
+		System.out.println(animations.keySet());
 		builtAnimation.getView ().setVisible(false);
 		getChildren ().add(builtAnimation.getView());
 		animation.setReversed(true);
 		builtAnimation = animationBuilder.buildAnimation(animation);
-		animations.put(animation.getAnimation() + ".left", builtAnimation);
+		animations.put(animation.getAnimation() + ".Left", builtAnimation);
 		builtAnimation.getView ().setVisible(false);
 		getChildren ().add(builtAnimation.getView());
 	}
+	direction = 1;
+	currentState = State.IDLE;
+	refreshState();
 }
 
 private State currentState;
@@ -69,6 +73,9 @@ private void refreshState () {
 		if (!key.equals(currentStateString)) {
 			value.getView().setVisible(false);
 			value.stop();
+		}else {
+			value.getView().setVisible(true);
+			value.playFromStart();
 		}
 	});
 }

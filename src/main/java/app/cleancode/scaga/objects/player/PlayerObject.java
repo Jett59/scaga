@@ -7,7 +7,7 @@ import app.cleancode.scaga.engine.GameObject;
 import javafx.scene.Node;
 import javafx.util.Duration;
 
-public class PlayerObject extends GameObject<Node> {
+public class PlayerObject extends GameObject<Character> {
 private AnimationBuilder animationBuilder;
 
 public PlayerObject() {
@@ -22,10 +22,6 @@ public String getName() {
 
 @Override
 public void init() {
-	Animation idle = animationBuilder.buildAnimation("Samurai", "Idle", 8, Duration.seconds (1), 250, true);
-	idle.play ();
-	node = idle.getView();
-	Character samurai = new Character("Samurai");
-	System.out.println(samurai);
+	node = new Character("Samurai");
 }
 }
