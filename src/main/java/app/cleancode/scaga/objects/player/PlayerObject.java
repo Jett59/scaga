@@ -2,6 +2,7 @@ package app.cleancode.scaga.objects.player;
 
 import app.cleancode.scaga.animation.Animation;
 import app.cleancode.scaga.animation.AnimationBuilder;
+import app.cleancode.scaga.characters.Character;
 import app.cleancode.scaga.engine.GameObject;
 import javafx.scene.Node;
 import javafx.util.Duration;
@@ -24,5 +25,7 @@ public void init() {
 	Animation idle = animationBuilder.buildAnimation("Samurai", "Idle", 8, Duration.seconds (1), 250, true);
 	idle.play ();
 	node = idle.getView();
+	Character samurai = new Character("Samurai");
+	System.out.println(samurai);
 }
 }

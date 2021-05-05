@@ -1,5 +1,6 @@
 package app.cleancode.scaga.characters;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,7 +19,12 @@ public Character(String characterName) {
 	animations = new HashMap<>();
 	resourceReader = new ResourceReader();
 	objectMapper = new ObjectMapper();
-	
+	try {
+		config = objectMapper.readValue(resourceReader.getResourceAsString(String.format("/config/characters/%s.json", characterName)), CharacterConfig.class);
+	}catch (IOException e) {
+		e.printStackTrace();
+		throw new RuntimeException ("Error creating config for character "+characterName, e);
+	}
 	
 }
 
