@@ -8,11 +8,8 @@ import javafx.scene.Node;
 import javafx.util.Duration;
 
 public class PlayerObject extends GameObject<Character> {
-private AnimationBuilder animationBuilder;
-
 public PlayerObject() {
-	animationBuilder = new AnimationBuilder ();
-	mass = Math.E;
+	
 }
 
 @Override
