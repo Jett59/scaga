@@ -3,7 +3,6 @@ package app.cleancode.scaga.animation;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.lang.ref.Cleaner;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,5 +55,8 @@ public Animation buildAnimation(String character, String animation, int cellCoun
 	Image filmStrip = SwingFXUtils.toFXImage(swingFilmStrip, null);
 	var result = new Animation(cellCount, (int)filmStrip.getWidth(), (int)height, new ImageView(filmStrip), duration, null);
 	return result;
+}
+public Animation buildAnimation (AnimationConfig config) {
+	return buildAnimation(config.getCharacter(), config.getAnimation(), config.getFrames(), config.getDuration(), config.getHeight(), config.getReversed());
 }
 }
