@@ -43,6 +43,44 @@ public Character(String characterName) {
 	}
 }
 
+private State currentState;
+private int direction;
+
+public void changeState (State newState) {
+	if (newState != null && !newState.equals(currentState)) {
+		Animation currentAnimation = animations.get(getFullStateString());
+		currentAnimation.getView ().setVisible (false);
+		currentAnimation.stop ();
+		currentState = newState;
+		Animation newAnimation = animations.get(getFullStateString());
+		newAnimation.play ();
+		newAnimation.getView ().setVisible(true);
+		}
+}
+
+public void setDirection (int direction) {
+	this.direction = direction;
+	refreshState ();
+}
+
+private void refreshState () {
+	String currentStateString = getFullStateString();
+	animations.forEach((key, value)-> {
+		if (!key.equals(currentStateString)) {
+			value.getView().setVisible(false);
+			value.stop();
+		}
+	});
+}
+
+private String getDirectionString () {
+	return direction >= 0 ? "Right" : "Left";
+}
+
+private String getFullStateString () {
+	return String.format("%s.%s", currentState.getId(), getDirectionString ());
+}
+
 public static enum State {
 	ATTACKING ("Attack"),
 	DIEING ("Die"),
