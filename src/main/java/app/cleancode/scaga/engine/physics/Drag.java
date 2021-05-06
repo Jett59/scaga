@@ -21,6 +21,18 @@ public class Drag extends PhysicalLaw {
 					obj.handleEvent(new StopEvent());
 				}
 			}
+		}else {
+			if (obj.xVelocity < 0) {
+				obj.xVelocity = Math.min(0, obj.xVelocity + obj.drag / 2d);
+				if (obj.xVelocity == 0) {
+					obj.handleEvent(new StopEvent());
+				}
+			}else if (obj.xVelocity > 0) {
+				obj.xVelocity = Math.max(0, obj.xVelocity - obj.drag / 2d);
+				if (obj.xVelocity == 0) {
+					obj.handleEvent(new StopEvent());
+				}
+			}
 		}
 	}
 
