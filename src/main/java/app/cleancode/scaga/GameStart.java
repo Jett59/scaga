@@ -1,6 +1,7 @@
 package app.cleancode.scaga;
 
 import app.cleancode.scaga.engine.GameListener;
+import app.cleancode.scaga.engine.GameListenerLoader;
 import app.cleancode.scaga.engine.GameLoop;
 import app.cleancode.scaga.engine.GameObject;
 import app.cleancode.scaga.engine.PhysicalLaw;
@@ -78,20 +79,9 @@ public void start(Stage primaryStage) throws Exception {
 			cameraFocus = gameObject;
 		}
 	}
+	GameListenerLoader listenerLoader = new GameListenerLoader();
 	for(GameListener listener : gameListeners) {
-		for(String gameObjectName : listener.getGameObjects()) {
-			for(GameObject<Node> gameObject : gameObjects) {
-				if(gameObject.getName().equalsIgnoreCase(gameObjectName)) {
-					try {
-						var gameObjectField = listener.getClass().getDeclaredField(gameObjectName);
-						gameObjectField.set(listener, gameObject);
-						break;
-					}catch (Exception e) {
-						throw new RuntimeException(e);
-					}
-				}
-			}
-		}
+		listenerLoader.prepareListener(listener, gameObjects);
 		listener.startup(state);
 	}
 	scene.setFill(Color.BLUE);
