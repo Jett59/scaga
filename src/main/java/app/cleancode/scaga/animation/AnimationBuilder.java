@@ -41,10 +41,15 @@ public Animation buildAnimation(String character, String animation, int cellCoun
 		Image cell = SwingFXUtils.toFXImage(bufferedCell, null);
 		if(reversed) {
 			var reversedImage = new WritableImage(cellWidth, (int) height);
-			ImageView imgView = new ImageView(cell);
-			imgView.setScaleX(-1);
-			imgView.snapshot(new SnapshotParameters(), reversedImage);
+			var writer = reversedImage.getPixelWriter();
+			var reader = cell.getPixelReader();
+			for (int x = 0; x < cellWidth; x++) {
+				for (int y = 0; y < (int)height; y++) {
+					writer.setArgb(cellWidth -x -1, y, reader.getArgb(x, y));
+				}
+			}
 			cell = reversedImage;
+			bufferedCell = SwingFXUtils.fromFXImage(cell, null);
 		}
 		BoundingBox imageBounds = ImageToBounds.getBounds(cell);
 		boundingBoxes.add(imageBounds);
