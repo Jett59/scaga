@@ -15,6 +15,7 @@ public void addNode(Node node) {
 	addNode.accept(node);
 }
 public abstract String getName();
+public abstract boolean wantsCameraFocus ();
 public double xVelocity = 0;
 public double yVelocity = 0;
 public double zVelocity = 0;

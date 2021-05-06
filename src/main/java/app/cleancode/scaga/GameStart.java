@@ -5,6 +5,7 @@ import app.cleancode.scaga.engine.GameLoop;
 import app.cleancode.scaga.engine.GameObject;
 import app.cleancode.scaga.engine.PhysicalLaw;
 import app.cleancode.scaga.engine.State;
+import app.cleancode.scaga.engine.camera.CameraManager;
 import app.cleancode.scaga.engine.keyboard.KeyState;
 import app.cleancode.scaga.engine.keyboard.KeyboardManager;
 import app.cleancode.scaga.engine.physics.Collisions;
@@ -15,7 +16,9 @@ import app.cleancode.scaga.listeners.player.PlayerMovementListener;
 import app.cleancode.scaga.objects.ground.GroundObject;
 import app.cleancode.scaga.objects.player.PlayerObject;
 import javafx.application.Application;
+import javafx.scene.Camera;
 import javafx.scene.Node;
+import javafx.scene.PerspectiveCamera;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.layout.Pane;
@@ -33,9 +36,9 @@ public class GameStart extends Application {
 			new GroundObject()
 	};
 	private static PhysicalLaw[] laws = new PhysicalLaw[] {
+			new Collisions(),
 			new Gravity(),
 			new Movement(),
-			new Collisions(),
 			new Drag()
 	};
 public static void begin(String[] args) {
@@ -43,6 +46,8 @@ public static void begin(String[] args) {
 }
 private Pane nodes = new Pane();
  private Pane gamePane = new Pane();
+ private GameObject<Node> cameraFocus;
+ private CameraManager cameraManager;
  private KeyState keyState;
  
  private State state;
@@ -58,6 +63,8 @@ public void start(Stage primaryStage) throws Exception {
 	primaryStage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
 	primaryStage.setScene(new Scene(nodes));
 	primaryStage.show();
+	Camera camera = new PerspectiveCamera();
+	cameraManager = new CameraManager(camera);
 	keyState = new KeyState();
 	state = new State(keyState);
 	new KeyboardManager(keyState).bind(primaryStage);
@@ -65,6 +72,9 @@ public void start(Stage primaryStage) throws Exception {
 		gameObject.addNode = this::addNode;
 		gameObject.init ();
 		addNode(gameObject.node);
+		if (gameObject.wantsCameraFocus()) {
+			cameraFocus = gameObject;
+		}
 	}
 	for(GameListener listener : gameListeners) {
 		for(String gameObjectName : listener.getGameObjects()) {
@@ -83,6 +93,7 @@ public void start(Stage primaryStage) throws Exception {
 		listener.startup(state);
 	}
 	scene.setFill(Color.BLUE);
+	scene.setCamera(camera);
 	primaryStage.setScene(scene);
 	primaryStage.setFullScreen(true);
 	GameLoop loop = new GameLoop(this::tick);
@@ -92,10 +103,16 @@ public void tick() {
 	for(GameListener gameListener : gameListeners) {
 		gameListener.update(state);
 	}
+	for (GameObject<Node> object : gameObjects) {
+		object.isTouchingGround = false;
+	}
 	for(PhysicalLaw law : laws) {
 		for(GameObject<Node> gameObject : gameObjects) {
 			law.handle(gameObject);
 		}
+	}
+	if (cameraFocus != null) {
+		cameraManager.update(cameraFocus);
 	}
 }
 @SuppressWarnings("exports")

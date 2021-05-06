@@ -26,4 +26,9 @@ private static final Dimension screenSize = Toolkit.getDefaultToolkit().getScree
 		
 	}
 
+	@Override
+	public boolean wantsCameraFocus() {
+		return false;
+	}
+
 }

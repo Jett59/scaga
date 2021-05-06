@@ -49,4 +49,9 @@ public void handleEvent(Event evt) {
 		break;
 	}
 }
+
+@Override
+public boolean wantsCameraFocus() {
+	return true;
+}
 }
