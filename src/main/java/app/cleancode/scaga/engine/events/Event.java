@@ -5,7 +5,8 @@ Type getType ();
 
 public static enum Type {
 	COLLISION,
-	MOVE
+	MOVE,
+	STOP
 }
 
 }

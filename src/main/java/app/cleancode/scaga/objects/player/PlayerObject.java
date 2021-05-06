@@ -42,6 +42,9 @@ public void handleEvent(Event evt) {
 		node.changeState(State.RUNNING);
 		break;
 	}
+	case STOP: {
+		node.changeState(State.IDLE);
+	}
 	default:
 		break;
 	}
