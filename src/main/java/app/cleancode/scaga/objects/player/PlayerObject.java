@@ -8,7 +8,7 @@ import app.cleancode.scaga.engine.events.Event;
 import app.cleancode.scaga.engine.events.MovementEvent;
 
 public class PlayerObject extends GameObject<Character> {
-public static final double SPEED = 5;
+public static final double SPEED = 15;
 
 public PlayerObject() {
 	mass = 1;

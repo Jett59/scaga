@@ -64,10 +64,12 @@ public void changeState (State newState) {
 }
 
 public void setDirection (int direction) {
-	this.direction = direction;
-	refreshState ();
+	if (direction != this.direction) {
+		this.direction = direction;
+		refreshState ();
+		}
 }
-
+	
 private void refreshState () {
 	String currentStateString = getFullStateString();
 	animations.forEach((key, value)-> {
