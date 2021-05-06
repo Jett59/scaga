@@ -4,9 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class KeyState {
-final Map<Key, KeyStatus> keyState;
+protected final Map<Key, KeyStatus> keyState;
 
 public KeyState() {
 	this.keyState = new HashMap<>();
+	for (Key key : Key.values()) {
+		keyState.put(key, new KeyStatus());
+	}
 }
 }

@@ -35,7 +35,6 @@ public Character(String characterName) {
 		animation.setReversed(false);
 		Animation builtAnimation = animationBuilder.buildAnimation(animation);
 		animations.put(animation.getAnimation() + ".Right", builtAnimation);
-		System.out.println(animations.keySet());
 		builtAnimation.getView ().setVisible(false);
 		getChildren ().add(builtAnimation.getView());
 		animation.setReversed(true);
