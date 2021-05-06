@@ -34,6 +34,7 @@ public void handleEvent(Event evt) {
 			isTouchingGround = true;
 			yVelocity = 0;
 		}
+		break;
 	}
 	case MOVE: {
 		MovementEvent movementEvent = (MovementEvent)evt;
