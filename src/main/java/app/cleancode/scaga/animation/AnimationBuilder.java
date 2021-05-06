@@ -29,7 +29,6 @@ public Animation buildAnimation(String character, String animation, int cellCoun
 	Graphics graphics = swingFilmStrip.getGraphics();
 	for(int i = 0; i < cellCount; i++) {
 		String path = templatePath.replace("[index]", Integer.toString(i));
-		System.out.println(path);
 		BufferedImage bufferedCell = new BufferedImage(cellWidth, (int) height, BufferedImage.TYPE_4BYTE_ABGR);
 		try {
 			BufferedImage readCell = ImageIO.read(getClass().getResourceAsStream(path));
@@ -40,8 +39,6 @@ public Animation buildAnimation(String character, String animation, int cellCoun
 			e.printStackTrace();
 		}
 		Image cell = SwingFXUtils.toFXImage(bufferedCell, null);
-		BoundingBox imageBounds = ImageToBounds.getBounds(cell);
-		boundingBoxes.add(imageBounds);
 		if(reversed) {
 			var reversedImage = new WritableImage(cellWidth, (int) height);
 			ImageView imgView = new ImageView(cell);
@@ -49,11 +46,13 @@ public Animation buildAnimation(String character, String animation, int cellCoun
 			imgView.snapshot(new SnapshotParameters(), reversedImage);
 			cell = reversedImage;
 		}
+		BoundingBox imageBounds = ImageToBounds.getBounds(cell);
+		boundingBoxes.add(imageBounds);
 		graphics.drawImage(bufferedCell, cellWidth*(i-1), 0, cellWidth, (int) height, null);
 	}
 	graphics.dispose();
 	Image filmStrip = SwingFXUtils.toFXImage(swingFilmStrip, null);
-	var result = new Animation(cellCount, (int)filmStrip.getWidth(), (int)height, new ImageView(filmStrip), duration, null);
+	var result = new Animation(cellCount, (int)filmStrip.getWidth(), (int)height, new ImageView(filmStrip), duration, boundingBoxes);
 	return result;
 }
 public Animation buildAnimation (AnimationConfig config) {

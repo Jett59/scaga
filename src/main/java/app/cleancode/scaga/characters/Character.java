@@ -9,10 +9,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import app.cleancode.scaga.animation.Animation;
 import app.cleancode.scaga.animation.AnimationBuilder;
 import app.cleancode.scaga.animation.AnimationConfig;
+import app.cleancode.scaga.collisions.Collidable;
 import app.cleancode.scaga.resources.ResourceReader;
+import javafx.geometry.Bounds;
 import javafx.scene.Group;
 
-public class Character extends Group {
+public class Character extends Group implements Collidable {
 private final Map<String, Animation> animations;
 private final ResourceReader resourceReader;
 private final ObjectMapper objectMapper;
@@ -103,5 +105,10 @@ public static enum State {
 	public String getId () {
 		return id;
 	}
+}
+
+@Override
+public Bounds getBounds() {
+	return animations.get(getFullStateString()).getBounds();
 }
 }

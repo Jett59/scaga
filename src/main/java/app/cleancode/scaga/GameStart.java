@@ -4,6 +4,7 @@ import app.cleancode.scaga.engine.GameListener;
 import app.cleancode.scaga.engine.GameLoop;
 import app.cleancode.scaga.engine.GameObject;
 import app.cleancode.scaga.engine.PhysicalLaw;
+import app.cleancode.scaga.engine.physics.Collisions;
 import app.cleancode.scaga.engine.physics.Gravity;
 import app.cleancode.scaga.engine.physics.Movement;
 import app.cleancode.scaga.objects.ground.GroundObject;
@@ -27,8 +28,9 @@ public class GameStart extends Application {
 			new GroundObject()
 	};
 	private static PhysicalLaw[] laws = new PhysicalLaw[] {
+			new Gravity(),
 			new Movement(),
-			new Gravity()
+			new Collisions()
 	};
 public static void begin(String[] args) {
 	launch(args);

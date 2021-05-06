@@ -6,6 +6,7 @@ import javafx.animation.Transition;
 import javafx.geometry.BoundingBox;
 import javafx.geometry.Bounds;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Parent;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 
@@ -45,7 +46,15 @@ private void updateViewPort(double frac) {
  * @return the bounds of this animation.
  */
 public Bounds getBounds() {
-	return new BoundingBox(bound.get(currentFramePosition).getMinX(), bound.get(currentFramePosition).getMinY(), bound.get(currentFramePosition).getWidth(), bound.get(currentFramePosition).getHeight());
+	double xOffset = 0, yOffset = 0;
+	Parent tmp = filmStrip.getParent();
+	while (tmp != null) {
+		xOffset += tmp.getTranslateX();
+		yOffset += tmp.getTranslateY();
+		tmp = tmp.getParent();
+	}
+	BoundingBox current = bound.get(currentFramePosition);
+	return new BoundingBox(current.getMinX() + xOffset, current.getMinY() + yOffset, current.getWidth(), current.getHeight());
 }
 /*
  * returns the image view for this animation.
