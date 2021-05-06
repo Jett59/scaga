@@ -4,6 +4,9 @@ import app.cleancode.scaga.engine.GameListener;
 import app.cleancode.scaga.engine.GameLoop;
 import app.cleancode.scaga.engine.GameObject;
 import app.cleancode.scaga.engine.PhysicalLaw;
+import app.cleancode.scaga.engine.State;
+import app.cleancode.scaga.engine.keyboard.KeyState;
+import app.cleancode.scaga.engine.keyboard.KeyboardManager;
 import app.cleancode.scaga.engine.physics.Collisions;
 import app.cleancode.scaga.engine.physics.Drag;
 import app.cleancode.scaga.engine.physics.Gravity;
@@ -39,6 +42,10 @@ public static void begin(String[] args) {
 }
 private Pane nodes = new Pane();
  private Pane gamePane = new Pane();
+ private KeyState keyState;
+ 
+ private State state;
+ 
 @SuppressWarnings("exports")
 @Override
 public void start(Stage primaryStage) throws Exception {
@@ -50,6 +57,9 @@ public void start(Stage primaryStage) throws Exception {
 	primaryStage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
 	primaryStage.setScene(new Scene(nodes));
 	primaryStage.show();
+	keyState = new KeyState();
+	state = new State(keyState);
+	new KeyboardManager(keyState).bind(primaryStage);
 	for(GameObject<Node> gameObject : gameObjects) {
 		gameObject.addNode = this::addNode;
 		gameObject.init ();
@@ -69,7 +79,7 @@ public void start(Stage primaryStage) throws Exception {
 				}
 			}
 		}
-		listener.startup();
+		listener.startup(state);
 	}
 	scene.setFill(Color.BLUE);
 	primaryStage.setScene(scene);
@@ -79,7 +89,7 @@ public void start(Stage primaryStage) throws Exception {
 }
 public void tick() {
 	for(GameListener gameListener : gameListeners) {
-		gameListener.update();
+		gameListener.update(state);
 	}
 	for(PhysicalLaw law : laws) {
 		for(GameObject<Node> gameObject : gameObjects) {
