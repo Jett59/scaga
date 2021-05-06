@@ -12,6 +12,7 @@ import javafx.util.Duration;
 public class PlayerObject extends GameObject<Character> {
 public PlayerObject() {
 	mass = 1;
+	drag = 1;
 }
 
 @Override

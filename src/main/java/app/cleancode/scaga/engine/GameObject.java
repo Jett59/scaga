@@ -8,6 +8,7 @@ import javafx.scene.Node;
 public abstract class GameObject<NodeType extends Node> {
 	public NodeType node;
 	public double mass = 0;
+	public double drag = 0;
 	public boolean isTouchingGround = false;
 public Consumer<Node> addNode;
 public void addNode(Node node) {

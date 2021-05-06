@@ -25,7 +25,6 @@ public Collisions() {
 			for (GameObject<? extends Collidable> object : objects) {
 				if (!object.equals(obj)) {
 					if (((Collidable)obj.node).getBounds().intersects(object.node.getBounds())) {
-						System.out.println("collision");
 						obj.handleEvent(new CollisionEvent(object));
 					}
 				}
