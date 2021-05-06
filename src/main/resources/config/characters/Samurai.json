@@ -6,6 +6,13 @@
  "frames": 8,
  "duration": "1s",
  "height": 250
+ },
+ {
+  "character": "Samurai",
+  "animation": "Run",
+  "duration": "1s",
+  "frames": 8,
+  "height": 250
  }
 ]
 }

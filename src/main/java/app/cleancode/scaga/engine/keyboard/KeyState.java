@@ -12,4 +12,8 @@ public KeyState() {
 		keyState.put(key, new KeyStatus());
 	}
 }
+
+public boolean isKeyDown (Key key) {
+	return keyState.get(key).down;
+}
 }

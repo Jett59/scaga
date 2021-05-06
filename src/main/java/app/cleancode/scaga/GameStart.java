@@ -11,6 +11,7 @@ import app.cleancode.scaga.engine.physics.Collisions;
 import app.cleancode.scaga.engine.physics.Drag;
 import app.cleancode.scaga.engine.physics.Gravity;
 import app.cleancode.scaga.engine.physics.Movement;
+import app.cleancode.scaga.listeners.player.PlayerMovementListener;
 import app.cleancode.scaga.objects.ground.GroundObject;
 import app.cleancode.scaga.objects.player.PlayerObject;
 import javafx.application.Application;
@@ -24,7 +25,7 @@ import javafx.stage.Stage;
 
 public class GameStart extends Application {
 	private static GameListener[] gameListeners = new GameListener[] {
-			
+			new PlayerMovementListener()
 	};
 	@SuppressWarnings("unchecked")
 	private static GameObject<Node> [] gameObjects = new GameObject[] {
