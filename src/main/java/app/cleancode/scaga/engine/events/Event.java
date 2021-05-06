@@ -4,7 +4,8 @@ public interface Event {
 Type getType ();
 
 public static enum Type {
-	COLLISION
+	COLLISION,
+	MOVE
 }
 
 }
