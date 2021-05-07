@@ -29,8 +29,8 @@ public class Movement extends PhysicalLaw {
 				double yMoveAmount = delta / 1000000000d * obj.yVelocity;
 				obj.move(obj.getX() + (xMoveAmount * screenSize.width), obj.getY() + (yMoveAmount * screenSize.height));
 			}
-			lastMovementTimes.put(obj, System.nanoTime());
 		}
+		lastMovementTimes.put(obj, System.nanoTime());
 		}
 
 }

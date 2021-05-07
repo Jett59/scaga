@@ -10,7 +10,7 @@ import app.cleancode.scaga.engine.keyboard.KeyBindings;
 
 @AttachedTo("player")
 public class PlayerMovementListener extends GameListener {
-	public static double SPEED = 0.01;
+	public static double SPEED = 0.25;
 
 	@ImportGameObject
 public CharacterGameObject player;
