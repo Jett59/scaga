@@ -2,11 +2,13 @@ package app.cleancode.scaga.listeners.player;
 
 import app.cleancode.scaga.engine.GameListener;
 import app.cleancode.scaga.engine.State;
+import app.cleancode.scaga.engine.annotations.AttachedTo;
 import app.cleancode.scaga.engine.annotations.ImportGameObject;
 import app.cleancode.scaga.engine.events.MovementEvent;
 import app.cleancode.scaga.engine.keyboard.KeyBindings;
 import app.cleancode.scaga.objects.player.PlayerObject;
 
+@AttachedTo("player")
 public class PlayerMovementListener extends GameListener {
 	@ImportGameObject
 public PlayerObject player;

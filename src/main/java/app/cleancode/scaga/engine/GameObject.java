@@ -1,5 +1,7 @@
 package app.cleancode.scaga.engine;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Consumer;
 
 import app.cleancode.scaga.engine.events.Event;
@@ -13,6 +15,10 @@ public abstract class GameObject<NodeType extends Node> {
 public Consumer<Node> addNode;
 public void addNode(Node node) {
 	addNode.accept(node);
+}
+private List<GameListener> attachedListeners = new ArrayList<>();
+public void attachListener (GameListener listener) {
+	this.attachedListeners.add(listener);
 }
 public abstract String getName();
 public abstract boolean wantsCameraFocus ();
