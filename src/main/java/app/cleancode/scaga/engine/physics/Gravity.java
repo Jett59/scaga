@@ -27,6 +27,7 @@ public Gravity() {
 				acceleration *= delta / 1000000000d;
 				obj.yVelocity+=acceleration;
 			}
+			lastGravityEffectTimes.put(obj, System.nanoTime());
 		}
 	}
 
