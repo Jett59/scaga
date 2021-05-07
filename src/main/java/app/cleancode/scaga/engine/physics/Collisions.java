@@ -9,6 +9,7 @@ import app.cleancode.scaga.engine.GameObject;
 import app.cleancode.scaga.engine.PhysicalLaw;
 import app.cleancode.scaga.engine.events.CollisionEvent;
 import javafx.geometry.BoundingBox;
+import javafx.geometry.Bounds;
 import javafx.scene.Node;
 
 public class Collisions extends PhysicalLaw {
@@ -22,9 +23,22 @@ public Collisions() {
 	@Override
 	public void handle(GameObject<Node> obj) {
 		if (obj.node instanceof Collidable) {
+			GameObject<? extends Collidable> collidableObj = (GameObject<? extends Collidable>)obj;
 			for (GameObject<? extends Collidable> object : objects) {
 				if (!object.equals(obj)) {
-					if (((Collidable)obj.node).getBounds().intersects(object.node.getBounds())) {
+					Bounds objBounds = collidableObj.node.getBounds();
+					Bounds objectBounds = object.node.getBounds();
+					if (objBounds.intersects(objectBounds)) {
+						if (objBounds.getMaxY() < objectBounds.getMaxY()) {
+							obj.isTouchingGround = true;
+							obj.yVelocity = Math.min(obj.yVelocity, 0);
+						}else if (objBounds.getMinY() < objectBounds.getMaxY()) {
+							obj.yVelocity = Math.max(obj.yVelocity, 0);
+						}else if (objBounds.getMaxX() > objectBounds.getMinX()) {
+							obj.xVelocity = Math.min(obj.xVelocity, 0);
+						}else {
+							obj.xVelocity = Math.max(obj.xVelocity, 0);
+						}
 						obj.handleEvent(new CollisionEvent(object));
 					}
 				}
