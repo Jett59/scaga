@@ -29,8 +29,7 @@ public GameObject<? extends Node> loadGameObject (String name) {
 			break;
 		}
 		default:
-			result = null;
-			break;
+			throw new IllegalStateException("game object type " + config.getType().name() + "is not known");
 		}
 	}catch (Exception e) {
 		throw new RuntimeException (e);
