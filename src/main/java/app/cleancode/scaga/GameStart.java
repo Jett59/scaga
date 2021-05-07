@@ -4,6 +4,7 @@ import app.cleancode.scaga.engine.GameListener;
 import app.cleancode.scaga.engine.GameListenerLoader;
 import app.cleancode.scaga.engine.GameLoop;
 import app.cleancode.scaga.engine.GameObject;
+import app.cleancode.scaga.engine.GameObjectLoader;
 import app.cleancode.scaga.engine.PhysicalLaw;
 import app.cleancode.scaga.engine.State;
 import app.cleancode.scaga.engine.camera.CameraManager;
@@ -15,8 +16,6 @@ import app.cleancode.scaga.engine.physics.Gravity;
 import app.cleancode.scaga.engine.physics.Movement;
 import app.cleancode.scaga.listeners.player.PlayerJumpListener;
 import app.cleancode.scaga.listeners.player.PlayerMovementListener;
-import app.cleancode.scaga.objects.ground.GroundObject;
-import app.cleancode.scaga.objects.player.PlayerObject;
 import javafx.application.Application;
 import javafx.scene.Camera;
 import javafx.scene.Node;
@@ -33,10 +32,9 @@ public class GameStart extends Application {
 			new PlayerMovementListener(),
 			new PlayerJumpListener()
 	};
-	@SuppressWarnings("unchecked")
-	private static GameObject<Node> [] gameObjects = new GameObject[] {
-			new PlayerObject (),
-			new GroundObject()
+	private static String [] gameObjectNames = new String [] {
+			"player",
+			"ground"
 	};
 	private static PhysicalLaw[] laws = new PhysicalLaw[] {
 			new Movement(),
@@ -49,15 +47,18 @@ public static void begin(String[] args) {
 }
 private Pane nodes = new Pane();
  private Pane gamePane = new Pane();
- private GameObject<Node> cameraFocus;
+ private GameObject<? extends Node> cameraFocus;
  private CameraManager cameraManager;
  private KeyState keyState;
  
  private State state;
  
-@SuppressWarnings("exports")
+ private GameObject<? extends Node> [] gameObjects;
+ 
+@SuppressWarnings({ "exports", "unchecked" })
 @Override
 public void start(Stage primaryStage) throws Exception {
+	gameObjects = new GameObject [gameObjectNames.length];
 	Scene scene = new Scene(gamePane);
 	scene.getStylesheets().add(getClass().getResource("app.css").toExternalForm());
 	nodes.getChildren().add(new Text("Loading"));
@@ -71,7 +72,12 @@ public void start(Stage primaryStage) throws Exception {
 	keyState = new KeyState();
 	state = new State(keyState);
 	new KeyboardManager(keyState).bind(primaryStage);
-	for(GameObject<Node> gameObject : gameObjects) {
+	
+	GameObjectLoader gameObjectLoader = new GameObjectLoader();
+	for(int i = 0; i < gameObjectNames.length; i++) {
+		String gameObjectName = gameObjectNames [i];
+		GameObject <? extends Node> gameObject = gameObjectLoader.loadGameObject(gameObjectName);
+		gameObjects [i] = gameObject;
 		gameObject.addNode = this::addNode;
 		gameObject.init ();
 		addNode(gameObject.node);
@@ -91,16 +97,17 @@ public void start(Stage primaryStage) throws Exception {
 	GameLoop loop = new GameLoop(this::tick);
 	loop.start();
 }
+@SuppressWarnings("unchecked")
 public void tick() {
 	for(GameListener gameListener : gameListeners) {
 		gameListener.update(state);
 	}
-	for (GameObject<Node> object : gameObjects) {
+	for (GameObject<? extends Node> object : gameObjects) {
 		object.isTouchingGround = false;
 	}
 	for(PhysicalLaw law : laws) {
-		for(GameObject<Node> gameObject : gameObjects) {
-			law.handle(gameObject);
+		for(GameObject<? extends Node> gameObject : gameObjects) {
+			law.handle((GameObject<Node>) gameObject);
 		}
 	}
 	if (cameraFocus != null) {

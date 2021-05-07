@@ -1,6 +1,6 @@
 { 
 "type": "RECTANGLE",
-"name": "ground"
+"name": "ground",
 "x": -1,
 "y": 0.9,
 "width": 3,

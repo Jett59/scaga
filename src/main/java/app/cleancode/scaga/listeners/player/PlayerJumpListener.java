@@ -1,5 +1,6 @@
 package app.cleancode.scaga.listeners.player;
 
+import app.cleancode.scaga.characters.CharacterGameObject;
 import app.cleancode.scaga.engine.GameListener;
 import app.cleancode.scaga.engine.State;
 import app.cleancode.scaga.engine.annotations.AttachedTo;
@@ -10,7 +11,7 @@ import app.cleancode.scaga.objects.player.PlayerObject;
 @AttachedTo("player")
 public class PlayerJumpListener extends GameListener {
 	@ImportGameObject
-public PlayerObject player;
+public CharacterGameObject player;
 
 	@Override
 	public void update(State state) {
