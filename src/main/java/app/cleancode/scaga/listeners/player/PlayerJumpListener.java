@@ -9,7 +9,7 @@ import app.cleancode.scaga.engine.keyboard.KeyBindings;
 
 @AttachedTo("player")
 public class PlayerJumpListener extends GameListener {
-public static double SPEED = 0.1;
+public static final double SPEED = 0.05;
 
 	@ImportGameObject
 public CharacterGameObject player;

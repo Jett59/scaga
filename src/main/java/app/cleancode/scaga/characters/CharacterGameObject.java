@@ -44,8 +44,8 @@ public CharacterGameObject(GameObjectConfig config) {
 		switch (evt.getType()) {
 		case MOVE: {
 			MovementEvent movement = (MovementEvent)evt;
-			node.changeState(State.RUNNING);
 			node.setDirection(movement.direction);
+			node.changeState(State.RUNNING);
 			break;
 		}
 		case STOP: {

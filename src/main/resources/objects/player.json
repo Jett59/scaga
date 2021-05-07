@@ -2,7 +2,7 @@
 "type": "CHARACTER",
 "characterName": "Samurai",
 "name": "player",
-"mass": 3,
-"drag": 5,
+"mass": 0.005,
+"drag": 0.005,
 "wantsCameraFocus": true
 }
