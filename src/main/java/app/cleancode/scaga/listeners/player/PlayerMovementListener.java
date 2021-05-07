@@ -7,10 +7,11 @@ import app.cleancode.scaga.engine.annotations.AttachedTo;
 import app.cleancode.scaga.engine.annotations.ImportGameObject;
 import app.cleancode.scaga.engine.events.MovementEvent;
 import app.cleancode.scaga.engine.keyboard.KeyBindings;
-import app.cleancode.scaga.objects.player.PlayerObject;
 
 @AttachedTo("player")
 public class PlayerMovementListener extends GameListener {
+	public static double SPEED = 0.1;
+
 	@ImportGameObject
 public CharacterGameObject player;
 
@@ -18,10 +19,10 @@ public CharacterGameObject player;
 	public void update(State state) {
 		if (player.isTouchingGround) {
 			if (state.keyState.isKeyDown(KeyBindings.MOVE_LEFT)) {
-				player.xVelocity = PlayerObject.SPEED * -1;
+				player.xVelocity = SPEED * -1;
 				player.handleEvent(new MovementEvent(-1, 0));
 				}else if (state.keyState.isKeyDown(KeyBindings.MOVE_RIGHT)) {
-					player.xVelocity = PlayerObject.SPEED;
+					player.xVelocity = SPEED;
 					player.handleEvent(new MovementEvent(1, 0));
 					}
 		}
