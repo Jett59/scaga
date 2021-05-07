@@ -17,6 +17,9 @@ public RectangleGameObject(GameObjectConfig config) {
 	this.height = config.getHeight();
 	this.wantsCameraFocus = config.getWantsCameraFocus();
 	this.name = config.getName();
+	
+	super.mass = config.getMass();
+	super.drag = config.getDrag();
 }
 
 	@Override

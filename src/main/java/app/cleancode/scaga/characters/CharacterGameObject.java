@@ -10,11 +10,14 @@ public class CharacterGameObject extends GameObject<Character> {
 private final String name;
 private final String characterName;
 private final boolean wantsCameraFocus;
+private final double x, y;
 
 public CharacterGameObject(GameObjectConfig config) {
 	this.name = config.getName();
 	this.characterName = config.getCharacterName();
 	this.wantsCameraFocus = config.getWantsCameraFocus();
+	this.x = config.getX();
+	this.y = config.getY();
 	
 	super.mass = config.getMass();
 	super.drag = config.getDrag();
@@ -33,6 +36,7 @@ public CharacterGameObject(GameObjectConfig config) {
 	@Override
 	public void init() {
 		node = new Character(characterName);
+		move (x, y);
 	}
 
 	@Override
