@@ -10,7 +10,7 @@
  {
   "character": "Samurai",
   "animation": "Run",
-  "duration": "1s",
+  "duration": "250ms",
   "frames": 8,
   "height": 0.25
  }
