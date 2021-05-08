@@ -35,8 +35,8 @@ public class GameStart extends Application {
 			"player"
 	};
 	private static PhysicalLaw[] laws = new PhysicalLaw[] {
-			new Movement(),
 			new Collisions(),
+			new Movement(),
 			new Gravity(),
 			new Drag()
 	};

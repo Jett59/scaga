@@ -36,4 +36,17 @@ public RectangleGameObject(GameObjectConfig config) {
 		
 	}
 
+	@Override
+	public double getX () {
+		return node.getX();
+	}
+	@Override
+	public double getY () {
+		return node.getY();
+	}
+	@Override
+		public void move(double newX, double newY) {
+			node.setX(newX);
+			node.setY(newY);
+		}
 }

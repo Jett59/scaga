@@ -31,12 +31,19 @@ public Collisions() {
 					if (objBounds.intersects(objectBounds)) {
 						if (objBounds.getMaxY() < objectBounds.getMaxY()) {
 							obj.isTouchingGround = true;
+							obj.move(obj.getX(), obj.getY() + obj.yVelocity * -1);
 							obj.yVelocity = Math.min(obj.yVelocity, 0);
-						}else if (objBounds.getMinY() < objectBounds.getMaxY()) {
+						}
+						else if (objBounds.getMinY() < objectBounds.getMinY()) {
+							obj.move(obj.getX(), obj.getY() + obj.yVelocity * -1);
 							obj.yVelocity = Math.max(obj.yVelocity, 0);
-						}else if (objBounds.getMaxX() > objectBounds.getMinX()) {
+						}
+						else if (objBounds.getMaxX() < objectBounds.getMaxX()) {
+							obj.move(obj.getX() + obj.xVelocity * -1, obj.getY());
 							obj.xVelocity = Math.min(obj.xVelocity, 0);
-						}else {
+						} 
+						else if (objBounds.getMinX() < objectBounds.getMaxX()) {
+							obj.move(obj.getX() + obj.xVelocity * -1, obj.getY());
 							obj.xVelocity = Math.max(obj.xVelocity, 0);
 						}
 						obj.handleEvent(new CollisionEvent(object));
