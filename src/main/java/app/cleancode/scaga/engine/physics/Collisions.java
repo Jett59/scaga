@@ -37,13 +37,14 @@ public Collisions() {
 						else if (objBounds.getMaxX() < objectBounds.getMaxX()) {
 							obj.move(obj.getX() + obj.xVelocity * -1, obj.getY());
 							obj.xVelocity = Math.min(obj.xVelocity, 0);
+							obj.handleEvent(new StopEvent());
 						} 
 						else if (objBounds.getMinX() < objectBounds.getMaxX()) {
 							obj.move(obj.getX() + obj.xVelocity * -1, obj.getY());
 							obj.xVelocity = Math.max(obj.xVelocity, 0);
+							obj.handleEvent(new StopEvent());
 						}
 						obj.handleEvent(new CollisionEvent(object));
-						obj.handleEvent(new StopEvent());
 					}
 				}
 			}
