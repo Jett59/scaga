@@ -9,6 +9,7 @@ import app.cleancode.scaga.characters.CharacterGameObject;
 import app.cleancode.scaga.engine.config.GameObjectConfig;
 import app.cleancode.scaga.resources.ResourceReader;
 import app.cleancode.scaga.shape.objects.RectangleGameObject;
+import app.cleancode.scaga.sprites.SpriteGameObject;
 import javafx.scene.Node;
 
 public class GameObjectLoader {
@@ -41,6 +42,10 @@ public GameObject<? extends Node> loadGameObject (String name) {
 		}
 		case RECTANGLE: {
 			result = new RectangleGameObject(config);
+			break;
+		}
+		case SPRITE: {
+			result = new SpriteGameObject(config);
 			break;
 		}
 		case CUSTOM: {

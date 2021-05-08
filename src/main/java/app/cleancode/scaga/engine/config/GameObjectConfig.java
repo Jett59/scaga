@@ -5,6 +5,7 @@ public class GameObjectConfig {
 private String baseClass;
 private String name;
 private String characterName;
+private String spriteName;
 private double x, y, width, height;
 private double mass;
 private double drag;
@@ -68,6 +69,12 @@ public double getDrag() {
 }
 public void setDrag(double drag) {
 	this.drag = drag;
+}
+public String getSpriteName() {
+	return spriteName;
+}
+public void setSpriteName(String spriteName) {
+	this.spriteName = spriteName;
 }
 
 }
