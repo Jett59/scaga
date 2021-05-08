@@ -1,5 +1,7 @@
 package app.cleancode.scaga.characters;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,6 +17,8 @@ import javafx.geometry.Bounds;
 import javafx.scene.Group;
 
 public class Character extends Group implements Collidable {
+	private static final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+
 private final Map<String, Animation> animations;
 private final ResourceReader resourceReader;
 private final ObjectMapper objectMapper;
@@ -32,6 +36,8 @@ public Character(String characterName) {
 	}
 	AnimationBuilder animationBuilder = new AnimationBuilder();
 	for (AnimationConfig animation : config.getAnimations()) {
+		animation.setHeight(animation.getHeight() * screenSize.height);
+
 		animation.setReversed(false);
 		Animation builtAnimation = animationBuilder.buildAnimation(animation);
 		animations.put(animation.getAnimation() + ".Right", builtAnimation);

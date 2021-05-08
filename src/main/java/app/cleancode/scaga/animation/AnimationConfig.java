@@ -6,7 +6,7 @@ public class AnimationConfig {
 private String character, animation;
 private int frames;
 private Duration duration;
-private int height;
+private double height;
 private boolean reversed;
 
 public String getCharacter() {
@@ -33,10 +33,10 @@ public Duration getDuration() {
 public void setDuration(Duration duration) {
 	this.duration = duration;
 }
-public int getHeight() {
+public double getHeight() {
 	return height;
 }
-public void setHeight(int height) {
+public void setHeight(double height) {
 	this.height = height;
 }
 public boolean getReversed() {
