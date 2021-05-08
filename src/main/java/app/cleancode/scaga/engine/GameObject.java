@@ -21,7 +21,6 @@ public void attachListener (GameListener listener) {
 	this.attachedListeners.add(listener);
 }
 public abstract String getName();
-public abstract boolean wantsCameraFocus ();
 public double xVelocity = 0;
 public double yVelocity = 0;
 public double zVelocity = 0;

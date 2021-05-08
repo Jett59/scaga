@@ -6,7 +6,6 @@ private String baseClass;
 private String name;
 private String characterName;
 private double x, y, width, height;
-private boolean wantsCameraFocus;
 private double mass;
 private double drag;
 
@@ -57,12 +56,6 @@ public GameObjectType getType() {
 }
 public void setType(GameObjectType type) {
 	this.type = type;
-}
-public boolean getWantsCameraFocus() {
-	return wantsCameraFocus;
-}
-public void setWantsCameraFocus(boolean wantsCameraFocus) {
-	this.wantsCameraFocus = wantsCameraFocus;
 }
 public double getMass() {
 	return mass;
