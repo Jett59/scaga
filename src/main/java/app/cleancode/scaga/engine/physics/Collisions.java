@@ -3,31 +3,26 @@ package app.cleancode.scaga.engine.physics;
 import java.util.HashSet;
 import java.util.Set;
 
-import app.cleancode.scaga.bounds.ImageToBounds;
 import app.cleancode.scaga.collisions.Collidable;
 import app.cleancode.scaga.engine.GameObject;
 import app.cleancode.scaga.engine.PhysicalLaw;
 import app.cleancode.scaga.engine.events.CollisionEvent;
-import javafx.geometry.BoundingBox;
 import javafx.geometry.Bounds;
 import javafx.scene.Node;
 
 public class Collisions extends PhysicalLaw {
-private Set<GameObject<? extends Collidable>> objects;
+private Set<Collidable> objects;
 
 public Collisions() {
 	objects = new HashSet<>();
 }
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public void handle(GameObject<Node> obj) {
-		if (obj.node instanceof Collidable) {
-			GameObject<? extends Collidable> collidableObj = (GameObject<? extends Collidable>)obj;
-			for (GameObject<? extends Collidable> object : objects) {
+			for (Collidable object : objects) {
 				if (!object.equals(obj)) {
-					Bounds objBounds = collidableObj.node.getBounds();
-					Bounds objectBounds = object.node.getBounds();
+					Bounds objBounds = obj.getBounds();
+					Bounds objectBounds = object.getBounds();
 					if (objBounds.intersects(objectBounds)) {
 						if (objBounds.getMinY() < objectBounds.getMinY()) {
 							obj.isTouchingGround = true;
@@ -50,8 +45,7 @@ public Collisions() {
 					}
 				}
 			}
-			objects.add((GameObject <? extends Collidable>)obj);
+			objects.add(obj);
 		}
-	}
 
 }

@@ -4,10 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
+import app.cleancode.scaga.collisions.Collidable;
 import app.cleancode.scaga.engine.events.Event;
 import javafx.scene.Node;
 
-public abstract class GameObject<NodeType extends Node> {
+public abstract class GameObject<NodeType extends Node> implements Collidable {
 	public NodeType node;
 	public double mass = 0;
 	public double drag = 0;

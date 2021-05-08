@@ -5,6 +5,7 @@ import app.cleancode.scaga.engine.GameObject;
 import app.cleancode.scaga.engine.config.GameObjectConfig;
 import app.cleancode.scaga.engine.events.Event;
 import app.cleancode.scaga.engine.events.MovementEvent;
+import javafx.geometry.Bounds;
 
 public class CharacterGameObject extends GameObject<Character> {
 private final String name;
@@ -48,6 +49,11 @@ public CharacterGameObject(GameObjectConfig config) {
 		default:
 			break;
 		}
+	}
+
+	@Override
+	public Bounds getBounds() {
+		return node.getBounds();
 	}
 
 }
