@@ -11,6 +11,7 @@ import app.cleancode.scaga.resources.ResourceReader;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.geometry.BoundingBox;
 import javafx.geometry.Bounds;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -44,7 +45,13 @@ private BoundingBox bounds;
 
 	@Override
 	public Bounds getBounds() {
-		return bounds;
+		double xOffset = 0, yOffset = 0;
+		Node tmp = node;
+		do {
+			xOffset += tmp.getTranslateX();
+			yOffset += tmp.getTranslateY();
+		}while ((tmp = tmp.getParent()) != null);
+		return new BoundingBox(bounds.getMinX() + xOffset, bounds.getMinY() + yOffset, bounds.getWidth(), bounds.getHeight());
 	}
 
 	@Override
