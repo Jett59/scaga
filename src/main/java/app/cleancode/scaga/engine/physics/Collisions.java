@@ -7,6 +7,7 @@ import app.cleancode.scaga.collisions.Collidable;
 import app.cleancode.scaga.engine.GameObject;
 import app.cleancode.scaga.engine.PhysicalLaw;
 import app.cleancode.scaga.engine.events.CollisionEvent;
+import app.cleancode.scaga.engine.events.StopEvent;
 import javafx.geometry.Bounds;
 import javafx.scene.Node;
 
@@ -42,6 +43,7 @@ public Collisions() {
 							obj.xVelocity = Math.max(obj.xVelocity, 0);
 						}
 						obj.handleEvent(new CollisionEvent(object));
+						obj.handleEvent(new StopEvent());
 					}
 				}
 			}
