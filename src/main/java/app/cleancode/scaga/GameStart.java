@@ -57,7 +57,7 @@ private Group gamePane = new Group();
 public void start(Stage primaryStage) throws Exception {
 	gameObjects = new GameObject [gameObjectNames.length];
 	Scene scene = new Scene(nodes);
-	scene.getStylesheets().add(getClass().getResource("app.css").toExternalForm());
+	scene.getStylesheets().add(getClass().getResource("/styles/app.css").toExternalForm());
 	nodes.getChildren().add(gamePane);
 	primaryStage.setTitle("Game");
 	primaryStage.setFullScreen(true);
