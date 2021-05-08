@@ -20,7 +20,7 @@ public class SpriteGameObject extends GameObject<ImageView> {
 private final String spriteName;
 private final String name;
 private final double x, y;
-private final double width, height;
+private double width, height;
 
 private final ResourceReader resourceReader;
 
@@ -62,10 +62,10 @@ private BoundingBox bounds;
 		double scale;
 		if (width != 0) {
 			scale = width / bufferedImage.getWidth();
-			height = height * scale;
+			height = bufferedImage.getHeight() * scale;
 		}else {
 			scale = height / bufferedImage.getHeight();
-			width = width * scale;
+			width = bufferedImage.getWidth() * scale;
 		}
 		BufferedImage scaledImage = new BufferedImage((int)width, (int)height, BufferedImage.TYPE_4BYTE_ABGR);
 		Graphics graphics = scaledImage.getGraphics();

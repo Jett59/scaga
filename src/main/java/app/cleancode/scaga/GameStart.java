@@ -32,7 +32,8 @@ public class GameStart extends Application {
 			"ground",
 			"leftWall",
 			"rightWall",
-			"player"
+			"player",
+			"barrel"
 	};
 	private static PhysicalLaw[] laws = new PhysicalLaw[] {
 			new Collisions(),

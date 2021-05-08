@@ -1,0 +1,10 @@
+{ 
+"type": "SPRITE",
+"name": "barrel",
+"spriteName": "Barrel",
+"x": 0.5,
+"y": -0.2,
+"height": 0.2,
+"mass": 1,
+"drag": 1
+}
