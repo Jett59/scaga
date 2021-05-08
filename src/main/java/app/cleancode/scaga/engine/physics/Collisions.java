@@ -29,7 +29,7 @@ public Collisions() {
 					Bounds objBounds = collidableObj.node.getBounds();
 					Bounds objectBounds = object.node.getBounds();
 					if (objBounds.intersects(objectBounds)) {
-						if (objBounds.getMaxY() < objectBounds.getMaxY()) {
+						if (objBounds.getMinY() < objectBounds.getMinY()) {
 							obj.isTouchingGround = true;
 							obj.move(obj.getX(), obj.getY() + obj.yVelocity * -1);
 							obj.yVelocity = Math.min(obj.yVelocity, 0);
