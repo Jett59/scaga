@@ -1,5 +1,7 @@
 package app.cleancode.scaga.engine.physics;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,6 +14,8 @@ import javafx.geometry.Bounds;
 import javafx.scene.Node;
 
 public class Collisions extends PhysicalLaw {
+	private static final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+
 private Set<Collidable> objects;
 
 public Collisions() {
@@ -27,20 +31,16 @@ public Collisions() {
 					if (objBounds.intersects(objectBounds)) {
 						if (objBounds.getMinY() < objectBounds.getMinY()) {
 							obj.isTouchingGround = true;
-							obj.move(obj.getX(), obj.getY() + obj.yVelocity * -1);
 							obj.yVelocity = Math.min(obj.yVelocity, 0);
 						}
 						else if (objBounds.getMinY() < objectBounds.getMinY()) {
-							obj.move(obj.getX(), obj.getY() + obj.yVelocity * -1);
 							obj.yVelocity = Math.max(obj.yVelocity, 0);
 						}
 						else if (objBounds.getMaxX() < objectBounds.getMaxX()) {
-							obj.move(obj.getX() + obj.xVelocity * -1, obj.getY());
 							obj.xVelocity = Math.min(obj.xVelocity, 0);
 							obj.handleEvent(new StopEvent());
 						} 
 						else if (objBounds.getMinX() < objectBounds.getMaxX()) {
-							obj.move(obj.getX() + obj.xVelocity * -1, obj.getY());
 							obj.xVelocity = Math.max(obj.xVelocity, 0);
 							obj.handleEvent(new StopEvent());
 						}
