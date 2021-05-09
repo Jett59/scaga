@@ -6,34 +6,34 @@ import java.util.Set;
 import app.cleancode.scaga.collisions.Collidable;
 import app.cleancode.scaga.collisions.PolygonCollider;
 import app.cleancode.scaga.engine.GameObject;
-import app.cleancode.scaga.engine.PhysicalLaw;
 import app.cleancode.scaga.engine.events.CollisionEvent;
 import javafx.scene.Node;
 import javafx.scene.shape.Polygon;
-import javafx.scene.shape.Rectangle;
 
-public class Collisions extends PhysicalLaw {
+public class Collisions {
 	private Set<Collidable> objects;
 
 public Collisions() {
 	objects = new HashSet<>();
 }
 
-	@Override
-	public void handle(GameObject<Node> obj) {
+	public boolean check(GameObject<Node> obj) {
 			for (Collidable object : objects) {
+				System.out.printf("checking %s against %s", obj, object);
 				if (!object.equals(obj)) {
 					Polygon objRegion = obj.getRegion();
 					Polygon objectRegion = object.getRegion();
 					if (PolygonCollider.intersects(objRegion, objectRegion)) {
-						// todo: detect which directions the shape can not go in
-								obj.yVelocity = 0;
-								obj.isTouchingGround = true;
-												obj.handleEvent(new CollisionEvent(object));
+						obj.handleEvent(new CollisionEvent(object));
+												return true;
 					}
 				}
 			}
-			objects.add(obj);
+			return false;
 		}
+
+	public void registerObject (Collidable c) {
+		objects.add(c);
+	}
 
 }

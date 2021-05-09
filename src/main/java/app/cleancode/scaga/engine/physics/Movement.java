@@ -13,9 +13,11 @@ public class Movement extends PhysicalLaw {
 	private static final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
 	private final Map<GameObject<? extends Node>, Long> lastMovementTimes;
+	private Collisions collider;
 
 	public Movement() {
 		lastMovementTimes = new HashMap<>();
+		collider = new Collisions();
 	}
 
 	@Override
@@ -25,12 +27,24 @@ public class Movement extends PhysicalLaw {
 				long lastMovementTime = lastMovementTimes.get(obj);
 				long currentTime = System.nanoTime();
 				long delta = currentTime - lastMovementTime;
-				double xMoveAmount = delta / 1000000000d * obj.xVelocity;
-				double yMoveAmount = delta / 1000000000d * obj.yVelocity;
-				obj.move(obj.getX() + (xMoveAmount * screenSize.width), obj.getY() + (yMoveAmount * screenSize.height));
+				double xMoveAmount = delta / 1000000000d * obj.xVelocity * screenSize.width;
+				double yMoveAmount = delta / 1000000000d * obj.yVelocity * screenSize.height;
+				double origX = obj.getX(), origY = obj.getY();
+				obj.move(origX + xMoveAmount, origY + yMoveAmount);
+				if (collider.check(obj)) {
+					obj.move(origX, obj.getY());
+					if (collider.check(obj)) {
+						obj.isTouchingGround = true;
+						obj.yVelocity = 0;
+						obj.move(origX, origY);
+					}else {
+						obj.move(origX + xMoveAmount, origY);
+					}
+				}
 			}
 		}
 		lastMovementTimes.put(obj, System.nanoTime());
+		collider.registerObject(obj);
 		}
 
 }

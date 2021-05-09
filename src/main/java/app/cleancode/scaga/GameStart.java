@@ -36,7 +36,6 @@ public class GameStart extends Application {
 			"barrel"
 	};
 	private static PhysicalLaw[] laws = new PhysicalLaw[] {
-			new Collisions(),
 			new Movement(),
 			new Gravity(),
 			new Drag()

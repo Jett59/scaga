@@ -4,7 +4,7 @@
 "spriteName": "Barrel",
 "x": 0.5,
 "y": -10,
-"height": 0.2,
+"height": 0.15,
 "mass": 1,
 "drag": 1
 }
