@@ -32,13 +32,14 @@ public class Movement extends PhysicalLaw {
 				double origX = obj.getX(), origY = obj.getY();
 				obj.move(origX + xMoveAmount, origY + yMoveAmount);
 				if (collider.check(obj)) {
-					obj.move(origX, obj.getY());
+					obj.move(origX, origY + yMoveAmount);
 					if (collider.check(obj)) {
 						obj.isTouchingGround = true;
 						obj.yVelocity = 0;
-						obj.move(origX, origY);
-					}else {
 						obj.move(origX + xMoveAmount, origY);
+						if (collider.check(obj)) {
+							obj.move(origX, origY);
+						}
 					}
 				}
 			}
