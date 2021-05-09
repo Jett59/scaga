@@ -7,6 +7,7 @@ import java.util.Map;
 
 import app.cleancode.scaga.engine.GameObject;
 import app.cleancode.scaga.engine.PhysicalLaw;
+import app.cleancode.scaga.engine.events.StopEvent;
 import javafx.scene.Node;
 
 public class Movement extends PhysicalLaw {
@@ -39,6 +40,10 @@ public class Movement extends PhysicalLaw {
 						obj.move(origX + xMoveAmount, origY);
 						if (collider.check(obj)) {
 							obj.move(origX, origY);
+							if (obj.xVelocity != 0) {
+								obj.xVelocity = 0;
+								obj.handleEvent(new StopEvent());
+							}
 						}
 					}
 				}
