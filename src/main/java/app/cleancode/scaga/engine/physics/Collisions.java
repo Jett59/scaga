@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import app.cleancode.scaga.collisions.Collidable;
+import app.cleancode.scaga.collisions.PolygonCollider;
 import app.cleancode.scaga.engine.GameObject;
 import app.cleancode.scaga.engine.PhysicalLaw;
 import app.cleancode.scaga.engine.events.CollisionEvent;
@@ -24,7 +25,7 @@ public Collisions() {
 				if (!object.equals(obj)) {
 					Polygon objRegion = obj.getRegion();
 					Polygon objectRegion = object.getRegion();
-					if (objRegion.getBoundsInParent().intersects(objectRegion.getBoundsInParent()) && objectRegion.intersects(objRegion.getBoundsInParent())) {
+					if (PolygonCollider.intersects(objRegion, objectRegion)) {
 						// todo: detect which directions the shape can not go in
 								obj.yVelocity = 0;
 								obj.isTouchingGround = true;
