@@ -52,4 +52,9 @@ public boolean equals (Object other) {
 }
 
 public abstract void handleEvent (Event evt);
+
+@Override
+public String toString() {
+	return getName ();
+}
 }

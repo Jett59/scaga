@@ -11,12 +11,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import app.cleancode.scaga.animation.Animation;
 import app.cleancode.scaga.animation.AnimationBuilder;
 import app.cleancode.scaga.animation.AnimationConfig;
-import app.cleancode.scaga.collisions.Collidable;
 import app.cleancode.scaga.resources.ResourceReader;
-import javafx.geometry.Bounds;
 import javafx.scene.Group;
+import javafx.scene.shape.Polygon;
 
-public class Character extends Group implements Collidable {
+public class Character extends Group {
 	private static final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
 private final Map<String, Animation> animations;
@@ -114,8 +113,7 @@ public static enum State {
 	}
 }
 
-@Override
-public Bounds getBounds() {
-	return animations.get(getFullStateString()).getBounds();
+public Polygon getRegion() {
+	return animations.get(getFullStateString()).getRegion();
 }
 }

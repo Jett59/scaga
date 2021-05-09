@@ -1,7 +1,7 @@
 package app.cleancode.scaga.collisions;
 
-import javafx.geometry.Bounds;
+import javafx.scene.shape.Polygon;
 
 public interface Collidable {
-Bounds getBounds ();
+Polygon getRegion ();
 }

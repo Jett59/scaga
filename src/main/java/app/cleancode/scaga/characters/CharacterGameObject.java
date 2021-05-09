@@ -5,7 +5,7 @@ import app.cleancode.scaga.engine.GameObject;
 import app.cleancode.scaga.engine.config.GameObjectConfig;
 import app.cleancode.scaga.engine.events.Event;
 import app.cleancode.scaga.engine.events.MovementEvent;
-import javafx.geometry.Bounds;
+import javafx.scene.shape.Polygon;
 
 public class CharacterGameObject extends GameObject<Character> {
 private final String name;
@@ -51,9 +51,8 @@ public CharacterGameObject(GameObjectConfig config) {
 		}
 	}
 
-	@Override
-	public Bounds getBounds() {
-		return node.getBounds();
+	public Polygon getRegion () {
+		return node.getRegion();
 	}
 
 }

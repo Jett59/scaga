@@ -3,11 +3,9 @@ package app.cleancode.scaga.animation;
 import java.util.List;
 
 import javafx.animation.Transition;
-import javafx.geometry.BoundingBox;
-import javafx.geometry.Bounds;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.Parent;
 import javafx.scene.image.ImageView;
+import javafx.scene.shape.Polygon;
 import javafx.util.Duration;
 
 /*
@@ -19,14 +17,14 @@ private int cellWidth;
 private int cellHeight;
 private int cellCount;
 private ImageView filmStrip;
-private List<BoundingBox> bound;
+private List<Polygon> regions;
 
-public Animation(int cellCount, int totalWidth, int cellHeight, ImageView imageView,  Duration duration, List<BoundingBox> boundingBoxes) {
+public Animation(int cellCount, int totalWidth, int cellHeight, ImageView imageView,  Duration duration, List<Polygon> regions) {
 	this.cellCount = cellCount;
 	this.cellHeight = cellHeight;
 	this.cellWidth = totalWidth/cellCount;
 	this.filmStrip = imageView;
-	this.bound = boundingBoxes;
+	this.regions = regions;
 	super.setCycleDuration(duration);
 	super.setCycleCount(-1);
 }
@@ -45,16 +43,8 @@ private void updateViewPort(double frac) {
  * changing the values on this field will not effect the animation.
  * @return the bounds of this animation.
  */
-public Bounds getBounds() {
-	double xOffset = 0, yOffset = 0;
-	Parent tmp = filmStrip.getParent();
-	while (tmp != null) {
-		xOffset += tmp.getTranslateX();
-		yOffset += tmp.getTranslateY();
-		tmp = tmp.getParent();
-	}
-	BoundingBox current = bound.get(currentFramePosition);
-	return new BoundingBox(current.getMinX() + xOffset, current.getMinY() + yOffset, current.getWidth(), current.getHeight());
+public Polygon getRegion () {
+	return regions.get(currentFramePosition);
 }
 /*
  * returns the image view for this animation.
@@ -62,5 +52,14 @@ public Bounds getBounds() {
  */
 public ImageView getView() {
 	return filmStrip;
+}
+
+public void active () {
+	if (filmStrip.getParent() != null) {
+		for (Polygon region : regions) {
+			region.translateXProperty().bind(filmStrip.translateXProperty().add(filmStrip.getParent().translateXProperty()));
+			region.translateYProperty().bind(filmStrip.translateYProperty().add(filmStrip.getParent().translateYProperty()));
+		}
+	}
 }
 }

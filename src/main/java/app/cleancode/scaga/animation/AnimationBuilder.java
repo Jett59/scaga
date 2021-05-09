@@ -8,13 +8,12 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
-import app.cleancode.scaga.bounds.ImageToBounds;
+import app.cleancode.scaga.bounds.ImageToRegion;
 import javafx.embed.swing.SwingFXUtils;
-import javafx.geometry.BoundingBox;
-import javafx.scene.SnapshotParameters;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
+import javafx.scene.shape.Polygon;
 import javafx.util.Duration;
 
 public class AnimationBuilder {
@@ -24,7 +23,7 @@ public Animation buildAnimation(String character, String animation, int cellCoun
 	int imageHeight = (int) Math.ceil(testImage.getHeight());
 	double scale = height/imageHeight;
 	int cellWidth = (int) Math.ceil(testImage.getWidth()*scale);
-	List<BoundingBox> boundingBoxes = new ArrayList<>();
+	List<Polygon> regions = new ArrayList<>();
 	BufferedImage swingFilmStrip = new BufferedImage(cellWidth*cellCount, (int) height, BufferedImage.TYPE_4BYTE_ABGR);
 	Graphics graphics = swingFilmStrip.getGraphics();
 	for(int i = 0; i < cellCount; i++) {
@@ -51,13 +50,13 @@ public Animation buildAnimation(String character, String animation, int cellCoun
 			cell = reversedImage;
 			bufferedCell = SwingFXUtils.fromFXImage(cell, null);
 		}
-		BoundingBox imageBounds = ImageToBounds.getBounds(cell);
-		boundingBoxes.add(imageBounds);
+		Polygon imageRegion = ImageToRegion.getRegion(cell);
+		regions.add(imageRegion);
 		graphics.drawImage(bufferedCell, cellWidth*(i-1), 0, cellWidth, (int) height, null);
 	}
 	graphics.dispose();
 	Image filmStrip = SwingFXUtils.toFXImage(swingFilmStrip, null);
-	var result = new Animation(cellCount, (int)filmStrip.getWidth(), (int)height, new ImageView(filmStrip), duration, boundingBoxes);
+	var result = new Animation(cellCount, (int)filmStrip.getWidth(), (int)height, new ImageView(filmStrip), duration, regions);
 	return result;
 }
 public Animation buildAnimation (AnimationConfig config) {
