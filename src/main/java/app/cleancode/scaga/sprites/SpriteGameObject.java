@@ -73,6 +73,8 @@ private Polygon region;
 		Image img = SwingFXUtils.toFXImage(scaledImage, null);
 		region = ImageToRegion.getRegion(img);
 		node = new ImageView(img);
+		region.translateXProperty().bind(node.translateXProperty());
+		region.translateYProperty().bind(node.translateYProperty());
 		move(x, y);
 	}
 

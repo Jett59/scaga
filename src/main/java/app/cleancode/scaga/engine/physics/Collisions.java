@@ -9,6 +9,7 @@ import app.cleancode.scaga.engine.PhysicalLaw;
 import app.cleancode.scaga.engine.events.CollisionEvent;
 import javafx.scene.Node;
 import javafx.scene.shape.Polygon;
+import javafx.scene.shape.Rectangle;
 
 public class Collisions extends PhysicalLaw {
 	private Set<Collidable> objects;
@@ -23,10 +24,10 @@ public Collisions() {
 				if (!object.equals(obj)) {
 					Polygon objRegion = obj.getRegion();
 					Polygon objectRegion = object.getRegion();
-					if (objRegion.intersects(objectRegion.getBoundsInParent())) {
+					if (objRegion.getBoundsInParent().intersects(objectRegion.getBoundsInParent()) && objectRegion.intersects(objRegion.getBoundsInParent())) {
 						// todo: detect which directions the shape can not go in
-						System.out.printf("collision: %s collided with %s\n", obj.getName(), object.toString());
 								obj.yVelocity = 0;
+								obj.isTouchingGround = true;
 												obj.handleEvent(new CollisionEvent(object));
 					}
 				}

@@ -42,11 +42,13 @@ public Character(String characterName) {
 		animations.put(animation.getAnimation() + ".Right", builtAnimation);
 		builtAnimation.getView ().setVisible(false);
 		getChildren ().add(builtAnimation.getView());
+		builtAnimation.active();
 		animation.setReversed(true);
 		builtAnimation = animationBuilder.buildAnimation(animation);
 		animations.put(animation.getAnimation() + ".Left", builtAnimation);
 		builtAnimation.getView ().setVisible(false);
 		getChildren ().add(builtAnimation.getView());
+		builtAnimation.active();
 	}
 	direction = 1;
 	currentState = State.IDLE;
