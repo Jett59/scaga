@@ -3,6 +3,6 @@
 "characterName": "Samurai",
 "name": "player",
 "mass": 1,
-"drag": 0.5,
+"drag": 1,
 "x": 0.5
 }

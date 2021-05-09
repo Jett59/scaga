@@ -19,7 +19,6 @@ public Collisions() {
 
 	public boolean check(GameObject<Node> obj) {
 			for (Collidable object : objects) {
-				System.out.printf("checking %s against %s", obj, object);
 				if (!object.equals(obj)) {
 					Polygon objRegion = obj.getRegion();
 					Polygon objectRegion = object.getRegion();
