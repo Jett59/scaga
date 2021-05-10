@@ -36,9 +36,9 @@ public class GameStart extends Application {
 			"player"
 	};
 	private static PhysicalLaw[] laws = new PhysicalLaw[] {
-			new Movement(),
 			new Gravity(),
-			new Drag()
+			new Drag(),
+			new Movement()
 	};
 public static void begin(String[] args) {
 	launch(args);
