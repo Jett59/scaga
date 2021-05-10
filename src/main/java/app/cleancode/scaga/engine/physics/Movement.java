@@ -7,8 +7,9 @@ import java.util.Map;
 
 import app.cleancode.scaga.engine.GameObject;
 import app.cleancode.scaga.engine.PhysicalLaw;
-import app.cleancode.scaga.engine.events.StopEvent;
+import javafx.geometry.Bounds;
 import javafx.scene.Node;
+import javafx.scene.shape.Shape;
 
 public class Movement extends PhysicalLaw {
 	private static final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -32,20 +33,40 @@ public class Movement extends PhysicalLaw {
 				double yMoveAmount = delta / 1000000000d * obj.yVelocity * screenSize.height;
 				double origX = obj.getX(), origY = obj.getY();
 				obj.move(origX + xMoveAmount, origY + yMoveAmount);
-				if (collider.check(obj)) {
-					obj.move(origX, origY + yMoveAmount);
-					if (collider.check(obj)) {
-						obj.isTouchingGround = true;
-						obj.yVelocity = 0;
-						obj.move(origX + xMoveAmount, origY);
-						if (collider.check(obj)) {
-							obj.move(origX, origY);
-							if (obj.xVelocity != 0) {
-								obj.xVelocity = 0;
-								obj.handleEvent(new StopEvent());
+				Shape intersection = collider.check(obj);
+				Bounds intersectionBounds = intersection.getBoundsInLocal();
+				while (!(intersectionBounds = (intersection = collider.check(obj)).getBoundsInLocal()).isEmpty()) {
+					System.out.println(obj + " intersected");
+					if (intersectionBounds.getWidth() > intersectionBounds.getHeight()) {
+						if (yMoveAmount < 0) {
+							yMoveAmount += intersectionBounds.getHeight();
+						}else if (yMoveAmount > 0) {
+							yMoveAmount -= intersectionBounds.getHeight();
+							obj.isTouchingGround = true;
+						}else {
+							if (intersection.getBoundsInParent().getCenterY() < obj.getRegion().getBoundsInParent().getCenterY()) {
+								yMoveAmount = intersectionBounds.getHeight() * -1;
+								obj.isTouchingGround = true;
+							}else {
+								yMoveAmount = intersectionBounds.getHeight();
 							}
 						}
+						obj.yVelocity = 0;
+					}else {
+						if (xMoveAmount < 0) {
+							xMoveAmount += intersectionBounds.getWidth();
+						}else if (xMoveAmount > 0) {
+							xMoveAmount -= intersectionBounds.getWidth();
+						}else {
+							if (intersection.getBoundsInParent().getCenterX() < obj.getRegion().getBoundsInParent().getCenterX()) {
+								xMoveAmount = intersectionBounds.getWidth() * -1;
+							}else {
+								xMoveAmount = intersectionBounds.getWidth();
+							}
+						}
+						obj.xVelocity = 0;
 					}
+					obj.move(origX + xMoveAmount, origY + yMoveAmount);
 				}
 			}
 		}
