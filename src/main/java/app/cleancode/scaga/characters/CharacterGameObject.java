@@ -35,6 +35,7 @@ public CharacterGameObject(GameObjectConfig config) {
 
 	@Override
 	public void handleEvent(Event evt) {
+		super.handleEvent(evt);
 		switch (evt.getType()) {
 		case MOVE: {
 			MovementEvent movement = (MovementEvent)evt;

@@ -7,6 +7,7 @@ import java.util.Map;
 
 import app.cleancode.scaga.engine.GameObject;
 import app.cleancode.scaga.engine.PhysicalLaw;
+import app.cleancode.scaga.engine.events.StopEvent;
 import javafx.geometry.Bounds;
 import javafx.scene.Node;
 import javafx.scene.shape.Shape;
@@ -64,6 +65,7 @@ public class Movement extends PhysicalLaw {
 							}
 						}
 						obj.xVelocity = 0;
+						obj.handleEvent(new StopEvent());
 					}
 					obj.move(origX + xMoveAmount, origY + yMoveAmount);
 				}

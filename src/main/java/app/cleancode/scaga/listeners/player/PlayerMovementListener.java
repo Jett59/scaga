@@ -17,7 +17,6 @@ public CharacterGameObject player;
 
 	@Override
 	public void update(State state) {
-		if (player.isTouchingGround) {
 			if (state.keyState.isKeyDown(KeyBindings.MOVE_LEFT)) {
 				player.xVelocity = SPEED * -1;
 				player.handleEvent(new MovementEvent(-1, 0));
@@ -25,7 +24,6 @@ public CharacterGameObject player;
 					player.xVelocity = SPEED;
 					player.handleEvent(new MovementEvent(1, 0));
 					}
-		}
 		}
 
 	@Override

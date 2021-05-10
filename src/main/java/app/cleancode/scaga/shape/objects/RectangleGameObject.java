@@ -34,7 +34,7 @@ public RectangleGameObject(GameObjectConfig config) {
 
 	@Override
 	public void handleEvent(Event evt) {
-		
+		super.handleEvent(evt);
 	}
 
 	@Override

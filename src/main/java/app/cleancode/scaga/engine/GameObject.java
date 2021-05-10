@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.function.Consumer;
 
 import app.cleancode.scaga.collisions.Collidable;
+import app.cleancode.scaga.engine.events.CollisionEvent;
 import app.cleancode.scaga.engine.events.Event;
 import javafx.scene.Node;
 
@@ -51,7 +52,14 @@ public boolean equals (Object other) {
 	return false;
 }
 
-public abstract void handleEvent (Event evt);
+public void handleEvent (Event evt) {
+	if (evt instanceof CollisionEvent) {
+		CollisionEvent collision = (CollisionEvent)evt;
+		for (GameListener listener : attachedListeners) {
+			listener.onCollision(collision.other);
+		}
+	}
+}
 
 @Override
 public String toString() {

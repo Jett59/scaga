@@ -80,7 +80,7 @@ private Polygon region;
 
 	@Override
 	public void handleEvent(Event evt) {
-		
+		super.handleEvent(evt);
 	}
 
 }
