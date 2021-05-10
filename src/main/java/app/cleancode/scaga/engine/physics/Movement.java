@@ -36,7 +36,6 @@ public class Movement extends PhysicalLaw {
 				Shape intersection = collider.check(obj);
 				Bounds intersectionBounds = intersection.getBoundsInLocal();
 				for (int i = 0; i < 64 && !(intersectionBounds = (intersection = collider.check(obj)).getBoundsInLocal()).isEmpty(); i ++) {
-					System.out.println(obj + " intersected");
 					if (intersectionBounds.getWidth() > intersectionBounds.getHeight()) {
 						if (yMoveAmount < 0) {
 							yMoveAmount += intersectionBounds.getHeight();
