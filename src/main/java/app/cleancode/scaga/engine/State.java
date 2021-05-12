@@ -1,10 +1,15 @@
 package app.cleancode.scaga.engine;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
 import app.cleancode.scaga.engine.keyboard.KeyState;
 import app.cleancode.scaga.engine.scene.Scene;
 import javafx.scene.Node;
 
 public class State {
+	private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+
 public final KeyState keyState;
 private final Scene scene;
 private final GameObjectLoader objectLoader;
@@ -17,10 +22,11 @@ public State(KeyState keyState, Scene scene) {
 	this.listenerLoader = new GameListenerLoader();
 }
 
-public void createGameObject (GameObject<? extends Node> template) {
+public void createGameObject (GameObject<? extends Node> template, double x, double y) {
 	try {
 		GameObject<? extends Node> newGameObject = template.duplicate(objectLoader, listenerLoader);
 		newGameObject.init();
+		newGameObject.move(x * screenSize.width, y * screenSize.height);
 		scene.objects.add(newGameObject);
 		scene.listeners.addAll(newGameObject.attachedListeners);
 		scene.gamePane.getChildren().add(newGameObject.node);
