@@ -18,7 +18,7 @@ public Consumer<Node> addNode;
 public void addNode(Node node) {
 	addNode.accept(node);
 }
-private List<GameListener> attachedListeners = new ArrayList<>();
+protected List<GameListener> attachedListeners = new ArrayList<>();
 public void attachListener (GameListener listener) {
 	this.attachedListeners.add(listener);
 }
@@ -64,5 +64,15 @@ public void handleEvent (Event evt) {
 @Override
 public String toString() {
 	return getName ();
+}
+
+@SuppressWarnings("unchecked")
+protected GameObject<NodeType> duplicate (GameObjectLoader objectLoader, GameListenerLoader listenerLoader) throws Exception {
+	GameObject<NodeType> result = (GameObject<NodeType>) objectLoader.loadGameObject(getName());
+	for (GameListener listener : attachedListeners) {
+		GameListener newListener = listener.getClass().getConstructor().newInstance();
+		listenerLoader.prepareListener(newListener, new GameObject [] {result});
+	}
+	return result;
 }
 }
