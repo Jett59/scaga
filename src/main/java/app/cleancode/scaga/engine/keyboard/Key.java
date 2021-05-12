@@ -9,5 +9,6 @@ W,
 A,
 S,
 D,
-SPACE
+SPACE,
+B
 }

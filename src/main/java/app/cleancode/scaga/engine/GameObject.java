@@ -41,17 +41,6 @@ public double getY () {
 
 public abstract void init ();
 
-public int hashCode () {
-	return getName ().hashCode();
-}
-@SuppressWarnings("unchecked")
-public boolean equals (Object other) {
-	if (other instanceof GameObject) {
-		return ((GameObject <Node>)other).getName().equals(getName());
-	}
-	return false;
-}
-
 public void handleEvent (Event evt) {
 	if (evt instanceof CollisionEvent) {
 		CollisionEvent collision = (CollisionEvent)evt;

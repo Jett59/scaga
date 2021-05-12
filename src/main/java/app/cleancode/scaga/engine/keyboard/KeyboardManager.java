@@ -69,6 +69,10 @@ private void updateKeyState (KeyCode code, boolean newState) {
 		keyState.keyState.get(Key.SPACE).down = newState;
 		break;
 	}
+	case B: {
+		keyState.keyState.get(Key.B).down = newState;
+		break;
+	}
 	default:
 		break;
 	}

@@ -4,6 +4,7 @@
 ],
 "listeners": [ 
 "app.cleancode.scaga.listeners.player.PlayerMovementListener",
-"app.cleancode.scaga.listeners.player.PlayerJumpListener"
+"app.cleancode.scaga.listeners.player.PlayerJumpListener",
+"app.cleancode.scaga.listeners.barrel.BarrelCreationListener"
 ]
 }
