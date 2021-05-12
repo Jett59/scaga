@@ -35,6 +35,7 @@ private Pane nodes = new Pane();
  
  private app.cleancode.scaga.engine.scene.Scene scene;
  
+@SuppressWarnings("exports")
 @Override
 public void start(Stage primaryStage) throws Exception {
 	Scene scene = new Scene(nodes);
@@ -45,10 +46,10 @@ public void start(Stage primaryStage) throws Exception {
 	primaryStage.setScene(scene);
 	primaryStage.show();
 	
-	keyState = new KeyState();
-	state = new State(keyState);
-	new KeyboardManager(keyState).bind(primaryStage);
 	this.scene = new SceneLoader().getScene("/scenes/default.json");
+	keyState = new KeyState();
+	state = new State(keyState, this.scene);
+	new KeyboardManager(keyState).bind(primaryStage);
 	nodes.getChildren().add(this.scene.gamePane);
 	primaryStage.hide();
 	primaryStage.show();

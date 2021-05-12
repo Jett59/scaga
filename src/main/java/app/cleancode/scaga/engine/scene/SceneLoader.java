@@ -45,7 +45,7 @@ public Scene getScene (String configPath) {
 			gameListenerLoader.prepareListener(gameListener, gameObjectArray);
 			listeners.add(gameListener);
 		}
-		return new Scene(gameObjectArray, listeners.toArray(new GameListener [] {}), gamePane);
+		return new Scene(objects, listeners, gamePane);
 	}catch (Exception e) {
 		e.printStackTrace();
 		throw new RuntimeException ("Error initializing scene", e);
