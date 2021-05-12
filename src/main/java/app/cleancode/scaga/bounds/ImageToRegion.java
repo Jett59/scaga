@@ -7,7 +7,7 @@ import javafx.scene.image.Image;
 import javafx.scene.shape.Polygon;
 
 public class ImageToRegion {
-	private static final int POLYGON_PRECISION = 180;
+	private static final int POLYGON_PRECISION = 45;
 
 public static Polygon getRegion(Image img) {
 	var reader = img.getPixelReader();

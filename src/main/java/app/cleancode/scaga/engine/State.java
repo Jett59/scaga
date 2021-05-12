@@ -34,4 +34,11 @@ public void createGameObject (GameObject<? extends Node> template, double x, dou
 		throw new RuntimeException ("Error while creating object "+template.getName(), e);
 	}
 }
+public void destroyGameObject (GameObject<? extends Node> object) {
+	for (GameListener listener : object.attachedListeners) {
+		scene.listeners.remove(listener);
+	}
+	scene.objects.remove(object);
+	System.out.println(scene.objects.size());
+}
 }
