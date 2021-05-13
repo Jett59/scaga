@@ -69,6 +69,9 @@ public class Movement extends PhysicalLaw {
 					}
 					obj.move(origX + xMoveAmount, origY + yMoveAmount);
 				}
+				if (!collider.check(obj).getBoundsInLocal().isEmpty()) {
+					obj.move(origX, origY);
+				}
 			}
 		}
 		lastMovementTimes.put(obj, System.nanoTime());
