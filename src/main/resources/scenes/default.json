@@ -7,6 +7,7 @@
 "app.cleancode.scaga.listeners.player.PlayerJumpListener",
 "app.cleancode.scaga.listeners.barrel.BarrelCreationListener",
 "app.cleancode.scaga.listeners.barrel.BarrelDestructionListener",
-"app.cleancode.scaga.listeners.barrel.BarrelMovementListener"
+"app.cleancode.scaga.listeners.barrel.BarrelMovementListener",
+"app.cleancode.scaga.listeners.barrel.BarrelJumpListener"
 ]
 }
