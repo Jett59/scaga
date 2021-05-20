@@ -29,7 +29,6 @@ public GameObject<?> player;
 
 	@Override
 	public void startup(State state) {
-		// TODO Auto-generated method stub
 		
 	}
 

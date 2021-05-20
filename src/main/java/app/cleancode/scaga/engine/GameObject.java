@@ -56,11 +56,15 @@ public String toString() {
 }
 
 @SuppressWarnings("unchecked")
-protected GameObject<NodeType> duplicate (GameObjectLoader objectLoader, GameListenerLoader listenerLoader) throws Exception {
+protected GameObject<NodeType> duplicate (GameObjectLoader objectLoader, GameListenerLoader listenerLoader, State state, List<GameObject<?>> objects) throws Exception {
 	GameObject<NodeType> result = (GameObject<NodeType>) objectLoader.loadGameObject(getName());
+	var gameObjects = new ArrayList<>(objects);
+	gameObjects.add(0, result);
+	GameObject<?> [] gameObjectArray = gameObjects.toArray(new GameObject <?> [] {});
 	for (GameListener listener : attachedListeners) {
 		GameListener newListener = listener.getClass().getConstructor().newInstance();
-		listenerLoader.prepareListener(newListener, new GameObject [] {result});
+		listenerLoader.prepareListener(newListener, gameObjectArray);
+		listener.startup(state);
 	}
 	return result;
 }
