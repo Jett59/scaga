@@ -1,7 +1,7 @@
 package app.cleancode.scaga.listeners.player;
 
-import app.cleancode.scaga.characters.CharacterGameObject;
 import app.cleancode.scaga.engine.GameListener;
+import app.cleancode.scaga.engine.GameObject;
 import app.cleancode.scaga.engine.State;
 import app.cleancode.scaga.engine.annotations.AttachedTo;
 import app.cleancode.scaga.engine.annotations.ImportGameObject;
@@ -13,7 +13,7 @@ public class PlayerMovementListener extends GameListener {
 	public static double SPEED = 0.25;
 
 	@ImportGameObject
-public CharacterGameObject player;
+public GameObject<?> player;
 
 	@Override
 	public void update(State state) {

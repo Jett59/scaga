@@ -1,6 +1,4 @@
 package app.cleancode.scaga.listeners.barrel;
-
-import app.cleancode.scaga.collisions.Collidable;
 import app.cleancode.scaga.engine.GameListener;
 import app.cleancode.scaga.engine.GameObject;
 import app.cleancode.scaga.engine.State;
