@@ -15,7 +15,7 @@ private final Scene scene;
 private final GameObjectLoader objectLoader;
 private final GameListenerLoader listenerLoader;
 
-public State(KeyState keyState, Scene scene) {
+protected State(KeyState keyState, Scene scene) {
 	this.keyState = keyState;
 	this.scene = scene;
 	this.objectLoader = new GameObjectLoader();

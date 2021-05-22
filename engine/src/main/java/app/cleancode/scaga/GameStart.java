@@ -35,7 +35,6 @@ private Pane nodes = new Pane();
  
  private app.cleancode.scaga.engine.scene.Scene scene;
  
-@SuppressWarnings("exports")
 @Override
 public void start(Stage primaryStage) throws Exception {
 	Scene scene = new Scene(nodes);
@@ -48,7 +47,11 @@ public void start(Stage primaryStage) throws Exception {
 	
 	this.scene = new SceneLoader().getScene("/scenes/default.json");
 	keyState = new KeyState();
-	state = new State(keyState, this.scene);
+	
+	//todo: make it easier to initialize State
+	var stateConstructor = State.class.getDeclaredConstructor(KeyState.class, this.scene.getClass());
+	stateConstructor.setAccessible(true);
+	state = stateConstructor.newInstance(keyState, this.scene);
 	new KeyboardManager(keyState).bind(primaryStage);
 	nodes.getChildren().add(this.scene.gamePane);
 	primaryStage.hide();
@@ -70,7 +73,6 @@ public void tick() {
 		}
 	}
 }
-@SuppressWarnings("exports")
 public void addNode(Node node) {
 	scene.gamePane.getChildren().add(node);
 }
