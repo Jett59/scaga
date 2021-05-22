@@ -7,9 +7,7 @@
     <version>0.1</version>
   </parent>
 
-<groupId>app.cleancode.scaga</groupId>
-<artifactId>engine</artifactId>
-<version>0.1</version>
+<artifactId>scaga-engine</artifactId>
 
 <properties>
 	<maven.compiler.target>15</maven.compiler.target>

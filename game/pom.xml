@@ -7,14 +7,22 @@
     <version>0.1</version>
   </parent>
 
-<groupId>app.cleancode</groupId>
-<artifactId>game</artifactId>
-<version>0.1</version>
+<artifactId>scaga-game</artifactId>
 
 <properties>
 	<maven.compiler.target>15</maven.compiler.target>
 	<maven.compiler.source>15</maven.compiler.source>
 	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	
+	<scaga-engine.version>${project.version}</scaga-engine.version>
 </properties>
+
+<dependencies>
+<dependency>
+<groupId>app.cleancode</groupId>
+<artifactId>scaga-engine</artifactId>
+<version>${scaga-engine.version}</version>
+</dependency>
+</dependencies>
 
 </project>
