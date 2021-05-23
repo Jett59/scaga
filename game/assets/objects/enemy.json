@@ -1,6 +1,6 @@
 { 
 "type": "SPRITE",
-"name": "barrel",
+"name": "enemy",
 "spriteName": "Barrel",
 "x": 0.5,
 "y": -10,

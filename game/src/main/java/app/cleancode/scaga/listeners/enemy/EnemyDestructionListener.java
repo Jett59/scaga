@@ -1,4 +1,4 @@
-package app.cleancode.scaga.listeners.barrel;
+package app.cleancode.scaga.listeners.enemy;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -9,17 +9,17 @@ import app.cleancode.scaga.engine.State;
 import app.cleancode.scaga.engine.annotations.AttachedTo;
 import app.cleancode.scaga.engine.annotations.ImportGameObject;
 
-@AttachedTo("barrel")
-public class BarrelDestructionListener extends GameListener {
+@AttachedTo("enemy")
+public class EnemyDestructionListener extends GameListener {
 private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
 	@ImportGameObject
-	public GameObject<?> barrel;
+	public GameObject<?> enemy;
 
 	@Override
 	public void update(State state) {
-		if (barrel.getRegion().getBoundsInParent().getMinY() > screenSize.height) {
-			state.destroyGameObject(barrel);
+		if (enemy.getRegion().getBoundsInParent().getMinY() > screenSize.height) {
+			state.destroyGameObject(enemy);
 		}
 	}
 

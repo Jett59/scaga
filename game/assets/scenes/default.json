@@ -1,13 +1,13 @@
 { 
 "objects": [ 
-"ground", "leftWall", "rightWall", "barrel", "player", "battleTheam"
+"ground", "leftWall", "rightWall", "enemy", "player", "battleTheam"
 ],
 "listeners": [ 
 "app.cleancode.scaga.listeners.player.PlayerMovementListener",
 "app.cleancode.scaga.listeners.player.PlayerJumpListener",
-"app.cleancode.scaga.listeners.barrel.BarrelCreationListener",
-"app.cleancode.scaga.listeners.barrel.BarrelDestructionListener",
-"app.cleancode.scaga.listeners.barrel.BarrelMovementListener",
-"app.cleancode.scaga.listeners.barrel.BarrelJumpListener"
+"app.cleancode.scaga.listeners.enemy.EnemyCreationListener",
+"app.cleancode.scaga.listeners.enemy.EnemyDestructionListener",
+"app.cleancode.scaga.listeners.enemy.EnemyMovementListener",
+"app.cleancode.scaga.listeners.enemy.EnemyJumpListener"
 ]
 }
