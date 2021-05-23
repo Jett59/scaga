@@ -12,5 +12,6 @@ exports app.cleancode.scaga.animation to com.fasterxml.jackson.databind;
 
 requires transitive javafx.graphics;
 	requires javafx.swing;
-	requires com.fasterxml.jackson.databind;	
+	requires com.fasterxml.jackson.databind;
+	requires javafx.media;	
 }

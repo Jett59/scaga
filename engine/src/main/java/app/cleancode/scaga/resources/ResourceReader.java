@@ -1,8 +1,7 @@
 package app.cleancode.scaga.resources;
 
 import java.awt.image.BufferedImage;
-import java.io.BufferedInputStream;
-import java.io.InputStream;
+import java.net.MalformedURLException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import javax.imageio.ImageIO;
@@ -22,6 +21,14 @@ public BufferedImage getResourceAsImage (String path) {
 	}catch (Exception e) {
 		e.printStackTrace();
 		throw new RuntimeException (e);
+	}
+}
+public String getResourceUriString (String name) {
+	try {
+		return Paths.get("assets", name).toUri().toURL().toExternalForm();
+	} catch (MalformedURLException e) {
+		e.printStackTrace();
+		return null;
 	}
 }
 }
