@@ -37,7 +37,9 @@ public Scene getScene (String configPath) {
 			GameObject<? extends Node> gameObject = gameObjectLoader.loadGameObject(object);
 			gameObject.init();
 			objects.add(gameObject);
-			gamePane.getChildren().add(gameObject.node);
+			if (gameObject.node != null) {
+				gamePane.getChildren().add(gameObject.node);
+			}
 		}
 		GameObject<? extends Node> [] gameObjectArray = objects.toArray(new GameObject [] {});
 		for (String listener : config.getListeners()) {
