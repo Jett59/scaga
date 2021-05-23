@@ -9,6 +9,7 @@ import app.cleancode.scaga.characters.CharacterGameObject;
 import app.cleancode.scaga.engine.config.GameObjectConfig;
 import app.cleancode.scaga.resources.ResourceReader;
 import app.cleancode.scaga.shape.objects.RectangleGameObject;
+import app.cleancode.scaga.sounds.SoundGameObject;
 import app.cleancode.scaga.sprites.SpriteGameObject;
 import javafx.scene.Node;
 
@@ -46,6 +47,10 @@ public GameObject<? extends Node> loadGameObject (String name) {
 		}
 		case SPRITE: {
 			result = new SpriteGameObject(config);
+			break;
+		}
+		case SOUND: {
+			result = new SoundGameObject(config);
 			break;
 		}
 		case CUSTOM: {

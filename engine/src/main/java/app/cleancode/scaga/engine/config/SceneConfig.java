@@ -3,6 +3,7 @@ package app.cleancode.scaga.engine.config;
 public class SceneConfig {
 private String [] listeners;
 private String[] objects;
+
 public String [] getListeners() {
 	return listeners;
 }

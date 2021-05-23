@@ -6,6 +6,7 @@ private String baseClass;
 private String name;
 private String characterName;
 private String spriteName;
+private String soundName;
 private double x, y, width, height;
 private double mass;
 private double drag;
@@ -75,6 +76,12 @@ public String getSpriteName() {
 }
 public void setSpriteName(String spriteName) {
 	this.spriteName = spriteName;
+}
+public String getSoundName() {
+	return soundName;
+}
+public void setSoundName(String soundName) {
+	this.soundName = soundName;
 }
 
 }

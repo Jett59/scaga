@@ -4,5 +4,6 @@ public enum GameObjectType {
 CHARACTER,
 RECTANGLE,
 SPRITE,
+SOUND,
 CUSTOM
 }
