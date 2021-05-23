@@ -19,7 +19,7 @@ public SoundGameObject(GameObjectConfig config) {
 
 	@Override
 	public Polygon getRegion() {
-		return new Polygon();
+		return new Polygon(0, 0);
 	}
 
 	@Override

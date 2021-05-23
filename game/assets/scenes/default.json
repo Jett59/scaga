@@ -1,6 +1,6 @@
 { 
 "objects": [ 
-"ground", "leftWall", "rightWall", "barrel", "player"
+"ground", "leftWall", "rightWall", "barrel", "player", "battleTheam"
 ],
 "listeners": [ 
 "app.cleancode.scaga.listeners.player.PlayerMovementListener",
