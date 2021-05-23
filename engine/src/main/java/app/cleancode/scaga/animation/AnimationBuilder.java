@@ -2,13 +2,11 @@ package app.cleancode.scaga.animation;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.imageio.ImageIO;
-
 import app.cleancode.scaga.bounds.ImageToRegion;
+import app.cleancode.scaga.resources.ResourceReader;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -17,9 +15,15 @@ import javafx.scene.shape.Polygon;
 import javafx.util.Duration;
 
 public class AnimationBuilder {
+private ResourceReader resourceReader;
+
+public AnimationBuilder() {
+	resourceReader = new ResourceReader();
+}
+
 public Animation buildAnimation(String character, String animation, int cellCount, Duration duration, double height, boolean reversed) {
 	String templatePath = String.format("/characters/%s/%s/[index].png", character, animation);
-	Image testImage = new Image(getClass().getResourceAsStream(templatePath.replace("[index]", "1")));
+	Image testImage = SwingFXUtils.toFXImage(resourceReader.getResourceAsImage(templatePath.replace("[index]", "0")), null);
 	int imageHeight = (int) Math.ceil(testImage.getHeight());
 	double scale = height/imageHeight;
 	int cellWidth = (int) Math.ceil(testImage.getWidth()*scale);
@@ -29,14 +33,10 @@ public Animation buildAnimation(String character, String animation, int cellCoun
 	for(int i = 0; i < cellCount; i++) {
 		String path = templatePath.replace("[index]", Integer.toString(i));
 		BufferedImage bufferedCell = new BufferedImage(cellWidth, (int) height, BufferedImage.TYPE_4BYTE_ABGR);
-		try {
-			BufferedImage readCell = ImageIO.read(getClass().getResourceAsStream(path));
+			BufferedImage readCell = resourceReader.getResourceAsImage(path);
 			Graphics cellGraphics = bufferedCell.getGraphics();
 			cellGraphics.drawImage(readCell, 0, 0, cellWidth, (int) height, null);
 			cellGraphics.dispose();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 		Image cell = SwingFXUtils.toFXImage(bufferedCell, null);
 		if(reversed) {
 			var reversedImage = new WritableImage(cellWidth, (int) height);

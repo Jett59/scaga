@@ -1,5 +1,7 @@
 package app.cleancode.scaga;
 
+import java.nio.file.Paths;
+
 import app.cleancode.scaga.engine.GameListener;
 import app.cleancode.scaga.engine.GameLoop;
 import app.cleancode.scaga.engine.GameObject;
@@ -38,7 +40,7 @@ private Pane nodes = new Pane();
 @Override
 public void start(Stage primaryStage) throws Exception {
 	Scene scene = new Scene(nodes);
-	scene.getStylesheets().add(getClass().getResource("/styles/app.css").toExternalForm());
+	scene.getStylesheets().add(Paths.get("assets", "styles", "app.css").toUri().toURL().toExternalForm());
 	primaryStage.setTitle("Game");
 	primaryStage.setFullScreen(true);
 	primaryStage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
