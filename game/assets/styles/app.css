@@ -1,8 +1,8 @@
 #ground {
-	-fx-fill: green;
+	-fx-fill: rgb(14,128,30);
 }
 .root {
-	-fx-background-color: blue;
+	-fx-background-color: rgb(10,70,127);
 }
 #leftWall {
 	-fx-fill: gray;
