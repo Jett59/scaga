@@ -1,5 +1,5 @@
 { 
-"objects": [ 
+"foreground": [ 
 "ground", "roof", "leftWall", "rightWall", "enemy", "player", "battleTheam"
 ],
 "listeners": [ 

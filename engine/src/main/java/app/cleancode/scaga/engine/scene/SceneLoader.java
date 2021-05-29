@@ -33,7 +33,7 @@ public Scene getScene (String configPath) {
 		Pane gamePane = new Pane();
 		List<GameObject<? extends Node>> objects = new ArrayList<>();
 		List<GameListener> listeners = new ArrayList<>();
-		for (String object : config.getObjects()) {
+		for (String object : config.getForeground()) {
 			GameObject<? extends Node> gameObject = gameObjectLoader.loadGameObject(object);
 			gameObject.init();
 			objects.add(gameObject);
