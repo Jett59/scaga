@@ -26,6 +26,9 @@ public Collisions() {
 					Shape intersection = PolygonCollider.intersect(objRegion, objectRegion);
 					if (!intersection.getBoundsInLocal().isEmpty()) {
 						obj.handleEvent(new CollisionEvent(object));
+						if (object instanceof GameObject<?>) {
+							((GameObject <?>)object).handleEvent(new CollisionEvent(obj));
+						}
 						return intersection;
 					}
 				}
