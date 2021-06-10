@@ -2,6 +2,8 @@ package app.cleancode.scaga.engine;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.HashMap;
+import java.util.Map;
 
 import app.cleancode.scaga.engine.keyboard.KeyState;
 import app.cleancode.scaga.engine.scene.Scene;
@@ -11,11 +13,13 @@ public class State {
 	private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
 public final KeyState keyState;
+private final Map<String, Object> gameProperties;
 private final Scene scene;
 private final GameObjectLoader objectLoader;
 private final GameListenerLoader listenerLoader;
 
 protected State(KeyState keyState, Scene scene) {
+	this.gameProperties = new HashMap<>();
 	this.keyState = keyState;
 	this.scene = scene;
 	this.objectLoader = new GameObjectLoader();
@@ -39,6 +43,12 @@ public void destroyGameObject (GameObject<? extends Node> object) {
 		scene.listeners.remove(listener);
 	}
 	scene.objects.remove(object);
-	System.out.println(scene.objects.size());
+}
+public void setGameProperty (String key, Object value) {
+	gameProperties.put(key, value);
+}
+@SuppressWarnings("unchecked")
+public <T> T getGameProperty (String key) {
+	return (T)gameProperties.get(key);
 }
 }
