@@ -13,6 +13,7 @@ private final String characterName;
 private final double x, y;
 
 public CharacterGameObject(GameObjectConfig config) {
+	super (config);
 	this.name = config.getName();
 	this.characterName = config.getCharacterName();
 	this.x = config.getX();

@@ -26,6 +26,7 @@ private final ResourceReader resourceReader;
 private Polygon region;
 
 	public SpriteGameObject(GameObjectConfig config) {
+		super (config);
 		this.spriteName = config.getSpriteName();
 		this.name = config.getName();
 		

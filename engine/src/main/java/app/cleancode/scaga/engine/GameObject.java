@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.function.Consumer;
 
 import app.cleancode.scaga.collisions.Collidable;
+import app.cleancode.scaga.engine.config.GameObjectConfig;
 import app.cleancode.scaga.engine.events.CollisionEvent;
 import app.cleancode.scaga.engine.events.Event;
 import javafx.scene.Node;
@@ -14,6 +15,7 @@ public abstract class GameObject<NodeType extends Node> implements Collidable {
 	public double mass = 0;
 	public double drag = 0;
 	public boolean isTouchingGround = false;
+	public boolean collidable;
 public Consumer<Node> addNode;
 public void addNode(Node node) {
 	addNode.accept(node);
@@ -67,5 +69,8 @@ protected GameObject<NodeType> duplicate (GameObjectLoader objectLoader, GameLis
 		listener.startup(state);
 	}
 	return result;
+}
+public GameObject(GameObjectConfig config) {
+	this.collidable = config.getCollidable ();
 }
 }

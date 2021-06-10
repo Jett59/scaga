@@ -12,6 +12,7 @@ private final SoundLoader soundLoader;
 public Sound sound;
 
 public SoundGameObject(GameObjectConfig config) {
+	super (config);
 	this.name = config.getName();
 	this.soundName = config.getSoundName();
 	this.soundLoader = new SoundLoader();

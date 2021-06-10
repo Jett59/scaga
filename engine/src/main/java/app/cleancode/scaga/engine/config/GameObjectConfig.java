@@ -7,6 +7,7 @@ private String name;
 private String characterName;
 private String spriteName;
 private String soundName;
+private boolean collidable;
 private double x, y, width, height;
 private double mass;
 private double drag;
@@ -82,6 +83,12 @@ public String getSoundName() {
 }
 public void setSoundName(String soundName) {
 	this.soundName = soundName;
+}
+public boolean getCollidable() {
+	return collidable;
+}
+public void setCollidable(boolean collidable) {
+	this.collidable = collidable;
 }
 
 }

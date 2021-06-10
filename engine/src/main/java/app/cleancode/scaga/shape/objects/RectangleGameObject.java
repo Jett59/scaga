@@ -11,6 +11,7 @@ private final double x, y, width, height;
 private final String name;
 
 public RectangleGameObject(GameObjectConfig config) {
+	super (config);
 	this.x = config.getX();
 	this.y = config.getY();
 	this.width = config.getWidth();
