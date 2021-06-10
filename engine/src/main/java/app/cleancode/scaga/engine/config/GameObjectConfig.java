@@ -7,6 +7,7 @@ private String name;
 private String characterName;
 private String spriteName;
 private String soundName;
+private String [] properties;
 private boolean collidable = true;
 private double x, y, width, height;
 private double mass;
@@ -89,6 +90,12 @@ public boolean getCollidable() {
 }
 public void setCollidable(boolean collidable) {
 	this.collidable = collidable;
+}
+public String [] getProperties() {
+	return properties;
+}
+public void setProperties(String [] properties) {
+	this.properties = properties;
 }
 
 }

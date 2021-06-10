@@ -37,6 +37,9 @@ public GameObject<? extends Node> loadGameObject (String name) {
 		config.setY(config.getY() * screenSize.height);
 		config.setWidth(config.getWidth() * screenSize.width);
 		config.setHeight(config.getHeight() * screenSize.height);
+		if (config.getProperties() == null) {
+			config.setProperties(new String [0]);
+		}
 		switch (config.getType()) {
 		case CHARACTER: {
 			result = new CharacterGameObject(config);

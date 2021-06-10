@@ -1,7 +1,9 @@
 package app.cleancode.scaga.engine;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Consumer;
 
 import app.cleancode.scaga.collisions.Collidable;
@@ -24,6 +26,8 @@ protected List<GameListener> attachedListeners = new ArrayList<>();
 public void attachListener (GameListener listener) {
 	this.attachedListeners.add(listener);
 }
+protected Map<String, GameProperty> properties = new HashMap<>();
+
 public abstract String getName();
 public double xVelocity = 0;
 public double yVelocity = 0;
@@ -72,5 +76,8 @@ protected GameObject<NodeType> duplicate (GameObjectLoader objectLoader, GameLis
 }
 public GameObject(GameObjectConfig config) {
 	this.collidable = config.getCollidable ();
+	for (String propertyName : config.getProperties()) {
+		properties.put(propertyName, new GameProperty());
+	}
 }
 }

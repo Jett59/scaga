@@ -4,6 +4,7 @@ import java.lang.reflect.Field;
 
 import app.cleancode.scaga.engine.annotations.AttachedTo;
 import app.cleancode.scaga.engine.annotations.ImportGameObject;
+import app.cleancode.scaga.engine.annotations.ImportGameProperty;
 import javafx.scene.Node;
 
 public class GameListenerLoader {
@@ -27,6 +28,15 @@ public void prepareListener (GameListener listener, GameObject<? extends Node>[]
 					if (object.getName().equalsIgnoreCase(objectName)) {
 						field.set(listener, object);
 						break;
+					}
+				}
+			}
+			if (field.isAnnotationPresent(ImportGameProperty.class)) {
+				String propertyName = getObjectName(field);
+				for (GameObject<?> object : gameObjects) {
+					if (object.properties.containsKey(propertyName)) {
+						field.setAccessible(true);
+						field.set(listener, object.properties.get(propertyName));
 					}
 				}
 			}
