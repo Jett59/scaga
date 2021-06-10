@@ -7,7 +7,7 @@ private String name;
 private String characterName;
 private String spriteName;
 private String soundName;
-private boolean collidable;
+private boolean collidable = true;
 private double x, y, width, height;
 private double mass;
 private double drag;

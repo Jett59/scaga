@@ -34,6 +34,7 @@ public class Movement extends PhysicalLaw {
 				double yMoveAmount = delta / 1000000000d * obj.yVelocity * screenSize.height;
 				double origX = obj.getX(), origY = obj.getY();
 				obj.move(origX + xMoveAmount, origY + yMoveAmount);
+				if (obj.collidable) {
 				Shape intersection = collider.check(obj);
 				Bounds intersectionBounds = intersection.getBoundsInLocal();
 				for (int i = 0; i < 4 && !(intersectionBounds = (intersection = collider.check(obj)).getBoundsInLocal()).isEmpty(); i ++) {
@@ -72,10 +73,13 @@ public class Movement extends PhysicalLaw {
 				if (!collider.check(obj).getBoundsInLocal().isEmpty()) {
 					obj.move(origX, origY);
 				}
+				}
 			}
 		}
 		lastMovementTimes.put(obj, System.nanoTime());
-		collider.registerObject(obj);
+		if (obj.collidable) {
+			collider.registerObject(obj);
+		}
 		}
 
 }
