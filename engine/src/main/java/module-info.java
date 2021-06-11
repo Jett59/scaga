@@ -11,7 +11,7 @@ module app.cleancode.scaga {
     exports app.cleancode.scaga.animation to com.fasterxml.jackson.databind;
     exports app.cleancode.scaga.sounds.config to com.fasterxml.jackson.databind;
 
-    requires transitive javafx.graphics;
+    requires javafx.graphics;
     requires javafx.swing;
     requires com.fasterxml.jackson.databind;
     requires javafx.media;
