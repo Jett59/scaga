@@ -6,6 +6,6 @@
 "drag": 2,
 "x": 0.5,
 "properties": [
-"health"
+"health", "magic"
 ]
 }

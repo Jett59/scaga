@@ -1,6 +1,6 @@
 { 
 "foreground": [ 
-"ground", "roof", "leftWall", "rightWall", "healthBar", "enemy", "player", "battleTheam"
+"ground", "roof", "leftWall", "rightWall", "healthBar", "magicBar", "enemy", "player", "battleTheam"
 ],
 "listeners": [ 
 "app.cleancode.scaga.listeners.player.PlayerMovementListener",
@@ -9,6 +9,7 @@
 "app.cleancode.scaga.listeners.enemy.EnemyDestructionListener",
 "app.cleancode.scaga.listeners.enemy.EnemyMovementListener",
 "app.cleancode.scaga.listeners.enemy.EnemyJumpListener",
-"app.cleancode.scaga.listeners.player.PlayerHealthListener"
+"app.cleancode.scaga.listeners.player.PlayerHealthListener",
+"app.cleancode.scaga.listeners.player.PlayerMagicListener"
 ]
 }

@@ -10,22 +10,22 @@ import app.cleancode.scaga.engine.annotations.ImportGameProperty;
 import app.cleancode.scaga.engine.events.ProgressUpdateEvent;
 
 @AttachedTo("player")
-public class PlayerHealthListener extends GameListener {
-
-    @ImportGameProperty(owner = "player")
-    public GameProperty health;
+public class PlayerMagicListener extends GameListener {
 
     @ImportGameObject
-    public GameObject<?> healthBar;
+    public GameObject<?> magicBar;
+
+    @ImportGameProperty(owner = "player")
+    public GameProperty magic;
 
     @Override
     public void update(State state) {
-        healthBar.handleEvent(new ProgressUpdateEvent(health.getDouble()));
+        magicBar.handleEvent(new ProgressUpdateEvent(magic.getDouble()));
     }
 
     @Override
     public void startup(State state) {
-        health.set(1d);
+        magic.set(1d);
     }
 
 }

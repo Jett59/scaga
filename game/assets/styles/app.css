@@ -13,3 +13,6 @@
 #healthBar_outer {
 	-fx-fill: red;
 }
+#magicBar_outer {
+	-fx-fill: purple;
+}
