@@ -17,9 +17,6 @@ public class PlayerMovementListener extends GameListener {
 	@ImportGameObject
 public GameObject<?> player;
 
-@ImportGameProperty(owner="player")
-public GameProperty health;
-
 	@Override
 	public void update(State state) {
 			if (state.keyState.isKeyDown(KeyBindings.MOVE_LEFT)) {

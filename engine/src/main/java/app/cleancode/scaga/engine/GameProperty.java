@@ -36,4 +36,7 @@ public short getShort () {
 public String getString () {
 	return get ();
 }
+public String toString () {
+	return value.toString();
+}
 }
