@@ -32,9 +32,10 @@ public void prepareListener (GameListener listener, GameObject<? extends Node>[]
 				}
 			}
 			if (field.isAnnotationPresent(ImportGameProperty.class)) {
-				String propertyName = getObjectName(field);
+				String propertyName = field.getName();
+				String owner = field.getDeclaredAnnotation(ImportGameProperty.class).owner();
 				for (GameObject<?> object : gameObjects) {
-					if (object.properties.containsKey(propertyName)) {
+					if (object.getName().equals(owner) && object.properties.containsKey(propertyName)) {
 						field.setAccessible(true);
 						field.set(listener, object.properties.get(propertyName));
 					}

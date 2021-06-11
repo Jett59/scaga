@@ -9,6 +9,7 @@ import javafx.scene.Node;
 public class State {
 	private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
+	private boolean initialized = false;
 public final KeyState keyState;
 private final Scene scene;
 private final GameObjectLoader objectLoader;
@@ -38,5 +39,14 @@ public void destroyGameObject (GameObject<? extends Node> object) {
 		scene.listeners.remove(listener);
 	}
 	scene.objects.remove(object);
+}
+public void init () {
+	if (!initialized) {
+		for (GameListener listener : scene.listeners) {
+			listener.startup(this);
+		}
+	}else {
+		throw new IllegalStateException("state already initialized");
+	}
 }
 }

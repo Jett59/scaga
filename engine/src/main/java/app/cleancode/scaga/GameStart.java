@@ -54,6 +54,7 @@ public void start(Stage primaryStage) throws Exception {
 	var stateConstructor = State.class.getDeclaredConstructor(KeyState.class, this.scene.getClass());
 	stateConstructor.setAccessible(true);
 	state = stateConstructor.newInstance(keyState, this.scene);
+	state.init();
 	new KeyboardManager(keyState).bind(primaryStage);
 	nodes.getChildren().add(this.scene.gamePane);
 	primaryStage.hide();

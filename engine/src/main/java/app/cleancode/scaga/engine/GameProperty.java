@@ -9,4 +9,31 @@ public <T> T get () {
 public void set (Object value) {
 	this.value = value;
 }
+public boolean getBoolean () {
+	return get ();
+}
+public byte getByte () {
+	return get ();
+}
+public char getChar () {
+	return get ();
+}
+public double getDouble () {
+	return get ();
+}
+public float getFloat () {
+	return get ();
+}
+public int getInt () {
+	return get ();
+}
+public long getLong () {
+	return get ();
+}
+public short getShort () {
+	return get ();
+}
+public String getString () {
+	return get ();
+}
 }
