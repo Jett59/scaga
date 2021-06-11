@@ -10,3 +10,6 @@
 #rightWall {
 	-fx-fill: gray;
 }
+#healthBar_outer {
+	-fx-fill: red;
+}

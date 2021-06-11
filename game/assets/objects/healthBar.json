@@ -1,0 +1,9 @@
+{ 
+"name": "healthBar",
+"type": "PROGRESS",
+"x": 0,
+"y": 0,
+"width": 0.5,
+"height": 0.025,
+"collidable": false
+}

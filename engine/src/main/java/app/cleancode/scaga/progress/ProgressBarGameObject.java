@@ -2,6 +2,8 @@ package app.cleancode.scaga.progress;
 
 import app.cleancode.scaga.engine.GameObject;
 import app.cleancode.scaga.engine.config.GameObjectConfig;
+import app.cleancode.scaga.engine.events.Event;
+import app.cleancode.scaga.engine.events.ProgressUpdateEvent;
 import javafx.scene.shape.Polygon;
 
 public class ProgressBarGameObject extends GameObject<ProgressBar> {
@@ -35,4 +37,16 @@ private final double x, y, width, height;
 		node = new ProgressBar(x, y, width, height, 1, name);
 	}
 
+@Override
+	public void handleEvent(Event evt) {
+		super.handleEvent(evt);
+		switch (evt.getType()) {
+		case PROGRESS_UPDATE: {
+			node.setProgress(((ProgressUpdateEvent)evt).newValue);
+			break;
+		}
+		default:
+			break;
+		}
+	}
 }

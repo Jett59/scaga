@@ -6,7 +6,8 @@ Type getType ();
 public static enum Type {
 	COLLISION,
 	MOVE,
-	STOP
+	STOP,
+	PROGRESS_UPDATE
 }
 
 }
