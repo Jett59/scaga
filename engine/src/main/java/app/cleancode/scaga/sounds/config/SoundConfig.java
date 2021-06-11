@@ -1,4 +1,4 @@
-package app.cleancode.scaga.sounds;
+package app.cleancode.scaga.sounds.config;
 
 public class SoundConfig {
 private String fileName;

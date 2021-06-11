@@ -24,7 +24,6 @@ public ProgressBar(double x, double y, double width, double height, double initi
 public void setProgress (double value) {
 	this.progress = value;
 	outer.setWidth(width * progress);
-	System.out.println("progress is now "+value);
 }
 public double getProgress () {
 	return progress;

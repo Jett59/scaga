@@ -3,6 +3,7 @@ package app.cleancode.scaga.sounds;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import app.cleancode.scaga.resources.ResourceReader;
+import app.cleancode.scaga.sounds.config.SoundConfig;
 import javafx.scene.media.Media;
 
 public class SoundLoader {
