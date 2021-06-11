@@ -7,46 +7,46 @@ import app.cleancode.scaga.engine.events.ProgressUpdateEvent;
 import javafx.scene.shape.Polygon;
 
 public class ProgressBarGameObject extends GameObject<ProgressBar> {
-private final String name;
-private final double x, y, width, height;
+    private final String name;
+    private final double x, y, width, height;
 
-	public ProgressBarGameObject(GameObjectConfig config) {
-		super(config);
-		this.name = config.getName();
-		this.x = config.getX();
-		this.y = config.getY();
-		this.width = config.getWidth();
-		this.height = config.getHeight();
-		
-		super.mass = config.getMass();
-		super.drag = config.getDrag();
-	}
+    public ProgressBarGameObject(GameObjectConfig config) {
+        super(config);
+        this.name = config.getName();
+        this.x = config.getX();
+        this.y = config.getY();
+        this.width = config.getWidth();
+        this.height = config.getHeight();
 
-	@Override
-	public Polygon getRegion() {
-		return node.getRegion();
-	}
+        super.mass = config.getMass();
+        super.drag = config.getDrag();
+    }
 
-	@Override
-	public String getName() {
-		return name;
-	}
+    @Override
+    public Polygon getRegion() {
+        return node.getRegion();
+    }
 
-	@Override
-	public void init() {
-		node = new ProgressBar(x, y, width, height, 1, name);
-	}
+    @Override
+    public String getName() {
+        return name;
+    }
 
-@Override
-	public void handleEvent(Event evt) {
-		super.handleEvent(evt);
-		switch (evt.getType()) {
-		case PROGRESS_UPDATE: {
-			node.setProgress(((ProgressUpdateEvent)evt).newValue);
-			break;
-		}
-		default:
-			break;
-		}
-	}
+    @Override
+    public void init() {
+        node = new ProgressBar(x, y, width, height, 1, name);
+    }
+
+    @Override
+    public void handleEvent(Event evt) {
+        super.handleEvent(evt);
+        switch (evt.getType()) {
+        case PROGRESS_UPDATE: {
+            node.setProgress(((ProgressUpdateEvent) evt).newValue);
+            break;
+        }
+        default:
+            break;
+        }
+    }
 }

@@ -14,74 +14,74 @@ import javafx.scene.image.ImageView;
 import javafx.scene.shape.Polygon;
 
 public class SpriteGameObject extends GameObject<ImageView> {
-	private static final String PATH_FORMAT = "/sprites/%s.png";
+    private static final String PATH_FORMAT = "/sprites/%s.png";
 
-private final String spriteName;
-private final String name;
-private final double x, y;
-private double width, height;
+    private final String spriteName;
+    private final String name;
+    private final double x, y;
+    private double width, height;
 
-private final ResourceReader resourceReader;
+    private final ResourceReader resourceReader;
 
-private Polygon region;
+    private Polygon region;
 
-	public SpriteGameObject(GameObjectConfig config) {
-		super (config);
-		this.spriteName = config.getSpriteName();
-		this.name = config.getName();
-		
-		this.x = config.getX();
-		this.y = config.getY();
-		
-		this.width = config.getWidth();
-		this.height = config.getHeight();
-		
-		super.mass = config.getMass();
-		super.drag = config.getDrag();
-		
-		this.resourceReader = new ResourceReader();
-	}
+    public SpriteGameObject(GameObjectConfig config) {
+        super(config);
+        this.spriteName = config.getSpriteName();
+        this.name = config.getName();
 
-	@Override
-	public Polygon getRegion() {
-		return region;
-	}
+        this.x = config.getX();
+        this.y = config.getY();
 
-	@Override
-	public String getName() {
-		return name;
-	}
+        this.width = config.getWidth();
+        this.height = config.getHeight();
 
-	@Override
-	public void init() {
-		if (width != 0 && height != 0) {
-			System.err.println("error occured while trying to build sprite for "+name);
-			throw new IllegalArgumentException("only one of either width and height can be specified");
-		}
-		BufferedImage bufferedImage = resourceReader.getResourceAsImage(String.format(PATH_FORMAT, spriteName));
-		double scale;
-		if (width != 0) {
-			scale = width / bufferedImage.getWidth();
-			height = bufferedImage.getHeight() * scale;
-		}else {
-			scale = height / bufferedImage.getHeight();
-			width = bufferedImage.getWidth() * scale;
-		}
-		BufferedImage scaledImage = new BufferedImage((int)width, (int)height, BufferedImage.TYPE_4BYTE_ABGR);
-		Graphics graphics = scaledImage.getGraphics();
-		graphics.drawImage(bufferedImage, 0, 0, scaledImage.getWidth(), scaledImage.getHeight(), null);
-		graphics.dispose();
-		Image img = SwingFXUtils.toFXImage(scaledImage, null);
-		region = ImageToRegion.getRegion(img);
-		node = new ImageView(img);
-		region.translateXProperty().bind(node.translateXProperty());
-		region.translateYProperty().bind(node.translateYProperty());
-		move(x, y);
-	}
+        super.mass = config.getMass();
+        super.drag = config.getDrag();
 
-	@Override
-	public void handleEvent(Event evt) {
-		super.handleEvent(evt);
-	}
+        this.resourceReader = new ResourceReader();
+    }
+
+    @Override
+    public Polygon getRegion() {
+        return region;
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public void init() {
+        if (width != 0 && height != 0) {
+            System.err.println("error occured while trying to build sprite for " + name);
+            throw new IllegalArgumentException("only one of either width and height can be specified");
+        }
+        BufferedImage bufferedImage = resourceReader.getResourceAsImage(String.format(PATH_FORMAT, spriteName));
+        double scale;
+        if (width != 0) {
+            scale = width / bufferedImage.getWidth();
+            height = bufferedImage.getHeight() * scale;
+        } else {
+            scale = height / bufferedImage.getHeight();
+            width = bufferedImage.getWidth() * scale;
+        }
+        BufferedImage scaledImage = new BufferedImage((int) width, (int) height, BufferedImage.TYPE_4BYTE_ABGR);
+        Graphics graphics = scaledImage.getGraphics();
+        graphics.drawImage(bufferedImage, 0, 0, scaledImage.getWidth(), scaledImage.getHeight(), null);
+        graphics.dispose();
+        Image img = SwingFXUtils.toFXImage(scaledImage, null);
+        region = ImageToRegion.getRegion(img);
+        node = new ImageView(img);
+        region.translateXProperty().bind(node.translateXProperty());
+        region.translateYProperty().bind(node.translateYProperty());
+        move(x, y);
+    }
+
+    @Override
+    public void handleEvent(Event evt) {
+        super.handleEvent(evt);
+    }
 
 }

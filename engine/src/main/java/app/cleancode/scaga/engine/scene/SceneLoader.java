@@ -15,42 +15,43 @@ import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 
 public class SceneLoader {
-	private final ResourceReader resourceReader;
-	private final ObjectMapper jsonParser;
+    private final ResourceReader resourceReader;
+    private final ObjectMapper jsonParser;
 
-	public SceneLoader() {
-		this.resourceReader = new ResourceReader();
-		this.jsonParser = new ObjectMapper();
-	}
+    public SceneLoader() {
+        this.resourceReader = new ResourceReader();
+        this.jsonParser = new ObjectMapper();
+    }
 
-@SuppressWarnings("unchecked")
-public Scene getScene (String configPath) {
-	try {
-		SceneConfig config = jsonParser.readValue(resourceReader.getResourceAsString(configPath), SceneConfig.class);
-		GameObjectLoader gameObjectLoader = new GameObjectLoader();
-		GameListenerLoader gameListenerLoader = new GameListenerLoader();
-		
-		Pane gamePane = new Pane();
-		List<GameObject<? extends Node>> objects = new ArrayList<>();
-		List<GameListener> listeners = new ArrayList<>();
-		for (String object : config.getForeground()) {
-			GameObject<? extends Node> gameObject = gameObjectLoader.loadGameObject(object);
-			gameObject.init();
-			objects.add(gameObject);
-			if (gameObject.node != null) {
-				gamePane.getChildren().add(gameObject.node);
-			}
-		}
-		GameObject<? extends Node> [] gameObjectArray = objects.toArray(new GameObject [] {});
-		for (String listener : config.getListeners()) {
-			GameListener gameListener = (GameListener) Class.forName(listener).getConstructor().newInstance();
-			gameListenerLoader.prepareListener(gameListener, gameObjectArray);
-			listeners.add(gameListener);
-		}
-		return new Scene(objects, listeners, gamePane);
-	}catch (Exception e) {
-		e.printStackTrace();
-		throw new RuntimeException ("Error initializing scene", e);
-	}
-}
+    @SuppressWarnings("unchecked")
+    public Scene getScene(String configPath) {
+        try {
+            SceneConfig config = jsonParser.readValue(resourceReader.getResourceAsString(configPath),
+                    SceneConfig.class);
+            GameObjectLoader gameObjectLoader = new GameObjectLoader();
+            GameListenerLoader gameListenerLoader = new GameListenerLoader();
+
+            Pane gamePane = new Pane();
+            List<GameObject<? extends Node>> objects = new ArrayList<>();
+            List<GameListener> listeners = new ArrayList<>();
+            for (String object : config.getForeground()) {
+                GameObject<? extends Node> gameObject = gameObjectLoader.loadGameObject(object);
+                gameObject.init();
+                objects.add(gameObject);
+                if (gameObject.node != null) {
+                    gamePane.getChildren().add(gameObject.node);
+                }
+            }
+            GameObject<? extends Node>[] gameObjectArray = objects.toArray(new GameObject[] {});
+            for (String listener : config.getListeners()) {
+                GameListener gameListener = (GameListener) Class.forName(listener).getConstructor().newInstance();
+                gameListenerLoader.prepareListener(gameListener, gameObjectArray);
+                listeners.add(gameListener);
+            }
+            return new Scene(objects, listeners, gamePane);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error initializing scene", e);
+        }
+    }
 }

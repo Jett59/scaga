@@ -12,32 +12,32 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Shape;
 
 public class Collisions {
-	private Set<Collidable> objects;
+    private Set<Collidable> objects;
 
-public Collisions() {
-	objects = new HashSet<>();
-}
+    public Collisions() {
+        objects = new HashSet<>();
+    }
 
-	public Shape check(GameObject<Node> obj) {
-			for (Collidable object : objects) {
-				if (!object.equals(obj)) {
-					Polygon objRegion = obj.getRegion();
-					Polygon objectRegion = object.getRegion();
-					Shape intersection = PolygonCollider.intersect(objRegion, objectRegion);
-					if (!intersection.getBoundsInLocal().isEmpty()) {
-						obj.handleEvent(new CollisionEvent(object));
-						if (object instanceof GameObject<?>) {
-							((GameObject <?>)object).handleEvent(new CollisionEvent(obj));
-						}
-						return intersection;
-					}
-				}
-			}
-			return new Polygon();
-		}
+    public Shape check(GameObject<Node> obj) {
+        for (Collidable object : objects) {
+            if (!object.equals(obj)) {
+                Polygon objRegion = obj.getRegion();
+                Polygon objectRegion = object.getRegion();
+                Shape intersection = PolygonCollider.intersect(objRegion, objectRegion);
+                if (!intersection.getBoundsInLocal().isEmpty()) {
+                    obj.handleEvent(new CollisionEvent(object));
+                    if (object instanceof GameObject<?>) {
+                        ((GameObject<?>) object).handleEvent(new CollisionEvent(obj));
+                    }
+                    return intersection;
+                }
+            }
+        }
+        return new Polygon();
+    }
 
-	public void registerObject (Collidable c) {
-		objects.add(c);
-	}
+    public void registerObject(Collidable c) {
+        objects.add(c);
+    }
 
 }

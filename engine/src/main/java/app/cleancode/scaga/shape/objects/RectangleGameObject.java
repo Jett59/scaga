@@ -7,53 +7,55 @@ import app.cleancode.scaga.shape.Rectangle2D;
 import javafx.scene.shape.Polygon;
 
 public class RectangleGameObject extends GameObject<Rectangle2D> {
-private final double x, y, width, height;
-private final String name;
+    private final double x, y, width, height;
+    private final String name;
 
-public RectangleGameObject(GameObjectConfig config) {
-	super (config);
-	this.x = config.getX();
-	this.y = config.getY();
-	this.width = config.getWidth();
-	this.height = config.getHeight();
-	this.name = config.getName();
-	
-	super.mass = config.getMass();
-	super.drag = config.getDrag();
-}
+    public RectangleGameObject(GameObjectConfig config) {
+        super(config);
+        this.x = config.getX();
+        this.y = config.getY();
+        this.width = config.getWidth();
+        this.height = config.getHeight();
+        this.name = config.getName();
 
-	@Override
-	public String getName() {
-		return name;
-	}
+        super.mass = config.getMass();
+        super.drag = config.getDrag();
+    }
 
-	@Override
-	public void init() {
-		node = new Rectangle2D(x, y, width, height);
-		node.setId(name);
-	}
+    @Override
+    public String getName() {
+        return name;
+    }
 
-	@Override
-	public void handleEvent(Event evt) {
-		super.handleEvent(evt);
-	}
+    @Override
+    public void init() {
+        node = new Rectangle2D(x, y, width, height);
+        node.setId(name);
+    }
 
-	@Override
-	public double getX () {
-		return node.getX();
-	}
-	@Override
-	public double getY () {
-		return node.getY();
-	}
-	@Override
-		public void move(double newX, double newY) {
-			node.setX(newX);
-			node.setY(newY);
-		}
+    @Override
+    public void handleEvent(Event evt) {
+        super.handleEvent(evt);
+    }
 
-	@Override
-	public Polygon getRegion() {
-		return node.getRegion();
-	}
+    @Override
+    public double getX() {
+        return node.getX();
+    }
+
+    @Override
+    public double getY() {
+        return node.getY();
+    }
+
+    @Override
+    public void move(double newX, double newY) {
+        node.setX(newX);
+        node.setY(newY);
+    }
+
+    @Override
+    public Polygon getRegion() {
+        return node.getRegion();
+    }
 }

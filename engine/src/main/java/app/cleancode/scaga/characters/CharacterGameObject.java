@@ -8,53 +8,53 @@ import app.cleancode.scaga.engine.events.MovementEvent;
 import javafx.scene.shape.Polygon;
 
 public class CharacterGameObject extends GameObject<Character> {
-private final String name;
-private final String characterName;
-private final double x, y;
+    private final String name;
+    private final String characterName;
+    private final double x, y;
 
-public CharacterGameObject(GameObjectConfig config) {
-	super (config);
-	this.name = config.getName();
-	this.characterName = config.getCharacterName();
-	this.x = config.getX();
-	this.y = config.getY();
-	
-	super.mass = config.getMass();
-	super.drag = config.getDrag();
-}
+    public CharacterGameObject(GameObjectConfig config) {
+        super(config);
+        this.name = config.getName();
+        this.characterName = config.getCharacterName();
+        this.x = config.getX();
+        this.y = config.getY();
 
-	@Override
-	public String getName() {
-		return name;
-	}
+        super.mass = config.getMass();
+        super.drag = config.getDrag();
+    }
 
-	@Override
-	public void init() {
-		node = new Character(characterName);
-		move (x, y);
-	}
+    @Override
+    public String getName() {
+        return name;
+    }
 
-	@Override
-	public void handleEvent(Event evt) {
-		super.handleEvent(evt);
-		switch (evt.getType()) {
-		case MOVE: {
-			MovementEvent movement = (MovementEvent)evt;
-			node.setDirection(movement.direction);
-			node.changeState(State.RUNNING);
-			break;
-		}
-		case STOP: {
-			node.changeState(State.IDLE);
-			break;
-		}
-		default:
-			break;
-		}
-	}
+    @Override
+    public void init() {
+        node = new Character(characterName);
+        move(x, y);
+    }
 
-	public Polygon getRegion () {
-		return node.getRegion();
-	}
+    @Override
+    public void handleEvent(Event evt) {
+        super.handleEvent(evt);
+        switch (evt.getType()) {
+        case MOVE: {
+            MovementEvent movement = (MovementEvent) evt;
+            node.setDirection(movement.direction);
+            node.changeState(State.RUNNING);
+            break;
+        }
+        case STOP: {
+            node.changeState(State.IDLE);
+            break;
+        }
+        default:
+            break;
+        }
+    }
+
+    public Polygon getRegion() {
+        return node.getRegion();
+    }
 
 }
