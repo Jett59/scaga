@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Consumer;
 
 import app.cleancode.scaga.collisions.Collidable;
 import app.cleancode.scaga.engine.config.GameObjectConfig;
@@ -18,11 +17,6 @@ public abstract class GameObject<NodeType extends Node> implements Collidable {
     public double drag = 0;
     public boolean isTouchingGround = false;
     public boolean collidable;
-    public Consumer<Node> addNode;
-
-    public void addNode(Node node) {
-        addNode.accept(node);
-    }
 
     protected List<GameListener> attachedListeners = new ArrayList<>();
 

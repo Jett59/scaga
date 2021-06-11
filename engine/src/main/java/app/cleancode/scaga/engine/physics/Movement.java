@@ -24,7 +24,7 @@ public class Movement extends PhysicalLaw {
     }
 
     @Override
-    public void handle(GameObject<Node> obj) {
+    public void handle(GameObject<?> obj) {
         if (obj.xVelocity != 0 || obj.yVelocity != 0) {
             if (lastMovementTimes.containsKey(obj)) {
                 long lastMovementTime = lastMovementTimes.get(obj);

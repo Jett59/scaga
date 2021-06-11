@@ -35,6 +35,7 @@ public class GameStart extends Application {
 
     private app.cleancode.scaga.engine.scene.Scene scene;
 
+    @SuppressWarnings("exports")
     @Override
     public void start(Stage primaryStage) throws Exception {
         Scene scene = new Scene(nodes);
@@ -76,7 +77,4 @@ public class GameStart extends Application {
         }
     }
 
-    public void addNode(Node node) {
-        scene.gamePane.getChildren().add(node);
-    }
 }

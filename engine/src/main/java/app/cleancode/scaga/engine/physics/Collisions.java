@@ -7,7 +7,6 @@ import app.cleancode.scaga.collisions.Collidable;
 import app.cleancode.scaga.collisions.PolygonCollider;
 import app.cleancode.scaga.engine.GameObject;
 import app.cleancode.scaga.engine.events.CollisionEvent;
-import javafx.scene.Node;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Shape;
 
@@ -18,7 +17,7 @@ public class Collisions {
         objects = new HashSet<>();
     }
 
-    public Shape check(GameObject<Node> obj) {
+    public Shape check(GameObject<?> obj) {
         for (Collidable object : objects) {
             if (!object.equals(obj)) {
                 Polygon objRegion = obj.getRegion();

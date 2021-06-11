@@ -17,7 +17,7 @@ public class Gravity extends PhysicalLaw {
     }
 
     @Override
-    public void handle(GameObject<Node> obj) {
+    public void handle(GameObject<?> obj) {
         if (!obj.isTouchingGround) {
             if (lastGravityEffectTimes.containsKey(obj)) {
                 long lastGravityEffectTime = lastGravityEffectTimes.get(obj);

@@ -17,7 +17,7 @@ public class Drag extends PhysicalLaw {
     }
 
     @Override
-    public void handle(GameObject<Node> obj) {
+    public void handle(GameObject<?> obj) {
         if (lastDragTimes.containsKey(obj)) {
             long lastDragTime = lastDragTimes.get(obj);
             long currentTime = System.nanoTime();

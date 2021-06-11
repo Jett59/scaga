@@ -23,7 +23,7 @@ public class State {
         this.listenerLoader = new GameListenerLoader();
     }
 
-    public void createGameObject(GameObject<? extends Node> template, double x, double y) {
+    public void createGameObject(GameObject<?> template, double x, double y) {
         try {
             GameObject<? extends Node> newGameObject = template.duplicate(objectLoader, listenerLoader, this,
                     this.scene.objects);
@@ -37,7 +37,7 @@ public class State {
         }
     }
 
-    public void destroyGameObject(GameObject<? extends Node> object) {
+    public void destroyGameObject(GameObject<?> object) {
         for (GameListener listener : object.attachedListeners) {
             scene.listeners.remove(listener);
         }

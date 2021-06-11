@@ -27,7 +27,7 @@ public class GameObjectLoader {
     }
 
     @SuppressWarnings("unchecked")
-    public GameObject<? extends Node> loadGameObject(String name) {
+    public GameObject<?> loadGameObject(String name) {
         GameObject<? extends Node> result;
         String path = String.format(GAME_OBJECT_PATH_FORMAT, name);
         try {

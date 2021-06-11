@@ -8,7 +8,7 @@ import app.cleancode.scaga.engine.annotations.ImportGameProperty;
 import javafx.scene.Node;
 
 public class GameListenerLoader {
-    public void prepareListener(GameListener listener, GameObject<? extends Node>[] gameObjects) {
+    public void prepareListener(GameListener listener, GameObject<?>[] gameObjects) {
         try {
             Class<? extends GameListener> claz = listener.getClass();
             if (claz.isAnnotationPresent(AttachedTo.class)) {
