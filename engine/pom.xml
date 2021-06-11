@@ -13,6 +13,27 @@
 	<maven.compiler.target>15</maven.compiler.target>
 	<maven.compiler.source>15</maven.compiler.source>
 	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	
+	<javafx.version>15</javafx.version>
+	<jackson.version>2.10.5.1</jackson.version>
 </properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-swing</artifactId>
+			<version>${javafx.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-media</artifactId>
+			<version>${javafx.version}</version>
+		</dependency>
+	</dependencies>
 
 </project>
