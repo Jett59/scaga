@@ -7,26 +7,26 @@ import app.cleancode.scaga.engine.annotations.ImportGameObject;
 import app.cleancode.scaga.engine.keyboard.KeyBindings;
 
 public class EnemyCreationListener extends GameListener {
-private boolean keyState;
+    private boolean keyState;
 
-	@ImportGameObject
-	public GameObject<?> enemy;
+    @ImportGameObject
+    public GameObject<?> enemy;
 
-	@Override
-	public void update(State state) {
-		if (state.keyState.isKeyDown(KeyBindings.CREATE_BARREL)) {
-			if (!keyState) {
-			state.createGameObject(enemy, Math.random(), 0);
-			keyState = true;
-			}
-		}else {
-			keyState = false;
-		}
-	}
+    @Override
+    public void update(State state) {
+        if (state.keyState.isKeyDown(KeyBindings.CREATE_BARREL)) {
+            if (!keyState) {
+                state.createGameObject(enemy, Math.random(), 0);
+                keyState = true;
+            }
+        } else {
+            keyState = false;
+        }
+    }
 
-	@Override
-	public void startup(State state) {
-		
-	}
+    @Override
+    public void startup(State state) {
+
+    }
 
 }

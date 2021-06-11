@@ -11,21 +11,21 @@ import app.cleancode.scaga.engine.annotations.ImportGameObject;
 
 @AttachedTo("enemy")
 public class EnemyDestructionListener extends GameListener {
-private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+    private static Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
-	@ImportGameObject
-	public GameObject<?> enemy;
+    @ImportGameObject
+    public GameObject<?> enemy;
 
-	@Override
-	public void update(State state) {
-		if (enemy.getRegion().getBoundsInParent().getMinY() > screenSize.height) {
-			state.destroyGameObject(enemy);
-		}
-	}
+    @Override
+    public void update(State state) {
+        if (enemy.getRegion().getBoundsInParent().getMinY() > screenSize.height) {
+            state.destroyGameObject(enemy);
+        }
+    }
 
-	@Override
-	public void startup(State state) {
-		
-	}
+    @Override
+    public void startup(State state) {
+
+    }
 
 }

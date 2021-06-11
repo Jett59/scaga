@@ -9,26 +9,26 @@ import app.cleancode.scaga.engine.annotations.ImportGameObject;
 
 @AttachedTo("enemy")
 public class EnemyJumpListener extends GameListener {
-private static final double SPEED = 0.7;
+    private static final double SPEED = 0.7;
 
-@ImportGameObject
-public GameObject<?> enemy;
+    @ImportGameObject
+    public GameObject<?> enemy;
 
-	@Override
-	public void update(State state) {
-		
-	}
+    @Override
+    public void update(State state) {
 
-	@Override
-	public void startup(State state) {
-		
-	}
+    }
 
-@Override
-	public void onCollision(Collidable other) {
-		if (enemy.isTouchingGround && !other.toString().equals("ground")) {
-			enemy.yVelocity = SPEED * -1;
-		}
-	}
+    @Override
+    public void startup(State state) {
+
+    }
+
+    @Override
+    public void onCollision(Collidable other) {
+        if (enemy.isTouchingGround && !other.toString().equals("ground")) {
+            enemy.yVelocity = SPEED * -1;
+        }
+    }
 
 }
