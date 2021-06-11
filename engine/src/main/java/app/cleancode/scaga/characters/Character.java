@@ -10,7 +10,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import app.cleancode.scaga.animation.Animation;
 import app.cleancode.scaga.animation.AnimationBuilder;
-import app.cleancode.scaga.animation.AnimationConfig;
+import app.cleancode.scaga.animation.config.AnimationConfig;
 import app.cleancode.scaga.resources.ResourceReader;
 import javafx.scene.Group;
 import javafx.scene.shape.Polygon;

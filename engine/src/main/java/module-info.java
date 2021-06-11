@@ -8,7 +8,7 @@ module app.cleancode.scaga {
 
     exports app.cleancode.scaga.characters to com.fasterxml.jackson.databind;
     exports app.cleancode.scaga.engine.config to com.fasterxml.jackson.databind;
-    exports app.cleancode.scaga.animation to com.fasterxml.jackson.databind;
+    exports app.cleancode.scaga.animation.config to com.fasterxml.jackson.databind;
     exports app.cleancode.scaga.sounds.config to com.fasterxml.jackson.databind;
 
     requires javafx.graphics;

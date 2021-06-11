@@ -1,11 +1,9 @@
-package app.cleancode.scaga.animation;
-
-import javafx.util.Duration;
+package app.cleancode.scaga.animation.config;
 
 public class AnimationConfig {
     private String character, animation;
     private int frames;
-    private Duration duration;
+    private String duration;
     private double height;
     private boolean reversed;
 
@@ -33,11 +31,11 @@ public class AnimationConfig {
         this.frames = frames;
     }
 
-    public Duration getDuration() {
-        return duration;
+    public String getDuration() {
+        return this.duration;
     }
 
-    public void setDuration(Duration duration) {
+    public void setDuration(String duration) {
         this.duration = duration;
     }
 

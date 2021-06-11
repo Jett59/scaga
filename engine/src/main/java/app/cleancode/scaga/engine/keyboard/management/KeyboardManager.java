@@ -1,5 +1,7 @@
-package app.cleancode.scaga.engine.keyboard;
+package app.cleancode.scaga.engine.keyboard.management;
 
+import app.cleancode.scaga.engine.keyboard.Key;
+import app.cleancode.scaga.engine.keyboard.KeyState;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -37,43 +39,43 @@ public class KeyboardManager implements EventHandler<KeyEvent> {
     private void updateKeyState(KeyCode code, boolean newState) {
         switch (code) {
         case LEFT: {
-            keyState.keyState.get(Key.LEFT).down = newState;
+            keyState.setKeyState(Key.LEFT, newState);
             break;
         }
         case RIGHT: {
-            keyState.keyState.get(Key.RIGHT).down = newState;
+            keyState.setKeyState(Key.RIGHT, newState);
             break;
         }
         case UP: {
-            keyState.keyState.get(Key.UP).down = newState;
+            keyState.setKeyState(Key.UP, newState);
             break;
         }
         case DOWN: {
-            keyState.keyState.get(Key.DOWN).down = newState;
+            keyState.setKeyState(Key.DOWN, newState);
             break;
         }
         case W: {
-            keyState.keyState.get(Key.W).down = newState;
+            keyState.setKeyState(Key.W, newState);
             break;
         }
         case A: {
-            keyState.keyState.get(Key.A).down = newState;
+            keyState.setKeyState(Key.A, newState);
             break;
         }
         case S: {
-            keyState.keyState.get(Key.S).down = newState;
+            keyState.setKeyState(Key.S, newState);
             break;
         }
         case D: {
-            keyState.keyState.get(Key.D).down = newState;
+            keyState.setKeyState(Key.D, newState);
             break;
         }
         case SPACE: {
-            keyState.keyState.get(Key.SPACE).down = newState;
+            keyState.setKeyState(Key.SPACE, newState);
             break;
         }
         case B: {
-            keyState.keyState.get(Key.B).down = newState;
+            keyState.setKeyState(Key.B, newState);
             break;
         }
         default:

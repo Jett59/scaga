@@ -16,4 +16,8 @@ public class KeyState {
     public boolean isKeyDown(Key key) {
         return keyState.get(key).down;
     }
+
+    public void setKeyState(Key key, boolean state) {
+        keyState.get(key).down = state;
+    }
 }

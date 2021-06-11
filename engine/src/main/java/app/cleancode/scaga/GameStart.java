@@ -8,7 +8,7 @@ import app.cleancode.scaga.engine.GameObject;
 import app.cleancode.scaga.engine.PhysicalLaw;
 import app.cleancode.scaga.engine.State;
 import app.cleancode.scaga.engine.keyboard.KeyState;
-import app.cleancode.scaga.engine.keyboard.KeyboardManager;
+import app.cleancode.scaga.engine.keyboard.management.KeyboardManager;
 import app.cleancode.scaga.engine.physics.Drag;
 import app.cleancode.scaga.engine.physics.Gravity;
 import app.cleancode.scaga.engine.physics.Movement;

@@ -1,6 +1,6 @@
 package app.cleancode.scaga.characters;
 
-import app.cleancode.scaga.animation.AnimationConfig;
+import app.cleancode.scaga.animation.config.AnimationConfig;
 
 public class CharacterConfig {
     private AnimationConfig[] animations;

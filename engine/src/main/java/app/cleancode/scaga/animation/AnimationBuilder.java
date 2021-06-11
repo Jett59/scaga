@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
+import app.cleancode.scaga.animation.config.AnimationConfig;
 import app.cleancode.scaga.bounds.ImageToRegion;
 import app.cleancode.scaga.resources.ResourceReader;
 import javafx.embed.swing.SwingFXUtils;
@@ -62,6 +63,11 @@ public class AnimationBuilder {
         var result = new Animation(cellCount, (int) filmStrip.getWidth(), (int) height, new ImageView(filmStrip),
                 duration, regions);
         return result;
+    }
+
+    public Animation buildAnimation(String character, String animation, int cellCount, String duration, double height,
+            boolean reversed) {
+        return buildAnimation(character, animation, cellCount, Duration.valueOf(duration), height, reversed);
     }
 
     public Animation buildAnimation(AnimationConfig config) {
