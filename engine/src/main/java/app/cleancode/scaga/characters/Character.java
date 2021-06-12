@@ -114,7 +114,6 @@ public class Character extends Group {
         }
     }
 
-    @SuppressWarnings("exports")
     public Polygon2D getRegion() {
         return animations.get(getFullStateString()).getRegion();
     }

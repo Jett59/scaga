@@ -3,11 +3,11 @@ package app.cleancode.scaga.engine.physics;
 import java.util.HashSet;
 import java.util.Set;
 
+import app.cleancode.scaga.colliders.PolygonCollider;
 import app.cleancode.scaga.collisions.Collidable;
 import app.cleancode.scaga.engine.GameObject;
 import app.cleancode.scaga.engine.events.CollisionEvent;
 import app.cleancode.scaga.shape.polygon.Polygon2D;
-import app.cleancode.scaga.shape.polygon.PolygonCollider;
 import javafx.scene.shape.Shape;
 
 public class Collisions {

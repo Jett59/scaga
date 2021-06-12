@@ -1,12 +1,12 @@
 package app.cleancode.scaga.collisions;
 
-import javafx.scene.shape.Shape;
+import app.cleancode.scaga.bounds.Bound;
 
 public class Collision {
-    public final Shape intersectionRegion;
+    public final Bound intersectionRegion;
     public final Collidable other;
 
-    public Collision(Collidable other, Shape intersectionRegion) {
+    public Collision(Collidable other, Bound intersectionRegion) {
         this.intersectionRegion = intersectionRegion;
         this.other = other;
 

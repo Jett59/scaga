@@ -1,9 +1,10 @@
-package app.cleancode.scaga.shape.polygon;
+package app.cleancode.scaga.colliders;
 
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
 import java.lang.reflect.Field;
 
+import app.cleancode.scaga.shape.polygon.Polygon2D;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Shape;
 
