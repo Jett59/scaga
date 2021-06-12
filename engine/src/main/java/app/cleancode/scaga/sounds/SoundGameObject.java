@@ -2,8 +2,8 @@ package app.cleancode.scaga.sounds;
 
 import app.cleancode.scaga.engine.GameObject;
 import app.cleancode.scaga.engine.config.GameObjectConfig;
+import app.cleancode.scaga.shape.polygon.Polygon2D;
 import javafx.scene.Node;
-import javafx.scene.shape.Polygon;
 
 public class SoundGameObject extends GameObject<Node> {
     private final String name;
@@ -19,8 +19,8 @@ public class SoundGameObject extends GameObject<Node> {
     }
 
     @Override
-    public Polygon getRegion() {
-        return new Polygon(0, 0);
+    public Polygon2D getRegion() {
+        return new Polygon2D(0, 0);
     }
 
     @Override

@@ -4,7 +4,7 @@ import app.cleancode.scaga.engine.GameObject;
 import app.cleancode.scaga.engine.config.GameObjectConfig;
 import app.cleancode.scaga.engine.events.Event;
 import app.cleancode.scaga.shape.Rectangle2D;
-import javafx.scene.shape.Polygon;
+import app.cleancode.scaga.shape.polygon.Polygon2D;
 
 public class RectangleGameObject extends GameObject<Rectangle2D> {
     private final double x, y, width, height;
@@ -55,7 +55,7 @@ public class RectangleGameObject extends GameObject<Rectangle2D> {
     }
 
     @Override
-    public Polygon getRegion() {
+    public Polygon2D getRegion() {
         return node.getRegion();
     }
 }

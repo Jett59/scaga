@@ -12,8 +12,8 @@ import app.cleancode.scaga.animation.Animation;
 import app.cleancode.scaga.animation.AnimationBuilder;
 import app.cleancode.scaga.animation.config.AnimationConfig;
 import app.cleancode.scaga.resources.ResourceReader;
+import app.cleancode.scaga.shape.polygon.Polygon2D;
 import javafx.scene.Group;
-import javafx.scene.shape.Polygon;
 
 public class Character extends Group {
     private static final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -114,7 +114,8 @@ public class Character extends Group {
         }
     }
 
-    public Polygon getRegion() {
+    @SuppressWarnings("exports")
+    public Polygon2D getRegion() {
         return animations.get(getFullStateString()).getRegion();
     }
 }

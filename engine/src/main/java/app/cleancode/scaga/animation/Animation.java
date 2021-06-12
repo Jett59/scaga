@@ -48,8 +48,8 @@ public class Animation extends Transition {
      * 
      * @return the bounds of this animation.
      */
-    public Polygon getRegion() {
-        return regions.get(currentFramePosition);
+    public app.cleancode.scaga.shape.polygon.Polygon2D getRegion() {
+        return new app.cleancode.scaga.shape.polygon.Polygon2D(regions.get(currentFramePosition));
     }
 
     /*

@@ -5,7 +5,7 @@ import app.cleancode.scaga.engine.GameObject;
 import app.cleancode.scaga.engine.config.GameObjectConfig;
 import app.cleancode.scaga.engine.events.Event;
 import app.cleancode.scaga.engine.events.MovementEvent;
-import javafx.scene.shape.Polygon;
+import app.cleancode.scaga.shape.polygon.Polygon2D;
 
 public class CharacterGameObject extends GameObject<Character> {
     private final String name;
@@ -53,7 +53,7 @@ public class CharacterGameObject extends GameObject<Character> {
         }
     }
 
-    public Polygon getRegion() {
+    public Polygon2D getRegion() {
         return node.getRegion();
     }
 

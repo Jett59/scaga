@@ -4,7 +4,7 @@ import app.cleancode.scaga.engine.GameObject;
 import app.cleancode.scaga.engine.config.GameObjectConfig;
 import app.cleancode.scaga.engine.events.Event;
 import app.cleancode.scaga.engine.events.ProgressUpdateEvent;
-import javafx.scene.shape.Polygon;
+import app.cleancode.scaga.shape.polygon.Polygon2D;
 
 public class ProgressBarGameObject extends GameObject<ProgressBar> {
     private final String name;
@@ -23,7 +23,7 @@ public class ProgressBarGameObject extends GameObject<ProgressBar> {
     }
 
     @Override
-    public Polygon getRegion() {
+    public Polygon2D getRegion() {
         return node.getRegion();
     }
 

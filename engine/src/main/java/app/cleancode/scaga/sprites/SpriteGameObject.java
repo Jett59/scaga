@@ -8,10 +8,10 @@ import app.cleancode.scaga.engine.GameObject;
 import app.cleancode.scaga.engine.config.GameObjectConfig;
 import app.cleancode.scaga.engine.events.Event;
 import app.cleancode.scaga.resources.ResourceReader;
+import app.cleancode.scaga.shape.polygon.Polygon2D;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.shape.Polygon;
 
 public class SpriteGameObject extends GameObject<ImageView> {
     private static final String PATH_FORMAT = "/sprites/%s.png";
@@ -23,7 +23,7 @@ public class SpriteGameObject extends GameObject<ImageView> {
 
     private final ResourceReader resourceReader;
 
-    private Polygon region;
+    private javafx.scene.shape.Polygon region;
 
     public SpriteGameObject(GameObjectConfig config) {
         super(config);
@@ -43,8 +43,8 @@ public class SpriteGameObject extends GameObject<ImageView> {
     }
 
     @Override
-    public Polygon getRegion() {
-        return region;
+    public Polygon2D getRegion() {
+        return new Polygon2D(region);
     }
 
     @Override

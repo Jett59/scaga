@@ -1,8 +1,8 @@
 package app.cleancode.scaga.progress;
 
 import app.cleancode.scaga.shape.Rectangle2D;
+import app.cleancode.scaga.shape.polygon.Polygon2D;
 import javafx.scene.Group;
-import javafx.scene.shape.Polygon;
 
 public class ProgressBar extends Group {
     private final Rectangle2D outer;
@@ -30,7 +30,7 @@ public class ProgressBar extends Group {
         return progress;
     }
 
-    public Polygon getRegion() {
+    public Polygon2D getRegion() {
         return outer.getRegion();
     }
 }

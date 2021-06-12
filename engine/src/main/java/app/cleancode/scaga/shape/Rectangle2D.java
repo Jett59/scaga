@@ -1,7 +1,7 @@
 package app.cleancode.scaga.shape;
 
 import app.cleancode.scaga.collisions.Collidable;
-import javafx.scene.shape.Polygon;
+import app.cleancode.scaga.shape.polygon.Polygon2D;
 import javafx.scene.shape.Rectangle;
 
 public class Rectangle2D extends Rectangle implements Collidable {
@@ -9,8 +9,8 @@ public class Rectangle2D extends Rectangle implements Collidable {
         super(x, y, width, height);
     }
 
-    public Polygon getRegion() {
-        return new Polygon(getX(), getY(), getX() + getWidth(), getY(), getX() + getWidth(), getY() + getHeight(),
+    public Polygon2D getRegion() {
+        return new Polygon2D(getX(), getY(), getX() + getWidth(), getY(), getX() + getWidth(), getY() + getHeight(),
                 getX(), getY() + getHeight());
     }
 }
