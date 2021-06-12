@@ -5,12 +5,12 @@ import java.awt.Toolkit;
 import java.util.HashMap;
 import java.util.Map;
 
+import app.cleancode.scaga.bounds.Bound;
+import app.cleancode.scaga.collisions.Collision;
 import app.cleancode.scaga.engine.GameObject;
 import app.cleancode.scaga.engine.PhysicalLaw;
 import app.cleancode.scaga.engine.events.StopEvent;
-import javafx.geometry.Bounds;
 import javafx.scene.Node;
-import javafx.scene.shape.Shape;
 
 public class Movement extends PhysicalLaw {
     private static final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -35,10 +35,10 @@ public class Movement extends PhysicalLaw {
                 double origX = obj.getX(), origY = obj.getY();
                 obj.move(origX + xMoveAmount, origY + yMoveAmount);
                 if (obj.collidable) {
-                    Shape intersection = collider.check(obj);
-                    Bounds intersectionBounds = intersection.getBoundsInLocal();
+                    Collision intersection = collider.check(obj);
+                    Bound intersectionBounds = intersection.intersectionRegion;
                     for (int i = 0; i < 4
-                            && !(intersectionBounds = (intersection = collider.check(obj)).getBoundsInLocal())
+                            && !(intersectionBounds = (intersection = collider.check(obj)).intersectionRegion)
                                     .isEmpty(); i++) {
                         if (intersectionBounds.getWidth() > intersectionBounds.getHeight()) {
                             if (yMoveAmount < 0) {
@@ -47,8 +47,8 @@ public class Movement extends PhysicalLaw {
                                 yMoveAmount -= intersectionBounds.getHeight();
                                 obj.isTouchingGround = true;
                             } else {
-                                if (intersection.getBoundsInParent().getCenterY() < obj.getRegion()
-                                        .getTransformedBound().getCenterY()) {
+                                if (intersectionBounds.getCenterY() < obj.getRegion().getTransformedBound()
+                                        .getCenterY()) {
                                     yMoveAmount = intersectionBounds.getHeight() * -1;
                                     obj.isTouchingGround = true;
                                 } else {
@@ -62,8 +62,8 @@ public class Movement extends PhysicalLaw {
                             } else if (xMoveAmount > 0) {
                                 xMoveAmount -= intersectionBounds.getWidth();
                             } else {
-                                if (intersection.getBoundsInParent().getCenterX() < obj.getRegion()
-                                        .getTransformedBound().getCenterX()) {
+                                if (intersectionBounds.getCenterX() < obj.getRegion().getTransformedBound()
+                                        .getCenterX()) {
                                     xMoveAmount = intersectionBounds.getWidth() * -1;
                                 } else {
                                     xMoveAmount = intersectionBounds.getWidth();
@@ -74,7 +74,7 @@ public class Movement extends PhysicalLaw {
                         }
                         obj.move(origX + xMoveAmount, origY + yMoveAmount);
                     }
-                    if (!collider.check(obj).getBoundsInLocal().isEmpty()) {
+                    if (!collider.check(obj).intersectionRegion.isEmpty()) {
                         obj.move(origX, origY);
                     }
                 }

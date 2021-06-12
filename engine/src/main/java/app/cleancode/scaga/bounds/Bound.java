@@ -41,4 +41,8 @@ public class Bound {
     public double getHeight() {
         return height;
     }
+
+    public boolean isEmpty() {
+        return width <= 0 || height <= 0;
+    }
 }

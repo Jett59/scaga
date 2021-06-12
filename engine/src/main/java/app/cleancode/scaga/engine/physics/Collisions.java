@@ -6,6 +6,7 @@ import java.util.Set;
 import app.cleancode.scaga.bounds.Bound;
 import app.cleancode.scaga.colliders.PolygonCollider;
 import app.cleancode.scaga.collisions.Collidable;
+import app.cleancode.scaga.collisions.Collision;
 import app.cleancode.scaga.engine.GameObject;
 import app.cleancode.scaga.engine.events.CollisionEvent;
 import app.cleancode.scaga.shape.polygon.Polygon2D;
@@ -19,7 +20,7 @@ public class Collisions {
         objects = new HashSet<>();
     }
 
-    public Shape check(GameObject<?> obj) {
+    public Collision check(GameObject<?> obj) {
         for (Collidable object : objects) {
             if (!object.equals(obj)) {
                 Polygon2D objRegion = obj.getRegion();
@@ -33,11 +34,11 @@ public class Collisions {
                     if (object instanceof GameObject<?>) {
                         ((GameObject<?>) object).handleEvent(new CollisionEvent(obj, collisionBound));
                     }
-                    return intersection;
+                    return new Collision(object, collisionBound);
                 }
             }
         }
-        return new javafx.scene.shape.Polygon();
+        return new Collision(null, new Bound(0, 0, 0, 0));
     }
 
     public void registerObject(Collidable c) {
