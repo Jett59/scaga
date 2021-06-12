@@ -2,6 +2,7 @@ module app.cleancode.scaga {
     exports app.cleancode.scaga;
     exports app.cleancode.scaga.engine;
     exports app.cleancode.scaga.engine.events;
+    exports app.cleancode.scaga.bounds;
     exports app.cleancode.scaga.collisions;
     exports app.cleancode.scaga.engine.keyboard;
     exports app.cleancode.scaga.engine.annotations;

@@ -18,8 +18,8 @@ public class EnemyMovementListener extends GameListener {
 
     @Override
     public void update(State state) {
-        var playerBounds = player.getRegion().getBoundsInParent();
-        var barrelBounds = enemy.getRegion().getBoundsInParent();
+        var playerBounds = player.getRegion().getTransformedBound();
+        var barrelBounds = enemy.getRegion().getTransformedBound();
         if (playerBounds.getCenterX() < barrelBounds.getCenterX()) {
             enemy.xVelocity = SPEED * -1;
         } else if (playerBounds.getCenterX() > barrelBounds.getCenterX()) {

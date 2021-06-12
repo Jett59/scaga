@@ -18,7 +18,7 @@ public class EnemyDestructionListener extends GameListener {
 
     @Override
     public void update(State state) {
-        if (enemy.getRegion().getBoundsInParent().getMinY() > screenSize.height) {
+        if (enemy.getRegion().getTransformedBound().getMinY() > screenSize.height) {
             state.destroyGameObject(enemy);
         }
     }

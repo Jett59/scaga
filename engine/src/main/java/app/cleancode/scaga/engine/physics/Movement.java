@@ -47,8 +47,8 @@ public class Movement extends PhysicalLaw {
                                 yMoveAmount -= intersectionBounds.getHeight();
                                 obj.isTouchingGround = true;
                             } else {
-                                if (intersection.getBoundsInParent().getCenterY() < obj.getRegion().getBoundsInParent()
-                                        .getCenterY()) {
+                                if (intersection.getBoundsInParent().getCenterY() < obj.getRegion()
+                                        .getTransformedBound().getCenterY()) {
                                     yMoveAmount = intersectionBounds.getHeight() * -1;
                                     obj.isTouchingGround = true;
                                 } else {
@@ -62,8 +62,8 @@ public class Movement extends PhysicalLaw {
                             } else if (xMoveAmount > 0) {
                                 xMoveAmount -= intersectionBounds.getWidth();
                             } else {
-                                if (intersection.getBoundsInParent().getCenterX() < obj.getRegion().getBoundsInParent()
-                                        .getCenterX()) {
+                                if (intersection.getBoundsInParent().getCenterX() < obj.getRegion()
+                                        .getTransformedBound().getCenterX()) {
                                     xMoveAmount = intersectionBounds.getWidth() * -1;
                                 } else {
                                     xMoveAmount = intersectionBounds.getWidth();

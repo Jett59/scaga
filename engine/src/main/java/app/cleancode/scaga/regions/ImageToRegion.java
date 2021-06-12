@@ -1,4 +1,4 @@
-package app.cleancode.scaga.bounds;
+package app.cleancode.scaga.regions;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

@@ -3,10 +3,10 @@ package app.cleancode.scaga.sprites;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
-import app.cleancode.scaga.bounds.ImageToRegion;
 import app.cleancode.scaga.engine.GameObject;
 import app.cleancode.scaga.engine.config.GameObjectConfig;
 import app.cleancode.scaga.engine.events.Event;
+import app.cleancode.scaga.regions.ImageToRegion;
 import app.cleancode.scaga.resources.ResourceReader;
 import app.cleancode.scaga.shape.polygon.Polygon2D;
 import javafx.embed.swing.SwingFXUtils;

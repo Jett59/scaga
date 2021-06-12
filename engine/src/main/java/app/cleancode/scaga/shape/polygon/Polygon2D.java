@@ -1,5 +1,7 @@
 package app.cleancode.scaga.shape.polygon;
 
+import app.cleancode.scaga.bounds.Bound;
+import javafx.geometry.Bounds;
 import javafx.scene.shape.Polygon;
 
 public class Polygon2D {
@@ -16,5 +18,11 @@ public class Polygon2D {
 
     public double[] getPoints() {
         return internalPolygon.getPoints().stream().mapToDouble(Double::valueOf).toArray();
+    }
+
+    public Bound getTransformedBound() {
+        Bounds internalBounds = internalPolygon.getBoundsInParent();
+        return new Bound(internalBounds.getMinX(), internalBounds.getMinY(), internalBounds.getWidth(),
+                internalBounds.getHeight());
     }
 }

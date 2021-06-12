@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.cleancode.scaga.animation.config.AnimationConfig;
-import app.cleancode.scaga.bounds.ImageToRegion;
+import app.cleancode.scaga.regions.ImageToRegion;
 import app.cleancode.scaga.resources.ResourceReader;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
