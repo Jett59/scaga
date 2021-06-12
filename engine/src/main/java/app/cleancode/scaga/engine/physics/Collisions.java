@@ -8,7 +8,6 @@ import app.cleancode.scaga.colliders.PolygonCollider;
 import app.cleancode.scaga.collisions.Collidable;
 import app.cleancode.scaga.collisions.Collision;
 import app.cleancode.scaga.engine.GameObject;
-import app.cleancode.scaga.engine.events.CollisionEvent;
 import app.cleancode.scaga.shape.polygon.Polygon2D;
 import javafx.geometry.Bounds;
 import javafx.scene.shape.Shape;
@@ -30,10 +29,6 @@ public class Collisions {
                     Bounds intersectionBounds = intersection.getBoundsInParent();
                     Bound collisionBound = new Bound(intersectionBounds.getMinX(), intersectionBounds.getMinY(),
                             intersectionBounds.getWidth(), intersectionBounds.getHeight());
-                    obj.handleEvent(new CollisionEvent(object, collisionBound));
-                    if (object instanceof GameObject<?>) {
-                        ((GameObject<?>) object).handleEvent(new CollisionEvent(obj, collisionBound));
-                    }
                     return new Collision(object, collisionBound);
                 }
             }

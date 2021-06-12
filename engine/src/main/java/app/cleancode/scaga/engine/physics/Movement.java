@@ -9,6 +9,7 @@ import app.cleancode.scaga.bounds.Bound;
 import app.cleancode.scaga.collisions.Collision;
 import app.cleancode.scaga.engine.GameObject;
 import app.cleancode.scaga.engine.PhysicalLaw;
+import app.cleancode.scaga.engine.events.CollisionEvent;
 import app.cleancode.scaga.engine.events.StopEvent;
 import javafx.scene.Node;
 
@@ -37,45 +38,52 @@ public class Movement extends PhysicalLaw {
                 if (obj.collidable) {
                     Collision intersection = collider.check(obj);
                     Bound intersectionBounds = intersection.intersectionRegion;
-                    for (int i = 0; i < 4
-                            && !(intersectionBounds = (intersection = collider.check(obj)).intersectionRegion)
-                                    .isEmpty(); i++) {
-                        if (intersectionBounds.getWidth() > intersectionBounds.getHeight()) {
-                            if (yMoveAmount < 0) {
-                                yMoveAmount += intersectionBounds.getHeight();
-                            } else if (yMoveAmount > 0) {
-                                yMoveAmount -= intersectionBounds.getHeight();
-                                obj.isTouchingGround = true;
-                            } else {
-                                if (intersectionBounds.getCenterY() < obj.getRegion().getTransformedBound()
-                                        .getCenterY()) {
-                                    yMoveAmount = intersectionBounds.getHeight() * -1;
+                    if (!intersectionBounds.isEmpty()) {
+                        for (int i = 0; i < 4
+                                && !(intersectionBounds = (intersection = collider.check(obj)).intersectionRegion)
+                                        .isEmpty(); i++) {
+                            if (intersectionBounds.getWidth() > intersectionBounds.getHeight()) {
+                                if (yMoveAmount < 0) {
+                                    yMoveAmount += intersectionBounds.getHeight();
+                                } else if (yMoveAmount > 0) {
+                                    yMoveAmount -= intersectionBounds.getHeight();
                                     obj.isTouchingGround = true;
                                 } else {
-                                    yMoveAmount = intersectionBounds.getHeight();
+                                    if (intersectionBounds.getCenterY() < obj.getRegion().getTransformedBound()
+                                            .getCenterY()) {
+                                        yMoveAmount = intersectionBounds.getHeight() * -1;
+                                        obj.isTouchingGround = true;
+                                    } else {
+                                        yMoveAmount = intersectionBounds.getHeight();
+                                    }
                                 }
-                            }
-                            obj.yVelocity = 0;
-                        } else {
-                            if (xMoveAmount < 0) {
-                                xMoveAmount += intersectionBounds.getWidth();
-                            } else if (xMoveAmount > 0) {
-                                xMoveAmount -= intersectionBounds.getWidth();
+                                obj.yVelocity = 0;
                             } else {
-                                if (intersectionBounds.getCenterX() < obj.getRegion().getTransformedBound()
-                                        .getCenterX()) {
-                                    xMoveAmount = intersectionBounds.getWidth() * -1;
+                                if (xMoveAmount < 0) {
+                                    xMoveAmount += intersectionBounds.getWidth();
+                                } else if (xMoveAmount > 0) {
+                                    xMoveAmount -= intersectionBounds.getWidth();
                                 } else {
-                                    xMoveAmount = intersectionBounds.getWidth();
+                                    if (intersectionBounds.getCenterX() < obj.getRegion().getTransformedBound()
+                                            .getCenterX()) {
+                                        xMoveAmount = intersectionBounds.getWidth() * -1;
+                                    } else {
+                                        xMoveAmount = intersectionBounds.getWidth();
+                                    }
                                 }
+                                obj.xVelocity = 0;
+                                obj.handleEvent(new StopEvent());
                             }
-                            obj.xVelocity = 0;
-                            obj.handleEvent(new StopEvent());
+                            obj.handleEvent(new CollisionEvent(intersection.other, intersectionBounds));
+                            if (intersection.other instanceof GameObject<?>) {
+                                ((GameObject<?>) intersection.other)
+                                        .handleEvent(new CollisionEvent(obj, intersectionBounds));
+                            }
+                            obj.move(origX + xMoveAmount, origY + yMoveAmount);
                         }
-                        obj.move(origX + xMoveAmount, origY + yMoveAmount);
-                    }
-                    if (!collider.check(obj).intersectionRegion.isEmpty()) {
-                        obj.move(origX, origY);
+                        if (!collider.check(obj).intersectionRegion.isEmpty()) {
+                            obj.move(origX, origY);
+                        }
                     }
                 }
             }
