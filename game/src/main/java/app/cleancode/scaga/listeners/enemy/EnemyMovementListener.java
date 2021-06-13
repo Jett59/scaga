@@ -8,7 +8,7 @@ import app.cleancode.scaga.engine.annotations.ImportGameObject;
 
 @AttachedTo("enemy")
 public class EnemyMovementListener extends GameListener {
-    private static final double SPEED = 0.1;
+    private static final double SPEED = 0.20;
 
     @ImportGameObject
     public GameObject<?> enemy;
