@@ -1,5 +1,6 @@
 package app.cleancode.scaga.listeners.enemy;
 
+import app.cleancode.scaga.bounds.Bound;
 import app.cleancode.scaga.collisions.Collidable;
 import app.cleancode.scaga.engine.GameListener;
 import app.cleancode.scaga.engine.GameObject;
@@ -25,9 +26,11 @@ public class EnemyJumpListener extends GameListener {
     }
 
     @Override
-    public void onCollision(Collidable other) {
-        if (enemy.isTouchingGround && !other.toString().equals("ground") && !other.toString().equals("player")) {
-            enemy.yVelocity = SPEED * -1;
+    public void onCollision(Collidable other, Bound collisionBound) {
+        if (enemy.isTouchingGround && !other.toString().equals("player")) {
+            if (collisionBound.getHeight() >= collisionBound.getWidth()) {
+                enemy.yVelocity = SPEED * -1;
+            }
         }
     }
 

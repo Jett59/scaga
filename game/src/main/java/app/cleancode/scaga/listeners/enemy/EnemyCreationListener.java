@@ -16,7 +16,7 @@ public class EnemyCreationListener extends GameListener {
     public void update(State state) {
         if (state.keyState.isKeyDown(KeyBindings.CREATE_BARREL)) {
             if (!keyState) {
-                state.createGameObject(enemy, Math.random(), 0);
+                state.createGameObject(enemy, Math.random(), 0.1);
                 keyState = true;
             }
         } else {

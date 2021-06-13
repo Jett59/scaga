@@ -51,7 +51,7 @@ public abstract class GameObject<NodeType extends Node> implements Collidable {
         if (evt instanceof CollisionEvent) {
             CollisionEvent collision = (CollisionEvent) evt;
             for (GameListener listener : attachedListeners) {
-                listener.onCollision(collision.other);
+                listener.onCollision(collision.other, collision.collisionBound);
             }
         }
     }
