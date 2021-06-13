@@ -11,7 +11,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import app.cleancode.scaga.animation.Animation;
 import app.cleancode.scaga.animation.AnimationBuilder;
 import app.cleancode.scaga.animation.config.AnimationConfig;
-import app.cleancode.scaga.characters.state.State;
 import app.cleancode.scaga.resources.ResourceReader;
 import app.cleancode.scaga.shape.polygon.Polygon2D;
 import javafx.scene.Group;
@@ -101,11 +100,21 @@ public class Character extends Group {
         return String.format("%s.%s", currentState.getId(), getDirectionString());
     }
 
-    public Polygon2D getRegion() {
-        return animations.get(getFullStateString()).getRegion();
+    public static enum State {
+        ATTACKING("Attack"), DIEING("Die"), IDLE("Idle"), JUMPING("Jump"), RUNNING("Run");
+
+        private String id;
+
+        private State(String id) {
+            this.id = id;
+        }
+
+        public String getId() {
+            return id;
+        }
     }
 
-    public State getState() {
-        return currentState;
+    public Polygon2D getRegion() {
+        return animations.get(getFullStateString()).getRegion();
     }
 }
