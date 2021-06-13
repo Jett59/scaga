@@ -7,6 +7,7 @@ module app.cleancode.scaga {
     exports app.cleancode.scaga.engine.keyboard;
     exports app.cleancode.scaga.engine.annotations;
     exports app.cleancode.scaga.shape.polygon;
+    exports app.cleancode.scaga.characters.state;
 
     exports app.cleancode.scaga.characters to com.fasterxml.jackson.databind;
     exports app.cleancode.scaga.engine.config to com.fasterxml.jackson.databind;
