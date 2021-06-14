@@ -48,6 +48,10 @@ public class CharacterGameObject extends GameObject<Character> {
             node.changeState(State.IDLE);
             break;
         }
+        case ATTACK: {
+            node.changeState(State.ATTACKING);
+            break;
+        }
         default:
             break;
         }
