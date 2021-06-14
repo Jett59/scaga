@@ -10,10 +10,6 @@
 <artifactId>scaga-game</artifactId>
 
 <properties>
-	<maven.compiler.target>15</maven.compiler.target>
-	<maven.compiler.source>15</maven.compiler.source>
-	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	
 	<scaga-engine.version>${project.version}</scaga-engine.version>
 </properties>
 

@@ -10,9 +10,6 @@
 <artifactId>scaga-engine</artifactId>
 
 <properties>
-	<maven.compiler.target>15</maven.compiler.target>
-	<maven.compiler.source>15</maven.compiler.source>
-	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	
 	<javafx.version>15</javafx.version>
 	<jackson.version>2.10.5.1</jackson.version>
