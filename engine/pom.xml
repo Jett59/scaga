@@ -10,8 +10,7 @@
 <artifactId>scaga-engine</artifactId>
 
 <properties>
-	
-	<javafx.version>15</javafx.version>
+	<javafx.version>16</javafx.version>
 	<jackson.version>2.10.5.1</jackson.version>
 </properties>
 
