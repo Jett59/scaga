@@ -29,7 +29,8 @@ public class Character extends Group {
         objectMapper = new ObjectMapper();
         try {
             config = objectMapper.readValue(
-                    resourceReader.getResourceAsString(String.format("/config/characters/%s.json", characterName)),
+                    resourceReader.getResourceAsString(
+                            String.format("/config/characters/%s.json", characterName)),
                     CharacterConfig.class);
         } catch (IOException e) {
             e.printStackTrace();

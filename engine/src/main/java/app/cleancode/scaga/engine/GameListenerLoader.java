@@ -35,7 +35,8 @@ public class GameListenerLoader {
                     String propertyName = field.getName();
                     String owner = field.getDeclaredAnnotation(ImportGameProperty.class).owner();
                     for (GameObject<?> object : gameObjects) {
-                        if (object.getName().equals(owner) && object.properties.containsKey(propertyName)) {
+                        if (object.getName().equals(owner)
+                                && object.properties.containsKey(propertyName)) {
                             field.setAccessible(true);
                             field.set(listener, object.properties.get(propertyName));
                         }

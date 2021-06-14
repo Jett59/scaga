@@ -56,9 +56,11 @@ public class SpriteGameObject extends GameObject<ImageView> {
     public void init() {
         if (width != 0 && height != 0) {
             System.err.println("error occured while trying to build sprite for " + name);
-            throw new IllegalArgumentException("only one of either width and height can be specified");
+            throw new IllegalArgumentException(
+                    "only one of either width and height can be specified");
         }
-        BufferedImage bufferedImage = resourceReader.getResourceAsImage(String.format(PATH_FORMAT, spriteName));
+        BufferedImage bufferedImage =
+                resourceReader.getResourceAsImage(String.format(PATH_FORMAT, spriteName));
         double scale;
         if (width != 0) {
             scale = width / bufferedImage.getWidth();
@@ -67,9 +69,11 @@ public class SpriteGameObject extends GameObject<ImageView> {
             scale = height / bufferedImage.getHeight();
             width = bufferedImage.getWidth() * scale;
         }
-        BufferedImage scaledImage = new BufferedImage((int) width, (int) height, BufferedImage.TYPE_4BYTE_ABGR);
+        BufferedImage scaledImage =
+                new BufferedImage((int) width, (int) height, BufferedImage.TYPE_4BYTE_ABGR);
         Graphics graphics = scaledImage.getGraphics();
-        graphics.drawImage(bufferedImage, 0, 0, scaledImage.getWidth(), scaledImage.getHeight(), null);
+        graphics.drawImage(bufferedImage, 0, 0, scaledImage.getWidth(), scaledImage.getHeight(),
+                null);
         graphics.dispose();
         Image img = SwingFXUtils.toFXImage(scaledImage, null);
         region = ImageToRegion.getRegion(img);

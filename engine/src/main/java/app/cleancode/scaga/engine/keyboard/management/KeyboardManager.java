@@ -38,48 +38,48 @@ public class KeyboardManager implements EventHandler<KeyEvent> {
 
     private void updateKeyState(KeyCode code, boolean newState) {
         switch (code) {
-        case LEFT: {
-            keyState.setKeyState(Key.LEFT, newState);
-            break;
-        }
-        case RIGHT: {
-            keyState.setKeyState(Key.RIGHT, newState);
-            break;
-        }
-        case UP: {
-            keyState.setKeyState(Key.UP, newState);
-            break;
-        }
-        case DOWN: {
-            keyState.setKeyState(Key.DOWN, newState);
-            break;
-        }
-        case W: {
-            keyState.setKeyState(Key.W, newState);
-            break;
-        }
-        case A: {
-            keyState.setKeyState(Key.A, newState);
-            break;
-        }
-        case S: {
-            keyState.setKeyState(Key.S, newState);
-            break;
-        }
-        case D: {
-            keyState.setKeyState(Key.D, newState);
-            break;
-        }
-        case SPACE: {
-            keyState.setKeyState(Key.SPACE, newState);
-            break;
-        }
-        case B: {
-            keyState.setKeyState(Key.B, newState);
-            break;
-        }
-        default:
-            break;
+            case LEFT: {
+                keyState.setKeyState(Key.LEFT, newState);
+                break;
+            }
+            case RIGHT: {
+                keyState.setKeyState(Key.RIGHT, newState);
+                break;
+            }
+            case UP: {
+                keyState.setKeyState(Key.UP, newState);
+                break;
+            }
+            case DOWN: {
+                keyState.setKeyState(Key.DOWN, newState);
+                break;
+            }
+            case W: {
+                keyState.setKeyState(Key.W, newState);
+                break;
+            }
+            case A: {
+                keyState.setKeyState(Key.A, newState);
+                break;
+            }
+            case S: {
+                keyState.setKeyState(Key.S, newState);
+                break;
+            }
+            case D: {
+                keyState.setKeyState(Key.D, newState);
+                break;
+            }
+            case SPACE: {
+                keyState.setKeyState(Key.SPACE, newState);
+                break;
+            }
+            case B: {
+                keyState.setKeyState(Key.B, newState);
+                break;
+            }
+            default:
+                break;
         }
     }
 }

@@ -25,8 +25,8 @@ public class State {
 
     public void createGameObject(GameObject<?> template, double x, double y) {
         try {
-            GameObject<? extends Node> newGameObject = template.duplicate(objectLoader, listenerLoader, this,
-                    this.scene.objects);
+            GameObject<? extends Node> newGameObject =
+                    template.duplicate(objectLoader, listenerLoader, this, this.scene.objects);
             newGameObject.init();
             newGameObject.move(x * screenSize.width, y * screenSize.height);
             scene.objects.add(newGameObject);

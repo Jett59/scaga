@@ -41,12 +41,12 @@ public class ProgressBarGameObject extends GameObject<ProgressBar> {
     public void handleEvent(Event evt) {
         super.handleEvent(evt);
         switch (evt.getType()) {
-        case PROGRESS_UPDATE: {
-            node.setProgress(((ProgressUpdateEvent) evt).newValue);
-            break;
-        }
-        default:
-            break;
+            case PROGRESS_UPDATE: {
+                node.setProgress(((ProgressUpdateEvent) evt).newValue);
+                break;
+            }
+            default:
+                break;
         }
     }
 }

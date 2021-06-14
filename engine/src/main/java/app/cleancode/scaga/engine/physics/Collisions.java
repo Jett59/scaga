@@ -27,8 +27,9 @@ public class Collisions {
                 Shape intersection = PolygonCollider.intersect(objRegion, objectRegion);
                 if (!intersection.getBoundsInLocal().isEmpty()) {
                     Bounds intersectionBounds = intersection.getBoundsInParent();
-                    Bound collisionBound = new Bound(intersectionBounds.getMinX(), intersectionBounds.getMinY(),
-                            intersectionBounds.getWidth(), intersectionBounds.getHeight());
+                    Bound collisionBound =
+                            new Bound(intersectionBounds.getMinX(), intersectionBounds.getMinY(),
+                                    intersectionBounds.getWidth(), intersectionBounds.getHeight());
                     return new Collision(object, collisionBound);
                 }
             }

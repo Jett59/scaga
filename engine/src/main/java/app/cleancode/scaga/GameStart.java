@@ -21,7 +21,8 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class GameStart extends Application {
-    private static PhysicalLaw[] laws = new PhysicalLaw[] { new Gravity(), new Drag(), new Movement() };
+    private static PhysicalLaw[] laws =
+            new PhysicalLaw[] {new Gravity(), new Drag(), new Movement()};
 
     public static void begin(String[] args) {
         launch(args);
@@ -39,7 +40,8 @@ public class GameStart extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Scene scene = new Scene(nodes);
-        scene.getStylesheets().add(Paths.get("assets", "styles", "app.css").toUri().toURL().toExternalForm());
+        scene.getStylesheets()
+                .add(Paths.get("assets", "styles", "app.css").toUri().toURL().toExternalForm());
         primaryStage.setTitle("Game");
         primaryStage.setFullScreen(true);
         primaryStage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
@@ -50,7 +52,8 @@ public class GameStart extends Application {
         keyState = new KeyState();
 
         // todo: make it easier to initialize State
-        var stateConstructor = State.class.getDeclaredConstructor(KeyState.class, this.scene.getClass());
+        var stateConstructor =
+                State.class.getDeclaredConstructor(KeyState.class, this.scene.getClass());
         stateConstructor.setAccessible(true);
         state = stateConstructor.newInstance(keyState, this.scene);
         state.init();

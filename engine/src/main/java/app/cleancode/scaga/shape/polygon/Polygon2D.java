@@ -22,7 +22,7 @@ public class Polygon2D {
 
     public Bound getTransformedBound() {
         Bounds internalBounds = internalPolygon.getBoundsInParent();
-        return new Bound(internalBounds.getMinX(), internalBounds.getMinY(), internalBounds.getWidth(),
-                internalBounds.getHeight());
+        return new Bound(internalBounds.getMinX(), internalBounds.getMinY(),
+                internalBounds.getWidth(), internalBounds.getHeight());
     }
 }

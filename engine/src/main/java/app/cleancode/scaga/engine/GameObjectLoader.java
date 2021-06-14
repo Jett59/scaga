@@ -41,33 +41,34 @@ public class GameObjectLoader {
                 config.setProperties(new String[0]);
             }
             switch (config.getType()) {
-            case CHARACTER: {
-                result = new CharacterGameObject(config);
-                break;
-            }
-            case RECTANGLE: {
-                result = new RectangleGameObject(config);
-                break;
-            }
-            case SPRITE: {
-                result = new SpriteGameObject(config);
-                break;
-            }
-            case SOUND: {
-                result = new SoundGameObject(config);
-                break;
-            }
-            case PROGRESS: {
-                result = new ProgressBarGameObject(config);
-                break;
-            }
-            case CUSTOM: {
-                result = (GameObject<? extends Node>) Class.forName(config.getBaseClass())
-                        .getConstructor(GameObjectConfig.class).newInstance(config);
-                break;
-            }
-            default:
-                throw new IllegalStateException("game object type " + config.getType().name() + "is not known");
+                case CHARACTER: {
+                    result = new CharacterGameObject(config);
+                    break;
+                }
+                case RECTANGLE: {
+                    result = new RectangleGameObject(config);
+                    break;
+                }
+                case SPRITE: {
+                    result = new SpriteGameObject(config);
+                    break;
+                }
+                case SOUND: {
+                    result = new SoundGameObject(config);
+                    break;
+                }
+                case PROGRESS: {
+                    result = new ProgressBarGameObject(config);
+                    break;
+                }
+                case CUSTOM: {
+                    result = (GameObject<? extends Node>) Class.forName(config.getBaseClass())
+                            .getConstructor(GameObjectConfig.class).newInstance(config);
+                    break;
+                }
+                default:
+                    throw new IllegalStateException(
+                            "game object type " + config.getType().name() + "is not known");
             }
         } catch (Exception e) {
             throw new RuntimeException(e);

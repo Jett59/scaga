@@ -18,9 +18,10 @@ public class SoundLoader {
     public Sound loadSound(String name) {
         try {
             SoundConfig config = jsonParser.readValue(
-                    resourceReader.getResourceAsString(String.format("/sounds/%s.json", name)), SoundConfig.class);
-            Sound result = new Sound(
-                    new Media(resourceReader.getResourceUriString(String.format("/sounds/%s", config.getFileName()))));
+                    resourceReader.getResourceAsString(String.format("/sounds/%s.json", name)),
+                    SoundConfig.class);
+            Sound result = new Sound(new Media(resourceReader
+                    .getResourceUriString(String.format("/sounds/%s", config.getFileName()))));
             result.setAutoRepeat(config.getAutoRepeat());
             result.setAutoStart(config.getAutoStart());
             return result;

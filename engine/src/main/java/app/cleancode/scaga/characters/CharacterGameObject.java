@@ -38,22 +38,22 @@ public class CharacterGameObject extends GameObject<Character> {
     public void handleEvent(Event evt) {
         super.handleEvent(evt);
         switch (evt.getType()) {
-        case MOVE: {
-            MovementEvent movement = (MovementEvent) evt;
-            node.setDirection(movement.direction);
-            node.changeState(State.RUNNING);
-            break;
-        }
-        case STOP: {
-            node.changeState(State.IDLE);
-            break;
-        }
-        case ATTACK: {
-            node.changeState(State.ATTACKING);
-            break;
-        }
-        default:
-            break;
+            case MOVE: {
+                MovementEvent movement = (MovementEvent) evt;
+                node.setDirection(movement.direction);
+                node.changeState(State.RUNNING);
+                break;
+            }
+            case STOP: {
+                node.changeState(State.IDLE);
+                break;
+            }
+            case ATTACK: {
+                node.changeState(State.ATTACKING);
+                break;
+            }
+            default:
+                break;
         }
     }
 

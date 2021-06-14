@@ -8,6 +8,5 @@ public abstract class GameListener {
 
     public abstract void startup(State state);
 
-    public void onCollision(Collidable other, Bound collisionBound) {
-    }
+    public void onCollision(Collidable other, Bound collisionBound) {}
 }

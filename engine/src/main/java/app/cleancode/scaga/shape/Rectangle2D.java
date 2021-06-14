@@ -10,7 +10,7 @@ public class Rectangle2D extends Rectangle implements Collidable {
     }
 
     public Polygon2D getRegion() {
-        return new Polygon2D(getX(), getY(), getX() + getWidth(), getY(), getX() + getWidth(), getY() + getHeight(),
-                getX(), getY() + getHeight());
+        return new Polygon2D(getX(), getY(), getX() + getWidth(), getY(), getX() + getWidth(),
+                getY() + getHeight(), getX(), getY() + getHeight());
     }
 }

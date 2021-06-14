@@ -39,8 +39,8 @@ public class Movement extends PhysicalLaw {
                     Collision intersection = collider.check(obj);
                     Bound intersectionBounds = intersection.intersectionRegion;
                     if (!intersectionBounds.isEmpty()) {
-                        for (int i = 0; i < 4
-                                && !(intersectionBounds = (intersection = collider.check(obj)).intersectionRegion)
+                        for (int i = 0; i < 4 && !(intersectionBounds =
+                                (intersection = collider.check(obj)).intersectionRegion)
                                         .isEmpty(); i++) {
                             if (intersectionBounds.getWidth() > intersectionBounds.getHeight()) {
                                 if (yMoveAmount < 0) {
@@ -49,8 +49,8 @@ public class Movement extends PhysicalLaw {
                                     yMoveAmount -= intersectionBounds.getHeight();
                                     obj.isTouchingGround = true;
                                 } else {
-                                    if (intersectionBounds.getCenterY() < obj.getRegion().getTransformedBound()
-                                            .getCenterY()) {
+                                    if (intersectionBounds.getCenterY() < obj.getRegion()
+                                            .getTransformedBound().getCenterY()) {
                                         yMoveAmount = intersectionBounds.getHeight() * -1;
                                         obj.isTouchingGround = true;
                                     } else {
@@ -64,8 +64,8 @@ public class Movement extends PhysicalLaw {
                                 } else if (xMoveAmount > 0) {
                                     xMoveAmount -= intersectionBounds.getWidth();
                                 } else {
-                                    if (intersectionBounds.getCenterX() < obj.getRegion().getTransformedBound()
-                                            .getCenterX()) {
+                                    if (intersectionBounds.getCenterX() < obj.getRegion()
+                                            .getTransformedBound().getCenterX()) {
                                         xMoveAmount = intersectionBounds.getWidth() * -1;
                                     } else {
                                         xMoveAmount = intersectionBounds.getWidth();
@@ -74,7 +74,8 @@ public class Movement extends PhysicalLaw {
                                 obj.xVelocity = 0;
                                 obj.handleEvent(new StopEvent());
                             }
-                            obj.handleEvent(new CollisionEvent(intersection.other, intersectionBounds));
+                            obj.handleEvent(
+                                    new CollisionEvent(intersection.other, intersectionBounds));
                             if (intersection.other instanceof GameObject<?>) {
                                 ((GameObject<?>) intersection.other)
                                         .handleEvent(new CollisionEvent(obj, intersectionBounds));

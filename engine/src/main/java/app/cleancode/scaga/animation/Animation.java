@@ -19,8 +19,8 @@ public class Animation extends Transition {
     private ImageView filmStrip;
     private List<Polygon> regions;
 
-    public Animation(int cellCount, int totalWidth, int cellHeight, ImageView imageView, Duration duration,
-            List<Polygon> regions) {
+    public Animation(int cellCount, int totalWidth, int cellHeight, ImageView imageView,
+            Duration duration, List<Polygon> regions) {
         this.cellCount = cellCount;
         this.cellHeight = cellHeight;
         this.cellWidth = totalWidth / cellCount;
@@ -38,7 +38,8 @@ public class Animation extends Transition {
     private void updateViewPort(double frac) {
         double frameLength = 1d / (cellCount - 1);
         currentFramePosition = (int) (Math.floor(frac / frameLength));
-        filmStrip.setViewport(new Rectangle2D(currentFramePosition * cellWidth, 0, cellWidth, cellHeight));
+        filmStrip.setViewport(
+                new Rectangle2D(currentFramePosition * cellWidth, 0, cellWidth, cellHeight));
     }
 
     /*
@@ -64,10 +65,10 @@ public class Animation extends Transition {
     public void active() {
         if (filmStrip.getParent() != null) {
             for (Polygon region : regions) {
-                region.translateXProperty()
-                        .bind(filmStrip.translateXProperty().add(filmStrip.getParent().translateXProperty()));
-                region.translateYProperty()
-                        .bind(filmStrip.translateYProperty().add(filmStrip.getParent().translateYProperty()));
+                region.translateXProperty().bind(filmStrip.translateXProperty()
+                        .add(filmStrip.getParent().translateXProperty()));
+                region.translateYProperty().bind(filmStrip.translateYProperty()
+                        .add(filmStrip.getParent().translateYProperty()));
             }
         }
     }

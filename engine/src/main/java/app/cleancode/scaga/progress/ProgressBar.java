@@ -10,7 +10,8 @@ public class ProgressBar extends Group {
     private double progress;
     private final double width;
 
-    public ProgressBar(double x, double y, double width, double height, double initialProgress, String baseId) {
+    public ProgressBar(double x, double y, double width, double height, double initialProgress,
+            String baseId) {
         this.progress = initialProgress;
         this.outer = new Rectangle2D(x, y, width, height);
         this.inner = new Rectangle2D(x, y, width * progress, height);

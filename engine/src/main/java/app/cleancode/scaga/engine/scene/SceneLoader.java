@@ -26,8 +26,8 @@ public class SceneLoader {
     @SuppressWarnings("unchecked")
     public Scene getScene(String configPath) {
         try {
-            SceneConfig config = jsonParser.readValue(resourceReader.getResourceAsString(configPath),
-                    SceneConfig.class);
+            SceneConfig config = jsonParser
+                    .readValue(resourceReader.getResourceAsString(configPath), SceneConfig.class);
             GameObjectLoader gameObjectLoader = new GameObjectLoader();
             GameListenerLoader gameListenerLoader = new GameListenerLoader();
 
@@ -44,7 +44,8 @@ public class SceneLoader {
             }
             GameObject<? extends Node>[] gameObjectArray = objects.toArray(new GameObject[] {});
             for (String listener : config.getListeners()) {
-                GameListener gameListener = (GameListener) Class.forName(listener).getConstructor().newInstance();
+                GameListener gameListener =
+                        (GameListener) Class.forName(listener).getConstructor().newInstance();
                 gameListenerLoader.prepareListener(gameListener, gameObjectArray);
                 listeners.add(gameListener);
             }
