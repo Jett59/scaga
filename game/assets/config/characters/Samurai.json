@@ -13,6 +13,13 @@
   "duration": "250ms",
   "frames": 8,
   "height": 0.25
+ },
+ {
+  "character": "Samurai",
+  "animation": "Attack",
+  "duration": "250ms",
+  "frames": 8,
+  "height": 0.25
  }
 ]
 }

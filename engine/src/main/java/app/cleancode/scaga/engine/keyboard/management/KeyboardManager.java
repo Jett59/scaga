@@ -1,6 +1,7 @@
 package app.cleancode.scaga.engine.keyboard.management;
 
 import app.cleancode.scaga.engine.keyboard.Key;
+import app.cleancode.scaga.engine.keyboard.KeyBindings;
 import app.cleancode.scaga.engine.keyboard.KeyState;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
@@ -54,31 +55,18 @@ public class KeyboardManager implements EventHandler<KeyEvent> {
                 keyState.setKeyState(Key.DOWN, newState);
                 break;
             }
-            case W: {
-                keyState.setKeyState(Key.W, newState);
-                break;
-            }
-            case A: {
-                keyState.setKeyState(Key.A, newState);
-                break;
-            }
-            case S: {
-                keyState.setKeyState(Key.S, newState);
-                break;
-            }
-            case D: {
-                keyState.setKeyState(Key.D, newState);
-                break;
-            }
             case SPACE: {
                 keyState.setKeyState(Key.SPACE, newState);
                 break;
             }
-            case B: {
-                keyState.setKeyState(Key.B, newState);
+            case ENTER: {
+                keyState.setKeyState(Key.ENTER, newState);
                 break;
             }
             default:
+                if (Character.isLetter(code.getChar().charAt(0))) {
+                    keyState.setKeyState(KeyBindings.forName(code.getChar()), newState);
+                }
                 break;
         }
     }
