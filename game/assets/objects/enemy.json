@@ -6,7 +6,7 @@
 "y": 0.1,
 "height": 0.15,
 "mass": 1,
-"drag": 1,
+"drag": 1.5,
 "properties": [ 
 "health"
 ]

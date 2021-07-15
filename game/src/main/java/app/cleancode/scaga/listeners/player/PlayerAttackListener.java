@@ -27,6 +27,7 @@ public class PlayerAttackListener extends GameListener {
             player.handleEvent(new AttackEvent());
         } else if (attacking.getBoolean()) {
             player.handleEvent(new StopEvent());
+            attacking.set(false);
         }
     }
 
