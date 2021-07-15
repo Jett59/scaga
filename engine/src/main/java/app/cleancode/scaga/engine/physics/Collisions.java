@@ -41,4 +41,8 @@ public class Collisions {
         objects.add(c);
     }
 
+    public void removeCollidable(Collidable collidable) {
+        objects.remove(collidable);
+    }
+
 }

@@ -95,4 +95,12 @@ public class Movement extends PhysicalLaw {
         }
     }
 
+    @Override
+    public void destroyGameObject(GameObject<?> object) {
+        lastMovementTimes.remove(object);
+        if (object.collidable) {
+            collider.removeCollidable(object);
+        }
+    }
+
 }

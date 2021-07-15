@@ -2,7 +2,7 @@ package app.cleancode.scaga.engine;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
-
+import java.util.function.Consumer;
 import app.cleancode.scaga.engine.keyboard.KeyState;
 import app.cleancode.scaga.engine.scene.Scene;
 import javafx.scene.Node;
@@ -15,12 +15,15 @@ public class State {
     private final Scene scene;
     private final GameObjectLoader objectLoader;
     private final GameListenerLoader listenerLoader;
+    private final Consumer<GameObject<?>> gameObjectDestroyedCallback;
 
-    protected State(KeyState keyState, Scene scene) {
+    protected State(KeyState keyState, Scene scene,
+            Consumer<GameObject<?>> gameObjectDestroyedCallback) {
         this.keyState = keyState;
         this.scene = scene;
         this.objectLoader = new GameObjectLoader();
         this.listenerLoader = new GameListenerLoader();
+        this.gameObjectDestroyedCallback = gameObjectDestroyedCallback;
     }
 
     public void createGameObject(GameObject<?> template, double x, double y) {
@@ -32,6 +35,9 @@ public class State {
             scene.objects.add(newGameObject);
             scene.listeners.addAll(newGameObject.attachedListeners);
             scene.gamePane.getChildren().add(newGameObject.node);
+            for (GameListener listener : newGameObject.attachedListeners) {
+                listener.startup(this);
+            }
         } catch (Exception e) {
             throw new RuntimeException("Error while creating object " + template.getName(), e);
         }
@@ -42,6 +48,8 @@ public class State {
             scene.listeners.remove(listener);
         }
         scene.objects.remove(object);
+        scene.gamePane.getChildren().remove(object.node);
+        gameObjectDestroyedCallback.accept(object);
     }
 
     public void init() {

@@ -11,6 +11,8 @@
 "app.cleancode.scaga.listeners.enemy.EnemyJumpListener",
 "app.cleancode.scaga.listeners.player.PlayerHealthListener",
 "app.cleancode.scaga.listeners.player.PlayerMagicListener",
-"app.cleancode.scaga.listeners.player.PlayerAttackListener"
+"app.cleancode.scaga.listeners.player.PlayerAttackListener",
+"app.cleancode.scaga.listeners.enemy.DamageDealer",
+"app.cleancode.scaga.listeners.enemy.DeathManager"
 ]
 }

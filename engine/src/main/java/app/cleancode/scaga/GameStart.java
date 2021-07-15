@@ -1,7 +1,7 @@
 package app.cleancode.scaga;
 
 import java.nio.file.Paths;
-
+import java.util.function.Consumer;
 import app.cleancode.scaga.engine.GameListener;
 import app.cleancode.scaga.engine.GameLoop;
 import app.cleancode.scaga.engine.GameObject;
@@ -52,10 +52,19 @@ public class GameStart extends Application {
         keyState = new KeyState();
 
         // todo: make it easier to initialize State
-        var stateConstructor =
-                State.class.getDeclaredConstructor(KeyState.class, this.scene.getClass());
+        var stateConstructor = State.class.getDeclaredConstructor(KeyState.class,
+                this.scene.getClass(), Consumer.class);
         stateConstructor.setAccessible(true);
-        state = stateConstructor.newInstance(keyState, this.scene);
+        state = stateConstructor.newInstance(keyState, this.scene, new Consumer<GameObject<?>>() {
+
+            @Override
+            public void accept(GameObject<?> obj) {
+                for (PhysicalLaw law : laws) {
+                    law.destroyGameObject(obj);
+                }
+            }
+
+        });
         state.init();
         new KeyboardManager(keyState).bind(primaryStage);
         nodes.getChildren().add(this.scene.gamePane);
