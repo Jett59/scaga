@@ -8,6 +8,6 @@
 "mass": 1,
 "drag": 1.5,
 "properties": [ 
-"health"
+"health", "attacking"
 ]
 }
