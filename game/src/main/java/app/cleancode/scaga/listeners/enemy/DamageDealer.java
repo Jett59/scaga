@@ -12,7 +12,7 @@ import app.cleancode.scaga.engine.annotations.ImportGameProperty;
 
 @AttachedTo("enemy")
 public class DamageDealer extends GameListener {
-    public static final double DAMAGE_AMOUNT = 0.005;
+    public static final double DAMAGE_AMOUNT = 0.003;
 
     @ImportGameObject
     public GameObject<?> enemy;
