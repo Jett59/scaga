@@ -16,10 +16,14 @@ public class DeathManager extends GameListener {
     @ImportGameObject
     public GameObject<?> enemy;
 
+    @ImportGameProperty(owner = "player")
+    public GameProperty magic;
+
     @Override
     public void update(State state) {
         if (health.getDouble() <= 0) {
             state.destroyGameObject(enemy);
+            magic.set(Math.min(magic.getDouble() + 0.25d, 1d));
         }
     }
 
