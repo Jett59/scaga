@@ -11,7 +11,7 @@ import app.cleancode.scaga.engine.annotations.ImportGameProperty;
 
 @AttachedTo("player")
 public class DamageDealer extends GameListener {
-    private static double ATTACK_AMOUNT = 0.002;
+    public static double ATTACK_AMOUNT = 0.002;
 
     @ImportGameProperty(owner = "player")
     public GameProperty health;
