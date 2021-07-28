@@ -14,7 +14,6 @@ public class Attacker extends GameListener {
     @ImportGameObject
     public GameObject<?> enemy;
 
-    @ImportGameProperty(owner = "enemy")
     public GameProperty attacking;
 
     @Override
@@ -28,6 +27,7 @@ public class Attacker extends GameListener {
 
     @Override
     public void startup(State state) {
+        attacking = enemy.getProperty("attacking");
         attacking.set(false);
     }
 

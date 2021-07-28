@@ -1,6 +1,8 @@
 package app.cleancode.scaga.engine.physics;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import app.cleancode.scaga.bounds.Bound;
@@ -13,10 +15,10 @@ import javafx.geometry.Bounds;
 import javafx.scene.shape.Shape;
 
 public class Collisions {
-    private Set<Collidable> objects;
+    private List<Collidable> objects;
 
     public Collisions() {
-        objects = new HashSet<>();
+        objects = new ArrayList<>();
     }
 
     public Collision check(GameObject<?> obj) {
@@ -38,7 +40,9 @@ public class Collisions {
     }
 
     public void registerObject(Collidable c) {
-        objects.add(c);
+        if (!objects.contains(c)) {
+            objects.add(c);
+        }
     }
 
     public void removeCollidable(Collidable collidable) {

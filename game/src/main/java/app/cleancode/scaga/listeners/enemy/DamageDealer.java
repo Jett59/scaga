@@ -8,19 +8,19 @@ import app.cleancode.scaga.engine.GameProperty;
 import app.cleancode.scaga.engine.State;
 import app.cleancode.scaga.engine.annotations.AttachedTo;
 import app.cleancode.scaga.engine.annotations.ImportGameObject;
-import app.cleancode.scaga.engine.annotations.ImportGameProperty;
 
 @AttachedTo("enemy")
 public class DamageDealer extends GameListener {
-    public static final double DAMAGE_AMOUNT = 0.003;
+    private static final double DAMAGE_AMOUNT = 0.003;
 
     @ImportGameObject
     public GameObject<?> enemy;
 
-    @ImportGameProperty(owner = "enemy")
+    @ImportGameObject
+    public GameObject<?> player;
+
     public GameProperty health;
 
-    @ImportGameProperty(owner = "player")
     public GameProperty attacking;
 
     @Override
@@ -30,7 +30,8 @@ public class DamageDealer extends GameListener {
 
     @Override
     public void startup(State state) {
-
+        health = enemy.getProperty("health");
+        attacking = player.getProperty("attacking");
     }
 
     @Override

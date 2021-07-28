@@ -18,26 +18,29 @@ public class EnemyMovementListener extends GameListener {
     @ImportGameObject
     public GameObject<?> player;
 
-    @ImportGameProperty(owner = "enemy")
     public GameProperty health;
 
     @Override
     public void update(State state) {
         var playerBounds = player.getRegion().getTransformedBound();
-        var barrelBounds = enemy.getRegion().getTransformedBound();
-        if (playerBounds.getMaxX() < barrelBounds.getCenterX()) {
+        var enemyBounds = enemy.getRegion().getTransformedBound();
+        if (playerBounds.getMaxX() < enemyBounds.getCenterX()) {
             enemy.xVelocity = SPEED * -1;
-        } else if (playerBounds.getMinX() > barrelBounds.getCenterX()) {
+        } else if (playerBounds.getMinX() > enemyBounds.getCenterX()) {
             enemy.xVelocity = SPEED;
         }
         if (health.getDouble() <= 0.5d) {
             enemy.xVelocity *= -1;
+            if (enemy.xVelocity == 0) {
+                double deltaX = enemyBounds.getCenterX() - playerBounds.getCenterX();
+                enemy.xVelocity = deltaX / Math.abs(deltaX) * SPEED;
+            }
         }
     }
 
     @Override
     public void startup(State state) {
-
+        health = enemy.getProperty("health");
     }
 
 }

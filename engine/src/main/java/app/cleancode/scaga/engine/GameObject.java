@@ -26,6 +26,10 @@ public abstract class GameObject<NodeType extends Node> implements Collidable {
 
     protected Map<String, GameProperty> properties = new HashMap<>();
 
+    public GameProperty getProperty(String property) {
+        return properties.get(property);
+    }
+
     public abstract String getName();
 
     public double xVelocity = 0;
@@ -62,8 +66,9 @@ public abstract class GameObject<NodeType extends Node> implements Collidable {
     }
 
     @SuppressWarnings("unchecked")
-    protected GameObject<NodeType> duplicate(GameObjectLoader objectLoader, GameListenerLoader listenerLoader,
-            State state, List<GameObject<?>> objects) throws Exception {
+    protected GameObject<NodeType> duplicate(GameObjectLoader objectLoader,
+            GameListenerLoader listenerLoader, State state, List<GameObject<?>> objects)
+            throws Exception {
         GameObject<NodeType> result = (GameObject<NodeType>) objectLoader.loadGameObject(getName());
         var gameObjects = new ArrayList<>(objects);
         gameObjects.add(0, result);
@@ -71,7 +76,6 @@ public abstract class GameObject<NodeType extends Node> implements Collidable {
         for (GameListener listener : attachedListeners) {
             GameListener newListener = listener.getClass().getConstructor().newInstance();
             listenerLoader.prepareListener(newListener, gameObjectArray);
-            listener.startup(state);
         }
         return result;
     }
