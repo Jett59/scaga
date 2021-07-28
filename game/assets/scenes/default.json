@@ -16,6 +16,7 @@
 "app.cleancode.scaga.listeners.enemy.DeathManager",
 "app.cleancode.scaga.listeners.enemy.Attacker",
 "app.cleancode.scaga.listeners.player.DamageDealer",
-"app.cleancode.scaga.listeners.player.Healer"
+"app.cleancode.scaga.listeners.player.Healer",
+"app.cleancode.scaga.listeners.player.DeathManager"
 ]
 }
