@@ -69,6 +69,10 @@ public class Animation extends Transition {
                         .add(filmStrip.getParent().translateXProperty()));
                 region.translateYProperty().bind(filmStrip.translateYProperty()
                         .add(filmStrip.getParent().translateYProperty()));
+                region.scaleXProperty().bind(filmStrip.scaleXProperty()
+                        .add(filmStrip.getParent().scaleXProperty()).divide(2));
+                region.scaleYProperty().bind(filmStrip.scaleYProperty()
+                        .add(filmStrip.getParent().scaleYProperty()).divide(2));
             }
         }
     }

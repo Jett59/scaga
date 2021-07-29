@@ -86,4 +86,15 @@ public abstract class GameObject<NodeType extends Node> implements Collidable {
             properties.put(propertyName, new GameProperty());
         }
     }
+
+    public void setScale(double scale) {
+        if (node != null) {
+            node.setScaleX(scale);
+            node.setScaleY(scale);
+        }
+    }
+
+    public double getScale() {
+        return node.getScaleX();
+    }
 }
