@@ -16,10 +16,10 @@ public class Scaler extends GameListener {
     @Override
     public void update(State state) {
         if (state.keyState.isKeyDown(KeyBindings.forName("s"))) {
-            player.setScale(player.getScale() - 0.001);
+            player.setScale(Math.max(player.getScale() - 0.001, 0));
         }
         if (state.keyState.isKeyDown(KeyBindings.forName("d"))) {
-            player.setScale(player.getScale() + 0.001);
+            player.setScale(Math.max(player.getScale() + 0.001, 0));
         }
     }
 
