@@ -33,7 +33,10 @@ public class EnemyMovementListener extends GameListener {
             enemy.xVelocity *= -1;
             if (enemy.xVelocity == 0) {
                 double deltaX = enemyBounds.getCenterX() - playerBounds.getCenterX();
-                enemy.xVelocity = deltaX / Math.abs(deltaX) * SPEED;
+                enemy.xVelocity = Math.copySign(SPEED, deltaX);
+            }
+            if (enemy.xVelocity == 0) {
+                enemy.xVelocity = SPEED;
             }
         }
     }
