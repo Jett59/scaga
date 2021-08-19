@@ -29,7 +29,6 @@ public class DamageDealer extends GameListener {
     @Override
     public void onCollision(Collidable other, Bound collisionBound) {
         if (other.toString().equals("enemy")) {
-            System.out.println(((GameObject<?>) other).getProperty("attacking").hashCode());
             if (((GameObject<?>) other).getProperty("attacking").getBoolean()) {
                 health.set(health.getDouble() - ATTACK_AMOUNT);
             }

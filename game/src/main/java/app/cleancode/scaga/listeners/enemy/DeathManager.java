@@ -11,6 +11,7 @@ import app.cleancode.scaga.engine.annotations.ImportGameProperty;
 @AttachedTo("enemy")
 public class DeathManager extends GameListener {
 
+    @ImportGameProperty(owner = "enemy")
     public GameProperty health;
 
     @ImportGameObject
@@ -29,7 +30,6 @@ public class DeathManager extends GameListener {
 
     @Override
     public void startup(State state) {
-        health = enemy.getProperty("health");
         health.set((double) 1);
     }
 

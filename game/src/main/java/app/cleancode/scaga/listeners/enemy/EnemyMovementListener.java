@@ -18,6 +18,7 @@ public class EnemyMovementListener extends GameListener {
     @ImportGameObject
     public GameObject<?> player;
 
+    @ImportGameProperty(owner = "enemy")
     public GameProperty health;
 
     @Override
@@ -43,7 +44,7 @@ public class EnemyMovementListener extends GameListener {
 
     @Override
     public void startup(State state) {
-        health = enemy.getProperty("health");
+
     }
 
 }

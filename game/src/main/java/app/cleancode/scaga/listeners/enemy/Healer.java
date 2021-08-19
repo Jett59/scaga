@@ -14,7 +14,9 @@ public class Healer extends GameListener {
     @ImportGameObject
     public GameObject<?> enemy;
 
+    @ImportGameProperty(owner = "enemy")
     public GameProperty health;
+    @ImportGameProperty(owner = "enemy")
     public GameProperty attacking;
 
     @Override
@@ -26,8 +28,7 @@ public class Healer extends GameListener {
 
     @Override
     public void startup(State state) {
-        attacking = enemy.getProperty("attacking");
-        health = enemy.getProperty("health");
+
     }
 
 }

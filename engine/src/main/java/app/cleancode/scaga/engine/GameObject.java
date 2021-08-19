@@ -70,8 +70,9 @@ public abstract class GameObject<NodeType extends Node> implements Collidable {
             GameListenerLoader listenerLoader, State state, List<GameObject<?>> objects)
             throws Exception {
         GameObject<NodeType> result = (GameObject<NodeType>) objectLoader.loadGameObject(getName());
-        var gameObjects = new ArrayList<>(objects);
-        gameObjects.add(0, result);
+        var gameObjects = new ArrayList<>();
+        gameObjects.add(result);
+        gameObjects.addAll(objects);
         GameObject<?>[] gameObjectArray = gameObjects.toArray(new GameObject<?>[] {});
         for (GameListener listener : attachedListeners) {
             GameListener newListener = listener.getClass().getConstructor().newInstance();
@@ -83,7 +84,7 @@ public abstract class GameObject<NodeType extends Node> implements Collidable {
     public GameObject(GameObjectConfig config) {
         this.collidable = config.getCollidable();
         for (String propertyName : config.getProperties()) {
-            properties.put(propertyName, new GameProperty());
+            properties.put(propertyName, new GameProperty(this));
         }
     }
 
