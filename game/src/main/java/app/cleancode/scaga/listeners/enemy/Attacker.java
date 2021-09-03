@@ -7,6 +7,7 @@ import app.cleancode.scaga.engine.State;
 import app.cleancode.scaga.engine.annotations.AttachedTo;
 import app.cleancode.scaga.engine.annotations.ImportGameObject;
 import app.cleancode.scaga.engine.annotations.ImportGameProperty;
+import app.cleancode.scaga.engine.events.AttackEvent;
 
 @AttachedTo("enemy")
 public class Attacker extends GameListener {
@@ -21,7 +22,7 @@ public class Attacker extends GameListener {
     public void update(State state) {
         if (enemy.xVelocity == 0) {
             attacking.set(true);
-            enemy.handleEvent(new AttackingEvent());
+            enemy.handleEvent(new AttackEvent());
         } else {
             attacking.set(false);
         }
