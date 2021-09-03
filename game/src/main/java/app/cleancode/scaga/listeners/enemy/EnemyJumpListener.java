@@ -27,7 +27,7 @@ public class EnemyJumpListener extends GameListener {
 
     @Override
     public void onCollision(Collidable other, Bound collisionBound) {
-        if (enemy.isTouchingGround) {
+        if (enemy.isTouchingGround && !other.toString().equals("player")) {
             if (collisionBound.getHeight() >= collisionBound.getWidth()) {
                 enemy.yVelocity = SPEED * -1;
             }

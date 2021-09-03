@@ -25,10 +25,12 @@ public class EnemyMovementListener extends GameListener {
     public void update(State state) {
         var playerBounds = player.getRegion().getTransformedBound();
         var enemyBounds = enemy.getRegion().getTransformedBound();
-        if (playerBounds.getMaxX() < enemyBounds.getCenterX()) {
-            enemy.xVelocity = SPEED * -1;
-        } else if (playerBounds.getMinX() > enemyBounds.getCenterX()) {
-            enemy.xVelocity = SPEED;
+        if (!enemy.getRegion().intersects(player.getRegion())) {
+            if (playerBounds.getMaxX() < enemyBounds.getCenterX()) {
+                enemy.xVelocity = SPEED * -1;
+            } else if (playerBounds.getMinX() > enemyBounds.getCenterX()) {
+                enemy.xVelocity = SPEED;
+            }
         }
         if (health.getDouble() <= 0.5d) {
             enemy.xVelocity *= -1;
