@@ -6,6 +6,7 @@ import app.cleancode.scaga.engine.GameProperty;
 import app.cleancode.scaga.engine.State;
 import app.cleancode.scaga.engine.annotations.AttachedTo;
 import app.cleancode.scaga.engine.annotations.ImportGameObject;
+import app.cleancode.scaga.engine.annotations.ImportGameProperty;
 
 @AttachedTo("enemy")
 public class Healer extends GameListener {
