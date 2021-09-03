@@ -21,6 +21,7 @@ public class Attacker extends GameListener {
     public void update(State state) {
         if (enemy.xVelocity == 0) {
             attacking.set(true);
+            enemy.handleEvent(new AttackingEvent());
         } else {
             attacking.set(false);
         }
